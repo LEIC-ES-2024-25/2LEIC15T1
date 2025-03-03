@@ -33,11 +33,11 @@ Please contact us!
 
 Thank you!
 
-* team member name and email
-* team member name and email
-* team member name and email
-* team member name and email
-* team member name and email
+* Mariana Cabral Almeida (up202405731@up.pt)
+* Mykyta Melnykovych (up202309183@up.pt)
+* Tiago Moreira Arteiro (up202307815@up.pt)
+* Tiago Catelas Ribeiro Correia (up202306129@up.pt)
+* Luís Martim Barbosa Cabral Ferreira (up202208429@up.pt)
 
 ---
 ## Business Modelling
@@ -116,6 +116,29 @@ For each user story you should write also the acceptance tests (textually in [Gh
 At the end, it is good to add a rough indication of the value of the user story to the customers (e.g. [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) method) and the team should add an estimation of the effort to implement it, for example, using points in a kind-of-a Fibonnacci scale (1,2,3,5,8,13,20,40, no idea).
 
 -->
+
+Below is a summary of the user stories we found most important for our application.  
+For a more detailed explanation of each user story, please access our [GitHub Project Board](https://github.com/LEIC-ES-2024-25/2LEIC15T1).
+
+#### **Main User Stories**
+
+1. **[US01]** As a student, I want to scan a QR code when recycling an item so that I can earn points and contribute to the environment.
+2. **[US02]** As a user, I want to see my position on a recycling leaderboard so that I feel motivated to recycle more.
+3. **[US03]** As a student, I want to access a university map with recycling bins so that I can easily find where to dispose of waste.
+4. **[US04]** As a user, I want to receive tips on recycling and sustainability so that I can learn best practices.
+5. **[US05]** As an administrator, I want to monitor the amount of waste recycled at each location so that I can identify areas for improvement.
+6. **[US06]** As a student, I want to receive temporary recycling challenges so that I can earn extra points and make the process more engaging.
+
+
+
+Each user story is documented in more detail in our [GitHub Project Board](https://github.com/LEIC-ES-2024-25/2LEIC15T1), including:
+- **User Interface Mockups**
+- **Acceptance Tests (Gherkin format)**
+- **Effort and Value Estimation (Fibonacci Scale)**
+
+
+
+
 
 ### Domain model
 
