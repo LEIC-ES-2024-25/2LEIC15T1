@@ -2,11 +2,11 @@
 
 > [!NOTE] In this file, you’ll find the structure you should follow to document your mobile app in the README.md file for LEIC-ES-2024-25. It’s a single file with guidelines. You can add more sections, but for assessment normalisation and automation, include all sections of this template. Your professors will clarify about specificities of your app.
 
-# _[your product name]_ Development Report
+# BinGO Development Report
 
-Welcome to the documentation pages of _[your product name]_!
+Welcome to the documentation pages of BinGo!
 
-This Software Development Report, tailored for LEIC-ES-2024-25, provides comprehensive details about _[your product name]_, from high-level vision to low-level implementation decisions. It’s organised by the following activities. 
+This Software Development Report, tailored for LEIC-ES-2024-25, provides comprehensive details about BinGo, from high-level vision to low-level implementation decisions. It’s organised by the following activities. 
 
 * [Business modeling](#Business-Modelling) 
   * [Product Vision](#Product-Vision)
