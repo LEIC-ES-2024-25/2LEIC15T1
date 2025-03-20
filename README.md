@@ -36,6 +36,7 @@ Thank you!
 * Tiago Moreira Arteiro (up202307815@up.pt)
 * Tiago Catelas Ribeiro Correia (up202306129@up.pt)
 * Luís Martim Barbosa Cabral Ferreira (up202208429@up.pt)
+* Ladielson Cabral Renner (up202309824@up.pt)
 
 ---
 ## Business Modelling
