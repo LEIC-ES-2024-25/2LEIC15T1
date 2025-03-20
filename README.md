@@ -81,15 +81,14 @@ Optionally, indicate an initial/tentative list of assumptions that you are doing
 
 4. **Leaderboard System** –  Students can see their rankings and compete based on their recycling efforts.
 
-5. **Sustainability Tips & Challenges** – Daily sustainability tips and challenges keep users engaged.
+5. **Sustainability Tips and Challenges** – Daily sustainability tips and challenges keep users engaged.
 
 6. **Admin Dashboard** – Administrators can track recycling statistics and trends across the university.
 
 ### Assumptions
 
 **Required APIs**
-- Firebase cloud database
-- Firebase OAuth
+- Firebase
 - Google Maps API
 
 ### Elevator Pitch
@@ -101,8 +100,8 @@ Take a look at the following links to learn some techniques:
 * [The Best Elevator Pitch Examples, Templates, and Tactics - A Guide to Writing an Unforgettable Elevator Speech, by strategypeak.com](https://strategypeak.com/elevator-pitch-examples/)
 * [Top 7 Killer Elevator Pitch Examples, by toggl.com](https://blog.toggl.com/elevator-pitch-examples/)
 -->
-
-"BinGo transforms recycling into a fun and rewarding experience. Scan QR codes, earn points, and compete with your colleagues on the leaderboard while making a real impact on the environment"
+<!-- 
+"BinGo transforms recycling into a fun and rewarding experience. Scan QR codes, earn points, and compete with your colleagues on the leaderboard while making a real impact on the environment"-->
 
 ## Requirements
 
