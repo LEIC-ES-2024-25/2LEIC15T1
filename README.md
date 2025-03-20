@@ -1,7 +1,5 @@
 <!-- Template file for README.md for LEIC-ES-2023-24 -->
 
-> [!NOTE] In this file, you’ll find the structure you should follow to document your mobile app in the README.md file for LEIC-ES-2024-25. It’s a single file with guidelines. You can add more sections, but for assessment normalisation and automation, include all sections of this template. Your professors will clarify about specificities of your app.
-
 # BinGO Development Report
 
 Welcome to the documentation pages of BinGo!
@@ -42,8 +40,6 @@ Thank you!
 ---
 ## Business Modelling
 
-Business modeling in software development involves defining the product's vision, understanding market needs, aligning features with user expectations, and setting the groundwork for strategic planning and execution.
-
 ### Product Vision
 
 <!-- 
@@ -65,9 +61,9 @@ To learn more about how to write a good product vision, please see:
 * [20 Inspiring Vision Statement Examples (2019 Updated), by lifehack.org](https://www.lifehack.org/articles/work/20-sample-vision-statement-for-the-new-startup.html)
 -->
 
-BinGo is a application designed to encourage university students to engage in sustainable recycling practices through gamification. The app shows the map of the univercity, with recycling bins of the university, allows users to scan QR codes on recyclable itemns, earn points per item scaned, climb a leaderboard, and complete sustainability challenges. 
+BinGo is an application designed to encourage university students to engage in sustainable recycling practices by turning it into a game. The app shows a map of the university with the recycling bin locations and allows users to scan the QR codes of the recyclable items, earn points per item scanned, climb the leaderboard, and complete sustainability challenges.
 
-### Features and Assumptions
+### Features
 <!-- 
 Indicate an  initial/tentative list of high-level features - high-level capabilities or desired services of the system that are necessary to deliver benefits to the users.
  - Feature XPTO - a few words to briefly describe the feature
@@ -77,15 +73,24 @@ Indicate an  initial/tentative list of high-level features - high-level capabili
 Optionally, indicate an initial/tentative list of assumptions that you are doing about the app and dependencies of the app to other systems.
 -->
 
-- The app provide an interactive university map displaying the locations of recycling bins.
+1. **Account and Profile Management** – Users can create an account, customize their profile, and track their progress.  
 
-- Users should be able to scan QR codes on items to verify their recycling actions and earn points.
+2. **Interactive University Map** – The app provides a detailed campus map with pinned locations of recycling bins.  
 
-- A leaderboard system shoud motivate students by ranking their recycling efforts.
+3. **QR Code Scanning** – Users can verify recycling by scanning QR codes on items and earning points.
 
-- The app should offer daily sustainability tips and challenges to keep users engaged.
+4. **Leaderboard System** –  Students can see their rankings and compete based on their recycling efforts.
 
-- Administrators should be able to monitor recycling statistics across different campus locations.
+5. **Sustainability Tips & Challenges** – Daily sustainability tips and challenges keep users engaged.
+
+6. **Admin Dashboard** – Administrators can track recycling statistics and trends across the university.
+
+### Assumptions
+
+**Required APIs**
+- Firebase cloud database
+- Firebase OAuth
+- Google Maps API
 
 ### Elevator Pitch
 <!-- 
