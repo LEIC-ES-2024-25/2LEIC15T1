@@ -160,6 +160,13 @@ Each user story is documented in more detail in our [GitHub Project Board](https
 
 ### Domain model
 
+<img src="imgs/models/domain.jpg">
+
+A user performs "Recycling Actions" which consist of the act of recycling itself. "Recycling Actions" are associated with the recycling bin where they were performed, as well as the timestamp of the act and the information of the recycled item (if the barcode was read, it will have the item's information, if a photograph was taken of the item, it will have that photo associated and if the item was chosen from the default item list, it will have that item associated).
+
+Recycling bins contain information about their physical location and the type of bin (recycling or undifferentiated).
+
+The challenges have information about how many points will be given and also the time limit for them to be completed.
 <!-- 
 To better understand the context of the software system, it is useful to have a simple UML class diagram with all and only the key concepts (names, attributes) and relationships involved of the problem domain addressed by your app. 
 Also provide a short textual description of each concept (domain class). 
@@ -172,6 +179,11 @@ Example:
 
 
 ## Architecture and Design
+
+<img src="imgs/models/package.jpg">
+
+Our database will store user information and map information (recycling bin positions).
+
 <!--
 The architecture of a software system encompasses the set of key decisions about its organization. 
 
