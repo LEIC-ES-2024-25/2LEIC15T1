@@ -62,7 +62,7 @@ To learn more about how to write a good product vision, please see:
 * [20 Inspiring Vision Statement Examples (2019 Updated), by lifehack.org](https://www.lifehack.org/articles/work/20-sample-vision-statement-for-the-new-startup.html)
 -->
 
-BinGo is an application designed to encourage university students to engage in sustainable recycling practices by turning it into a game. The app shows a map of the university with the recycling bin locations and allows users to scan the Barcodes of the recyclable items, earn points per item scanned, climb the leaderboard, and complete sustainability challenges.
+BinGo is a recycling app for students that gamifies sustainability, mapping recycling bins and encouraging them to scan items, earn points, and climb the leaderboard.
 
 ### Features
 <!-- 
@@ -134,10 +134,9 @@ For each user story you should write also the acceptance tests (textually in [Gh
 **Value and effort**.
 At the end, it is good to add a rough indication of the value of the user story to the customers (e.g. [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) method) and the team should add an estimation of the effort to implement it, for example, using points in a kind-of-a Fibonnacci scale (1,2,3,5,8,13,20,40, no idea).
 
--->
  
 For a detailed explanation of each user story, please access our [GitHub Project Board](https://github.com/LEIC-ES-2024-25/2LEIC15T1).
-<!-- 
+
 #### **Main User Stories**
 
 1. **[US01]** As a student, I want to scan a QR code when recycling an item so that I can earn points and contribute to the environment.
@@ -149,12 +148,10 @@ For a detailed explanation of each user story, please access our [GitHub Project
 
 -->
 
-Each user story is documented in more detail in our [GitHub Project Board](https://github.com/LEIC-ES-2024-25/2LEIC15T1), including:
+For a detailed explanation of each user story, please access our [GitHub Project Board](https://github.com/LEIC-ES-2024-25/2LEIC15T1). Including:
 - **User Interface Mockups**
 - **Acceptance Tests**
 - **Effort and Value Estimation (Fibonacci Scale)**
-
-
 
 
 
