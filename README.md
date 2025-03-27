@@ -196,6 +196,11 @@ In this section you should start by briefly describing the components of the pro
 
 
 ### Logical architecture
+
+<img src="imgs/models/deployment.jpg">
+
+Our application uses 3 servers to operate. GoogleMaps is used to show the university map, FireBase is used to store all relevant information (user info, map info, ...) and BarcodeLookUp is used to find out the information of the products in the recycled packaging through the barcode.
+
 <!--
 The purpose of this subsection is to document the high-level logical structure of the code (Logical View), using a UML diagram with logical packages, without the worry of allocating to components, processes or machines.
 
