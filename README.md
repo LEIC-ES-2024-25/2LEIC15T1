@@ -62,7 +62,7 @@ To learn more about how to write a good product vision, please see:
 * [20 Inspiring Vision Statement Examples (2019 Updated), by lifehack.org](https://www.lifehack.org/articles/work/20-sample-vision-statement-for-the-new-startup.html)
 -->
 
-BinGo is an application designed to encourage university students to engage in sustainable recycling practices by turning it into a game. The app shows a map of the university with the recycling bin locations and allows users to scan the QR codes of the recyclable items, earn points per item scanned, climb the leaderboard, and complete sustainability challenges.
+BinGo is an application designed to encourage university students to engage in sustainable recycling practices by turning it into a game. The app shows a map of the university with the recycling bin locations and allows users to scan the Barcodes of the recyclable items, earn points per item scanned, climb the leaderboard, and complete sustainability challenges.
 
 ### Features
 <!-- 
@@ -78,7 +78,7 @@ Optionally, indicate an initial/tentative list of assumptions that you are doing
 
 2. **Interactive University Map** – The app provides a detailed campus map with pinned locations of recycling bins.  
 
-3. **QR Code Scanning** – Users can verify recycling by scanning QR codes on items and earning points.
+3. **Barcode Scanning** – Users can verify recycling by scanning barcodes on items and earning points.
 
 4. **Leaderboard System** –  Students can see their rankings and compete based on their recycling efforts.
 
@@ -91,6 +91,7 @@ Optionally, indicate an initial/tentative list of assumptions that you are doing
 **Required APIs**
 - Firebase
 - Google Maps API
+- BarcodeLookUp API
 
 ### Elevator Pitch
 <!-- 
@@ -134,10 +135,9 @@ For each user story you should write also the acceptance tests (textually in [Gh
 At the end, it is good to add a rough indication of the value of the user story to the customers (e.g. [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) method) and the team should add an estimation of the effort to implement it, for example, using points in a kind-of-a Fibonnacci scale (1,2,3,5,8,13,20,40, no idea).
 
 -->
-
-Below is a summary of the user stories we found most important for our application (BinGo).  
-For a more detailed explanation of each user story, please access our [GitHub Project Board](https://github.com/LEIC-ES-2024-25/2LEIC15T1).
-
+ 
+For a detailed explanation of each user story, please access our [GitHub Project Board](https://github.com/LEIC-ES-2024-25/2LEIC15T1).
+<!-- 
 #### **Main User Stories**
 
 1. **[US01]** As a student, I want to scan a QR code when recycling an item so that I can earn points and contribute to the environment.
@@ -147,11 +147,11 @@ For a more detailed explanation of each user story, please access our [GitHub Pr
 5. **[US05]** As an administrator, I want to monitor the amount of waste recycled at each location so that I can identify areas for improvement.
 6. **[US06]** As a student, I want to receive temporary recycling challenges so that I can earn extra points and make the process more engaging.
 
-
+-->
 
 Each user story is documented in more detail in our [GitHub Project Board](https://github.com/LEIC-ES-2024-25/2LEIC15T1), including:
 - **User Interface Mockups**
-- **Acceptance Tests (Gherkin format)**
+- **Acceptance Tests**
 - **Effort and Value Estimation (Fibonacci Scale)**
 
 
