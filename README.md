@@ -180,9 +180,6 @@ Example:
 
 ## Architecture and Design
 
-<img src="imgs/models/package.jpg">
-
-Our database will store user information and map information (recycling bin positions).
 
 <!--
 The architecture of a software system encompasses the set of key decisions about its organization. 
@@ -197,9 +194,11 @@ In this section you should start by briefly describing the components of the pro
 
 ### Logical architecture
 
-<img src="imgs/models/deployment.jpg">
+<img src="imgs/models/package.jpg">
 
-Our application uses 3 servers to operate. GoogleMaps is used to show the university map, FireBase is used to store all relevant information (user info, map info, ...) and BarcodeLookUp is used to find out the information of the products in the recycled packaging through the barcode.
+Our database will store user information and map information (recycling bin positions).
+
+
 
 <!--
 The purpose of this subsection is to document the high-level logical structure of the code (Logical View), using a UML diagram with logical packages, without the worry of allocating to components, processes or machines.
@@ -213,6 +212,10 @@ Example of _UML package diagram_ showing a _logical view_ of the Eletronic Ticke
 
 
 ### Physical architecture
+
+<img src="imgs/models/deployment.jpg">
+
+Our application uses 3 servers to operate. GoogleMaps is used to show the university map, FireBase is used to store all relevant information (user info, map info, ...) and BarcodeLookUp is used to find out the information of the products in the recycled packaging through the barcode.
 <!--
 The goal of this subsection is to document the high-level physical structure of the software system (machines, connections, software components installed, and their dependencies) using UML deployment diagrams (Deployment View) or component diagrams (Implementation View), separate or integrated, showing the physical structure of the system.
 
