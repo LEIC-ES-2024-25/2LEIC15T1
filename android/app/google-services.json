@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "806624109461",
+    "project_id": "bin-go-t8bonu",
+    "storage_bucket": "bin-go-t8bonu.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:806624109461:android:16153acd30a8f53a924c9c",
+        "android_client_info": {
+          "package_name": "com.mycompany.bingo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzQ96VKW265kKQSmajQ82uBaUTcd9DVME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
