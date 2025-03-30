@@ -225,6 +225,12 @@ Example of _UML deployment diagram_ showing a _deployment view_ of the Eletronic
 
 
 ### Vertical prototype
+
+
+<img src="imgs/vertical-model-img.png">
+
+In our vertical model, we used some templates already available in FlutterFlow just to get an idea of ​​the main structure of the app. We also focused on having the basics of FireBase and the GoogleMaps API usage.
+
 <!--
 To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system integrating as much technologies we can.
 
@@ -256,6 +262,8 @@ You can find below information and references related with the project managemen
 -->
 
 ### Sprint 0
+
+<img src="imgs/sprint0.png">
 
 ### Sprint 1
 
