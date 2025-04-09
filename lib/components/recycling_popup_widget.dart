@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'recycling_popup_model.dart';
 export 'recycling_popup_model.dart';
 
@@ -25,7 +26,7 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
     super.initState();
     _model = createModel(context, () => RecyclingPopupModel());
 
-    _model.textController ??= TextEditingController(text: 'Search...');
+    _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -109,17 +110,34 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                             size: 38.0,
                           ),
                         ),
-                        Container(
-                          width: 100.0,
-                          height: 100.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).primary,
-                            borderRadius: BorderRadius.circular(16.0),
-                          ),
-                          child: Icon(
-                            Icons.document_scanner_outlined,
-                            color: Colors.white,
-                            size: 38.0,
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            _model.barcodeResult =
+                                await FlutterBarcodeScanner.scanBarcode(
+                              '#C62828', // scanning line color
+                              'Cancel', // cancel button text
+                              true, // whether to show the flash icon
+                              ScanMode.QR,
+                            );
+
+                            safeSetState(() {});
+                          },
+                          child: Container(
+                            width: 100.0,
+                            height: 100.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).primary,
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
+                            child: Icon(
+                              Icons.document_scanner_outlined,
+                              color: Colors.white,
+                              size: 38.0,
+                            ),
                           ),
                         ),
                       ],
@@ -141,6 +159,7 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                               obscureText: false,
                               decoration: InputDecoration(
                                 isDense: true,
+                                labelText: 'Search...',
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
@@ -202,6 +221,20 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                     ),
                   ),
                 ],
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+                child: Text(
+                  valueOrDefault<String>(
+                    _model.barcodeResult,
+                    '0',
+                  ),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Inter',
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.w900,
+                      ),
+                ),
               ),
             ],
           ),

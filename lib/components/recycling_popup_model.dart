@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class RecyclingPopupModel extends FlutterFlowModel<RecyclingPopupWidget> {
   ///  State fields for stateful widgets in this component.
 
+  var barcodeResult = '';
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
