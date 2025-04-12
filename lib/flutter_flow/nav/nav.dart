@@ -103,6 +103,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: MainPageWidget.routeName,
           path: MainPageWidget.routePath,
           builder: (context, params) => MainPageWidget(),
+        ),
+        FFRoute(
+          name: SearchPageWidget.routeName,
+          path: SearchPageWidget.routePath,
+          builder: (context, params) => SearchPageWidget(),
+        ),
+        FFRoute(
+          name: CameraWidget.routeName,
+          path: CameraWidget.routePath,
+          builder: (context, params) => CameraWidget(
+            onImageCaptured: params.getParam(
+              'onImageCaptured',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: CameraPageWidget.routeName,
+          path: CameraPageWidget.routePath,
+          builder: (context, params) => CameraPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

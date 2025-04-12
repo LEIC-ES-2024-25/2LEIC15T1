@@ -1,5 +1,7 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'recycling_popup_model.dart';
@@ -26,9 +28,6 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
     super.initState();
     _model = createModel(context, () => RecyclingPopupModel());
 
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
-
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -46,7 +45,7 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
       children: [
         Container(
           width: 300.0,
-          height: 455.0,
+          height: 333.0,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
           ),
@@ -72,7 +71,7 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                           width: 40.0,
                           height: 40.0,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).primary,
+                            color: FlutterFlowTheme.of(context).secondary,
                             borderRadius: BorderRadius.circular(12.0),
                             shape: BoxShape.rectangle,
                           ),
@@ -97,17 +96,26 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Container(
-                          width: 100.0,
-                          height: 100.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).primary,
-                            borderRadius: BorderRadius.circular(16.0),
-                          ),
-                          child: Icon(
-                            Icons.photo_camera,
-                            color: Color(0xFEFFFFFF),
-                            size: 38.0,
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(CameraWidget.routeName);
+                          },
+                          child: Container(
+                            width: 100.0,
+                            height: 100.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).secondary,
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
+                            child: Icon(
+                              Icons.photo_camera,
+                              color: Color(0xFEFFFFFF),
+                              size: 38.0,
+                            ),
                           ),
                         ),
                         InkWell(
@@ -116,26 +124,85 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            var _shouldSetState = false;
                             _model.barcodeResult =
                                 await FlutterBarcodeScanner.scanBarcode(
                               '#C62828', // scanning line color
                               'Cancel', // cancel button text
                               true, // whether to show the flash icon
-                              ScanMode.QR,
+                              ScanMode.BARCODE,
                             );
 
-                            safeSetState(() {});
+                            _shouldSetState = true;
+                            if (_model.barcodeResult == '-1') {
+                              var confirmDialogResponse =
+                                  await showDialog<bool>(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: Text('SCANNING ERROR'),
+                                            content:
+                                                Text(_model.barcodeResult),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: Text('Cancel'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: Text('Confirm'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ) ??
+                                      false;
+                              if (_shouldSetState) safeSetState(() {});
+                              return;
+                            }
+                            _model.apiResult88i = await GetBarcodeCall.call(
+                              barcode: _model.barcodeResult,
+                            );
+
+                            _shouldSetState = true;
+                            if (!(_model.apiResult88i?.succeeded ?? true)) {
+                              var confirmDialogResponse =
+                                  await showDialog<bool>(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: Text('API CALL FAILURE'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: Text('Cancel'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: Text('Confirm'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ) ??
+                                      false;
+                            }
+                            if (_shouldSetState) safeSetState(() {});
                           },
                           child: Container(
                             width: 100.0,
                             height: 100.0,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).primary,
+                              color: FlutterFlowTheme.of(context).secondary,
                               borderRadius: BorderRadius.circular(16.0),
                             ),
                             child: Icon(
                               Icons.document_scanner_outlined,
-                              color: Colors.white,
+                              color: FlutterFlowTheme.of(context).alternate,
                               size: 38.0,
                             ),
                           ),
@@ -143,98 +210,45 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                       ],
                     ),
                   ),
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      context.pushNamed(SearchPageWidget.routeName);
+                    },
+                    child: Container(
+                      width: 100.0,
+                      height: 100.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondary,
+                        borderRadius: BorderRadius.circular(16.0),
+                      ),
+                      child: Icon(
+                        Icons.search_sharp,
+                        color: Colors.white,
+                        size: 38.0,
+                      ),
+                    ),
+                  ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            width: 200.0,
-                            child: TextFormField(
-                              controller: _model.textController,
-                              focusNode: _model.textFieldFocusNode,
-                              autofocus: false,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                isDense: true,
-                                labelText: 'Search...',
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Inter',
-                                      letterSpacing: 0.0,
-                                    ),
-                                hintText: 'TextField',
-                                hintStyle: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Inter',
-                                      letterSpacing: 0.0,
-                                    ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.black,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                                filled: true,
-                                fillColor: Color(0xFFBFBFBF),
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    letterSpacing: 0.0,
-                                  ),
-                              cursorColor:
-                                  FlutterFlowTheme.of(context).primaryText,
-                              validator: _model.textControllerValidator
-                                  .asValidator(context),
-                            ),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                    child: Text(
+                      valueOrDefault<String>(
+                        GetBarcodeCall.itemName(
+                          (_model.apiResult88i?.jsonBody ?? ''),
+                        ).toString(),
+                        'title',
+                      ),
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Inter',
+                            letterSpacing: 0.0,
                           ),
-                        ),
-                      ],
                     ),
                   ),
                 ],
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
-                child: Text(
-                  valueOrDefault<String>(
-                    _model.barcodeResult,
-                    '0',
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Inter',
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.w900,
-                      ),
-                ),
               ),
             ],
           ),

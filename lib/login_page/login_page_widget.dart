@@ -98,7 +98,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
           height: double.infinity,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color(0xFF4B39EF), Color(0xFFEE8B60)],
+              colors: [
+                FlutterFlowTheme.of(context).tertiary,
+                FlutterFlowTheme.of(context).primary
+              ],
               stops: [0.0, 1.0],
               begin: AlignmentDirectional(0.87, -1.0),
               end: AlignmentDirectional(-0.87, 1.0),
@@ -123,7 +126,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                       'BinGo',
                       style: FlutterFlowTheme.of(context).displaySmall.override(
                             fontFamily: 'Plus Jakarta Sans',
-                            color: Colors.white,
+                            color: FlutterFlowTheme.of(context).alternate,
                             fontSize: 36.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
@@ -167,7 +170,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                   .displaySmall
                                   .override(
                                     fontFamily: 'Plus Jakarta Sans',
-                                    color: Color(0xFF101213),
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
                                     fontSize: 36.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
@@ -183,7 +187,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                     .labelMedium
                                     .override(
                                       fontFamily: 'Plus Jakarta Sans',
-                                      color: Color(0xFF57636C),
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondary,
                                       fontSize: 14.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
@@ -356,12 +361,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                       0.0, 0.0, 0.0, 0.0),
                                   iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  color: Color(0xFF4B39EF),
+                                  color: FlutterFlowTheme.of(context).tertiary,
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
                                         fontFamily: 'Plus Jakarta Sans',
-                                        color: Colors.white,
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
                                         fontSize: 16.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
@@ -394,7 +400,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Plus Jakarta Sans',
-                                            color: Color(0xFF4B39EF),
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
                                             fontSize: 14.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,

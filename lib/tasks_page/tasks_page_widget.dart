@@ -116,7 +116,7 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
                             maxWidth: 570.0,
                           ),
                           decoration: BoxDecoration(
-                            color: Color(0xFFD3D0FF),
+                            color: FlutterFlowTheme.of(context).primary,
                             borderRadius: BorderRadius.circular(8.0),
                             border: Border.all(
                               color: Color(0xFFE5E7EB),
@@ -175,49 +175,53 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 12.0),
-                                          child: Text(
-                                            '300 points',
-                                            textAlign: TextAlign.end,
-                                            style: FlutterFlowTheme.of(context)
-                                                .headlineSmall
-                                                .override(
-                                                  fontFamily: 'Outfit',
-                                                  color: Color(0xFF15161E),
-                                                  fontSize: 22.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                          ),
+                                        Text(
+                                          '300 points',
+                                          textAlign: TextAlign.end,
+                                          style: FlutterFlowTheme.of(context)
+                                              .headlineSmall
+                                              .override(
+                                                fontFamily: 'Outfit',
+                                                color: Color(0xFF15161E),
+                                                fontSize: 15.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                         ),
                                       ],
                                     ),
                                   ],
                                 ),
                               ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.all(4.0),
-                                    child: LinearPercentIndicator(
-                                      percent: 0.0,
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.85,
-                                      lineHeight: 12.0,
-                                      animation: true,
-                                      animateFromLastPercent: true,
-                                      progressColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                      backgroundColor: Color(0xCCB7B6B6),
-                                      barRadius: Radius.circular(6.0),
-                                      padding: EdgeInsets.zero,
-                                    ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.all(4.0),
+                                        child: LinearPercentIndicator(
+                                          percent: 0.0,
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.85,
+                                          lineHeight: 12.0,
+                                          animation: true,
+                                          animateFromLastPercent: true,
+                                          progressColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .alternate,
+                                          barRadius: Radius.circular(6.0),
+                                          padding: EdgeInsets.zero,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
                             ],
                           ),
@@ -232,7 +236,7 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
                             maxWidth: 570.0,
                           ),
                           decoration: BoxDecoration(
-                            color: Color(0xFFD3D0FF),
+                            color: FlutterFlowTheme.of(context).primary,
                             borderRadius: BorderRadius.circular(8.0),
                             border: Border.all(
                               color: Color(0xFFE5E7EB),
@@ -291,23 +295,18 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 12.0),
-                                          child: Text(
-                                            '200 points',
-                                            textAlign: TextAlign.end,
-                                            style: FlutterFlowTheme.of(context)
-                                                .headlineSmall
-                                                .override(
-                                                  fontFamily: 'Outfit',
-                                                  color: Color(0xFF15161E),
-                                                  fontSize: 22.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                          ),
+                                        Text(
+                                          '200 points',
+                                          textAlign: TextAlign.end,
+                                          style: FlutterFlowTheme.of(context)
+                                              .headlineSmall
+                                              .override(
+                                                fontFamily: 'Outfit',
+                                                color: Color(0xFF15161E),
+                                                fontSize: 15.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                         ),
                                       ],
                                     ),
@@ -318,7 +317,7 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(4.0),
+                                    padding: EdgeInsets.all(8.0),
                                     child: LinearPercentIndicator(
                                       percent: 0.0,
                                       width: MediaQuery.sizeOf(context).width *
@@ -328,7 +327,9 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
                                       animateFromLastPercent: true,
                                       progressColor:
                                           FlutterFlowTheme.of(context).primary,
-                                      backgroundColor: Color(0xCCB7B6B6),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .alternate,
                                       barRadius: Radius.circular(6.0),
                                       padding: EdgeInsets.zero,
                                     ),
@@ -370,7 +371,7 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
                             maxWidth: 570.0,
                           ),
                           decoration: BoxDecoration(
-                            color: Color(0xFFF58587),
+                            color: FlutterFlowTheme.of(context).accent4,
                             borderRadius: BorderRadius.circular(8.0),
                             border: Border.all(
                               color: Color(0xFFE5E7EB),
@@ -429,23 +430,18 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 12.0),
-                                          child: Text(
-                                            '600 points',
-                                            textAlign: TextAlign.end,
-                                            style: FlutterFlowTheme.of(context)
-                                                .headlineSmall
-                                                .override(
-                                                  fontFamily: 'Outfit',
-                                                  color: Color(0xFF15161E),
-                                                  fontSize: 22.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                          ),
+                                        Text(
+                                          '600 points',
+                                          textAlign: TextAlign.end,
+                                          style: FlutterFlowTheme.of(context)
+                                              .headlineSmall
+                                              .override(
+                                                fontFamily: 'Outfit',
+                                                color: Color(0xFF15161E),
+                                                fontSize: 15.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                         ),
                                       ],
                                     ),
@@ -456,7 +452,7 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(4.0),
+                                    padding: EdgeInsets.all(8.0),
                                     child: LinearPercentIndicator(
                                       percent: 0.1,
                                       width: MediaQuery.sizeOf(context).width *
@@ -465,8 +461,10 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
                                       animation: true,
                                       animateFromLastPercent: true,
                                       progressColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                      backgroundColor: Color(0xCCB7B6B6),
+                                          FlutterFlowTheme.of(context).accent3,
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .alternate,
                                       barRadius: Radius.circular(6.0),
                                       padding: EdgeInsets.zero,
                                     ),
@@ -486,7 +484,7 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
                             maxWidth: 570.0,
                           ),
                           decoration: BoxDecoration(
-                            color: Color(0xFFDEEDA6),
+                            color: FlutterFlowTheme.of(context).accent4,
                             borderRadius: BorderRadius.circular(8.0),
                             border: Border.all(
                               color: Color(0xFFE5E7EB),
@@ -545,23 +543,18 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 12.0),
-                                          child: Text(
-                                            '500 points',
-                                            textAlign: TextAlign.end,
-                                            style: FlutterFlowTheme.of(context)
-                                                .headlineSmall
-                                                .override(
-                                                  fontFamily: 'Outfit',
-                                                  color: Color(0xFF15161E),
-                                                  fontSize: 22.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                          ),
+                                        Text(
+                                          '500 points',
+                                          textAlign: TextAlign.end,
+                                          style: FlutterFlowTheme.of(context)
+                                              .headlineSmall
+                                              .override(
+                                                fontFamily: 'Outfit',
+                                                color: Color(0xFF15161E),
+                                                fontSize: 15.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                         ),
                                       ],
                                     ),
@@ -571,20 +564,26 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsets.all(4.0),
-                                    child: LinearPercentIndicator(
-                                      percent: 0.66,
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.85,
-                                      lineHeight: 12.0,
-                                      animation: true,
-                                      animateFromLastPercent: true,
-                                      progressColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                      backgroundColor: Color(0xCCB7B6B6),
-                                      barRadius: Radius.circular(6.0),
-                                      padding: EdgeInsets.zero,
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: LinearPercentIndicator(
+                                        percent: 0.66,
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.85,
+                                        lineHeight: 12.0,
+                                        animation: true,
+                                        animateFromLastPercent: true,
+                                        progressColor:
+                                            FlutterFlowTheme.of(context)
+                                                .accent3,
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .alternate,
+                                        barRadius: Radius.circular(6.0),
+                                        padding: EdgeInsets.zero,
+                                      ),
                                     ),
                                   ),
                                 ],

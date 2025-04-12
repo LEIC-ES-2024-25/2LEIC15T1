@@ -89,7 +89,10 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                         height: 80.0,
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Color(0xFF4B39EF), Color(0xFFEE8B60)],
+                            colors: [
+                              FlutterFlowTheme.of(context).tertiary,
+                              FlutterFlowTheme.of(context).primary
+                            ],
                             stops: [0.0, 1.0],
                             begin: AlignmentDirectional(1.0, -1.0),
                             end: AlignmentDirectional(-1.0, 1.0),
@@ -156,7 +159,10 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
                                   ),
-                              colors: [Color(0xFF4B39EF), Color(0xFFEE8B60)],
+                              colors: [
+                                FlutterFlowTheme.of(context).tertiary,
+                                FlutterFlowTheme.of(context).accent2
+                              ],
                               gradientDirection: GradientDirection.ltr,
                               gradientType: GradientType.linear,
                             ),
@@ -354,23 +360,22 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 0.0),
+                                            Expanded(
                                               child: LinearPercentIndicator(
-                                                percent: 0.596,
+                                                percent: 0.7,
                                                 width:
                                                     MediaQuery.sizeOf(context)
                                                             .width *
-                                                        1.0,
+                                                        0.87,
                                                 lineHeight: 12.0,
                                                 animation: true,
                                                 animateFromLastPercent: true,
                                                 progressColor:
                                                     FlutterFlowTheme.of(context)
-                                                        .primary,
+                                                        .tertiary,
                                                 backgroundColor:
-                                                    Color(0xCCB7B6B6),
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
                                                 barRadius: Radius.circular(8.0),
                                                 padding: EdgeInsets.zero,
                                               ),
@@ -449,7 +454,10 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                         1.0,
                                                     height: 80.0,
                                                     decoration: BoxDecoration(
-                                                      color: Color(0xFFB3EA87),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .accent4,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               6.0),
@@ -468,54 +476,90 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                               MainAxisAlignment
                                                                   .spaceBetween,
                                                           children: [
-                                                            Text(
-                                                              'Scan the bar code of 6 products',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodySmall
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Inter',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                'Scan the bar code of 6 products',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .start,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      fontSize:
+                                                                          15.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
                                                             ),
-                                                            Text(
-                                                              '2 days left',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .labelSmall
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Inter',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          5.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                '2 days left',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .alternate,
+                                                                      fontSize:
+                                                                          12.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
                                                             ),
                                                           ],
                                                         ),
-                                                        LinearPercentIndicator(
-                                                          percent: 0.7,
-                                                          width:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .width *
-                                                                  0.82,
-                                                          lineHeight: 12.0,
-                                                          animation: true,
-                                                          animateFromLastPercent:
-                                                              true,
-                                                          progressColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primary,
-                                                          backgroundColor:
-                                                              Color(0xCCB7B6B6),
-                                                          barRadius:
-                                                              Radius.circular(
-                                                                  8.0),
+                                                        Padding(
                                                           padding:
-                                                              EdgeInsets.zero,
+                                                              EdgeInsets.all(
+                                                                  8.0),
+                                                          child:
+                                                              LinearPercentIndicator(
+                                                            percent: 0.7,
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .width *
+                                                                0.82,
+                                                            lineHeight: 12.0,
+                                                            animation: true,
+                                                            animateFromLastPercent:
+                                                                true,
+                                                            progressColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent3,
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                            barRadius:
+                                                                Radius.circular(
+                                                                    8.0),
+                                                            padding:
+                                                                EdgeInsets.zero,
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
@@ -530,7 +574,10 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                         1.0,
                                                     height: 80.0,
                                                     decoration: BoxDecoration(
-                                                      color: Color(0xFFFF9D9D),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .accent4,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               6.0),
@@ -549,54 +596,85 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                               MainAxisAlignment
                                                                   .spaceBetween,
                                                           children: [
-                                                            Text(
-                                                              'Use 3 different recycling bins',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodySmall
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Inter',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                'Use 3 different recycling bins',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      fontSize:
+                                                                          15.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
                                                             ),
-                                                            Text(
-                                                              '1 day left',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .labelSmall
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Inter',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          5.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                '1 day left',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .alternate,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
                                                             ),
                                                           ],
                                                         ),
-                                                        LinearPercentIndicator(
-                                                          percent: 0.3,
-                                                          width:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .width *
-                                                                  0.82,
-                                                          lineHeight: 12.0,
-                                                          animation: true,
-                                                          animateFromLastPercent:
-                                                              true,
-                                                          progressColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primary,
-                                                          backgroundColor:
-                                                              Color(0xCCB7B6B6),
-                                                          barRadius:
-                                                              Radius.circular(
-                                                                  8.0),
+                                                        Padding(
                                                           padding:
-                                                              EdgeInsets.zero,
+                                                              EdgeInsets.all(
+                                                                  8.0),
+                                                          child:
+                                                              LinearPercentIndicator(
+                                                            percent: 0.3,
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .width *
+                                                                0.82,
+                                                            lineHeight: 12.0,
+                                                            animation: true,
+                                                            animateFromLastPercent:
+                                                                true,
+                                                            progressColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent3,
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                            barRadius:
+                                                                Radius.circular(
+                                                                    8.0),
+                                                            padding:
+                                                                EdgeInsets.zero,
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
@@ -669,7 +747,10 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                         1.0,
                                                     height: 80.0,
                                                     decoration: BoxDecoration(
-                                                      color: Color(0xFF7CDA2F),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .accent1,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               6.0),
@@ -688,42 +769,60 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                               MainAxisAlignment
                                                                   .spaceBetween,
                                                           children: [
-                                                            Text(
-                                                              'Recycle 3 different products',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodySmall
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Inter',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                'Recycle 3 different products',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      fontSize:
+                                                                          15.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
                                                             ),
                                                           ],
                                                         ),
-                                                        LinearPercentIndicator(
-                                                          percent: 0.7,
-                                                          width:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .width *
-                                                                  0.82,
-                                                          lineHeight: 12.0,
-                                                          animation: true,
-                                                          animateFromLastPercent:
-                                                              true,
-                                                          progressColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primary,
-                                                          backgroundColor:
-                                                              Color(0xCCB7B6B6),
-                                                          barRadius:
-                                                              Radius.circular(
-                                                                  8.0),
+                                                        Padding(
                                                           padding:
-                                                              EdgeInsets.zero,
+                                                              EdgeInsets.all(
+                                                                  8.0),
+                                                          child:
+                                                              LinearPercentIndicator(
+                                                            percent: 1.0,
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .width *
+                                                                0.82,
+                                                            lineHeight: 12.0,
+                                                            animation: true,
+                                                            animateFromLastPercent:
+                                                                true,
+                                                            progressColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent2,
+                                                            backgroundColor:
+                                                                Color(
+                                                                    0xCCB7B6B6),
+                                                            barRadius:
+                                                                Radius.circular(
+                                                                    8.0),
+                                                            padding:
+                                                                EdgeInsets.zero,
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
