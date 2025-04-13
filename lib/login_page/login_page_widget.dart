@@ -1,3 +1,5 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -352,6 +354,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   context.pushNamed(MainPageWidget.routeName);
+
+                                  _model.userData1 =
+                                      await UsersRecord.getDocumentOnce(
+                                          currentUserReference!);
+
+                                  safeSetState(() {});
                                 },
                                 text: 'Sign In',
                                 options: FFButtonOptions(
@@ -386,37 +394,47 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 12.0, 0.0, 12.0),
-                              child: RichText(
-                                textScaler: MediaQuery.of(context).textScaler,
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: 'Don\'t have an account?  ',
-                                      style: TextStyle(),
-                                    ),
-                                    TextSpan(
-                                      text: 'Sign Up here',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Plus Jakarta Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondary,
-                                            fontSize: 14.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    )
-                                  ],
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Plus Jakarta Sans',
-                                        color: Color(0xFF101213),
-                                        fontSize: 14.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(SigninPageWidget.routeName);
+                                },
+                                child: RichText(
+                                  textScaler: MediaQuery.of(context).textScaler,
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: 'Don\'t have an account?  ',
+                                        style: TextStyle(),
                                       ),
+                                      TextSpan(
+                                        text: 'Sign Up here',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Plus Jakarta Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              fontSize: 14.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                      )
+                                    ],
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Plus Jakarta Sans',
+                                          color: Color(0xFF101213),
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
                                 ),
                               ),
                             ),

@@ -1,8 +1,11 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'camera_page_model.dart';
 export 'camera_page_model.dart';
@@ -97,7 +100,7 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                   size: 24.0,
                 ),
                 onPressed: () async {
-                  context.safePop();
+                  context.pushNamed(MainPageWidget.routeName);
                 },
               ),
             ),
@@ -227,7 +230,8 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                         AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Icon(
-                                                      Icons.add_a_photo_rounded,
+                                                      Icons
+                                                          .photo_camera_rounded,
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -493,8 +497,14 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(
                           16.0, 12.0, 16.0, 12.0),
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          await currentUserReference!.update({
+                            ...mapToFirestore(
+                              {
+                                'points': FieldValue.increment(10),
+                              },
+                            ),
+                          });
                         },
                         text: 'Confirm',
                         options: FFButtonOptions(

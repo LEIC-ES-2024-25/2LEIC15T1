@@ -111,10 +111,19 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                               color: FlutterFlowTheme.of(context).secondary,
                               borderRadius: BorderRadius.circular(16.0),
                             ),
-                            child: Icon(
-                              Icons.photo_camera,
-                              color: Color(0xFEFFFFFF),
-                              size: 38.0,
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed(CameraPageWidget.routeName);
+                              },
+                              child: Icon(
+                                Icons.photo_camera,
+                                color: Color(0xFEFFFFFF),
+                                size: 38.0,
+                              ),
                             ),
                           ),
                         ),

@@ -32,6 +32,9 @@ class _CameraWidgetState extends State<CameraWidget> {
     super.initState();
     _model = createModel(context, () => CameraModel());
 
+    _model.textController ??= TextEditingController();
+    _model.textFieldFocusNode ??= FocusNode();
+
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -91,6 +94,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                       )
                     ],
                     borderRadius: BorderRadius.circular(100.0),
+                    shape: BoxShape.rectangle,
                   ),
                   child: Align(
                     alignment: AlignmentDirectional(0.0, 0.0),
@@ -117,6 +121,70 @@ class _CameraWidgetState extends State<CameraWidget> {
                           fontFamily: 'Inter Tight',
                           letterSpacing: 0.0,
                         ),
+                  ),
+                ),
+                Container(
+                  width: 200.0,
+                  child: TextFormField(
+                    controller: _model.textController,
+                    focusNode: _model.textFieldFocusNode,
+                    autofocus: false,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      isDense: true,
+                      labelText: 'Name...',
+                      labelStyle:
+                          FlutterFlowTheme.of(context).headlineMedium.override(
+                                fontFamily: 'Inter Tight',
+                                color: FlutterFlowTheme.of(context).primary,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w600,
+                              ),
+                      hintStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                fontFamily: 'Inter',
+                                letterSpacing: 0.0,
+                              ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      filled: true,
+                      fillColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Inter',
+                          fontSize: 24.0,
+                          letterSpacing: 0.0,
+                        ),
+                    cursorColor: FlutterFlowTheme.of(context).primaryText,
+                    validator:
+                        _model.textControllerValidator.asValidator(context),
                   ),
                 ),
                 Padding(

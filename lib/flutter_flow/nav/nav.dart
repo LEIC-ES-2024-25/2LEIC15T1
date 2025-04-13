@@ -123,6 +123,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: CameraPageWidget.routeName,
           path: CameraPageWidget.routePath,
           builder: (context, params) => CameraPageWidget(),
+        ),
+        FFRoute(
+          name: SigninPageWidget.routeName,
+          path: SigninPageWidget.routePath,
+          builder: (context, params) => SigninPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

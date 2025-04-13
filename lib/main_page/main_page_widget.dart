@@ -99,68 +99,74 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                       );
                     },
                   ),
-                  FFButtonWidget(
-                    onPressed: () async {
-                      await showModalBottomSheet(
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        enableDrag: false,
-                        context: context,
-                        builder: (context) {
-                          return GestureDetector(
-                            onTap: () {
-                              FocusScope.of(context).unfocus();
-                              FocusManager.instance.primaryFocus?.unfocus();
-                            },
-                            child: Padding(
-                              padding: MediaQuery.viewInsetsOf(context),
-                              child: Container(
-                                height: 600.0,
-                                child: RecyclingPopupWidget(),
+                  Padding(
+                    padding: EdgeInsets.all(4.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          enableDrag: false,
+                          context: context,
+                          builder: (context) {
+                            return GestureDetector(
+                              onTap: () {
+                                FocusScope.of(context).unfocus();
+                                FocusManager.instance.primaryFocus?.unfocus();
+                              },
+                              child: Padding(
+                                padding: MediaQuery.viewInsetsOf(context),
+                                child: Container(
+                                  height: 600.0,
+                                  child: RecyclingPopupWidget(),
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                      ).then((value) => safeSetState(() {}));
-                    },
-                    text: 'Recycle',
-                    options: FFButtonOptions(
-                      height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).secondary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Inter Tight',
-                                color: Colors.white,
-                                letterSpacing: 0.0,
-                              ),
-                      elevation: 0.0,
-                      borderRadius: BorderRadius.circular(8.0),
+                            );
+                          },
+                        ).then((value) => safeSetState(() {}));
+                      },
+                      text: 'Recycle',
+                      options: FFButtonOptions(
+                        height: 40.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).secondary,
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Inter Tight',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                        elevation: 0.0,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                     ),
                   ),
-                  FFButtonWidget(
-                    onPressed: () async {
-                      context.pushNamed(ProfilePageWidget.routeName);
-                    },
-                    text: 'Profile',
-                    options: FFButtonOptions(
-                      height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).secondary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Inter Tight',
-                                color: Colors.white,
-                                letterSpacing: 0.0,
-                              ),
-                      elevation: 0.0,
-                      borderRadius: BorderRadius.circular(8.0),
+                  Padding(
+                    padding: EdgeInsets.all(4.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        context.pushNamed(ProfilePageWidget.routeName);
+                      },
+                      text: 'Profile',
+                      options: FFButtonOptions(
+                        height: 40.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).secondary,
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Inter Tight',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                        elevation: 0.0,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                     ),
                   ),
                 ],
