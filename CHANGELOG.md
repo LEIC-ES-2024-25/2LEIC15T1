@@ -22,7 +22,7 @@
     - Points System  
     - Camera action  
 
-- ### Photo of Recycled Item
+- ### List search of items
   The user is now able to select a product from a predefined list.
   
   - **User stories implemented to support this functionality:**
