@@ -101,7 +101,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                     child: FlutterFlowIconButton(
                       borderRadius: 100.0,
                       buttonSize: 100.0,
-                      fillColor: FlutterFlowTheme.of(context).primary,
+                      fillColor: FlutterFlowTheme.of(context).secondary,
                       icon: Icon(
                         Icons.photo_camera_rounded,
                         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -194,7 +194,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                     textAlign: TextAlign.center,
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Inter',
-                          color: FlutterFlowTheme.of(context).secondaryText,
+                          color: FlutterFlowTheme.of(context).tertiary,
                           letterSpacing: 0.0,
                         ),
                   ),
@@ -213,7 +213,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                           EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       iconPadding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
+                      color: FlutterFlowTheme.of(context).secondary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Inter Tight',

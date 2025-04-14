@@ -48,12 +48,13 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
           height: 333.0,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
+            borderRadius: BorderRadius.circular(15.0),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 0.0, 0.0),
+                padding: EdgeInsets.all(5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [

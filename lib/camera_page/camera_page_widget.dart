@@ -33,8 +33,8 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
     _model.productNameTextController ??= TextEditingController();
     _model.productNameFocusNode ??= FocusNode();
 
-    _model.descriptionTextController ??= TextEditingController();
-    _model.descriptionFocusNode ??= FocusNode();
+    _model.productcategoryNameTextController ??= TextEditingController();
+    _model.productcategoryNameFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -95,7 +95,7 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                 buttonSize: 40.0,
                 fillColor: Colors.white,
                 icon: Icon(
-                  Icons.close_rounded,
+                  Icons.arrow_back_rounded,
                   color: Color(0xFF15161E),
                   size: 24.0,
                 ),
@@ -366,28 +366,27 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                               .asValidator(context),
                                         ),
                                         TextFormField(
-                                          controller:
-                                              _model.descriptionTextController,
-                                          focusNode:
-                                              _model.descriptionFocusNode,
+                                          controller: _model
+                                              .productcategoryNameTextController,
+                                          focusNode: _model
+                                              .productcategoryNameFocusNode,
                                           autofocus: true,
                                           textCapitalization:
                                               TextCapitalization.words,
                                           obscureText: false,
                                           decoration: InputDecoration(
-                                            labelText: 'Description...',
+                                            labelText: 'Category...',
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .labelLarge
+                                                    .headlineMedium
                                                     .override(
                                                       fontFamily: 'Outfit',
                                                       color: Color(0xFF606A85),
-                                                      fontSize: 16.0,
+                                                      fontSize: 24.0,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w500,
                                                     ),
-                                            alignLabelWithHint: true,
                                             hintStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
@@ -447,22 +446,20 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                             fillColor: Colors.white,
                                             contentPadding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 16.0, 16.0, 16.0),
+                                                    16.0, 20.0, 16.0, 20.0),
                                           ),
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyLarge
+                                              .headlineMedium
                                               .override(
-                                                fontFamily: 'Figtree',
+                                                fontFamily: 'Outfit',
                                                 color: Color(0xFF15161E),
-                                                fontSize: 16.0,
+                                                fontSize: 24.0,
                                                 letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
+                                                fontWeight: FontWeight.w500,
                                               ),
-                                          maxLines: 9,
-                                          minLines: 5,
                                           cursorColor: Color(0xFF6F61EF),
                                           validator: _model
-                                              .descriptionTextControllerValidator
+                                              .productcategoryNameTextControllerValidator
                                               .asValidator(context),
                                         ),
                                       ].divide(SizedBox(height: 12.0)),
@@ -511,10 +508,9 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                           await InfoRecord.collection
                               .doc()
                               .set(createInfoRecordData(
-                                name: valueOrDefault<String>(
-                                  _model.productNameTextController.text,
-                                  'no_name',
-                                ),
+                                name: _model.productNameTextController.text,
+                                category: _model
+                                    .productcategoryNameTextController.text,
                               ));
                         },
                         text: 'Confirm',

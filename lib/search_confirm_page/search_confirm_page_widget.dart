@@ -6,15 +6,14 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'scan_confirm_page_model.dart';
-export 'scan_confirm_page_model.dart';
+import 'search_confirm_page_model.dart';
+export 'search_confirm_page_model.dart';
 
-class ScanConfirmPageWidget extends StatefulWidget {
-  const ScanConfirmPageWidget({
+class SearchConfirmPageWidget extends StatefulWidget {
+  const SearchConfirmPageWidget({
     super.key,
     String? itemNameSend,
     String? itemCategorySend,
-    required this.itemImageSend,
   })  : this.itemNameSend = itemNameSend ?? 'Item not found',
         this.itemCategorySend = itemCategorySend ?? 'Item not found';
 
@@ -24,25 +23,23 @@ class ScanConfirmPageWidget extends StatefulWidget {
   /// The item description sent to this page
   final String itemCategorySend;
 
-  /// The item image link sent to this page
-  final String? itemImageSend;
-
-  static String routeName = 'scan_confirm_page';
-  static String routePath = '/scanConfirmPage';
+  static String routeName = 'search_confirm_page';
+  static String routePath = '/searchConfirmPage';
 
   @override
-  State<ScanConfirmPageWidget> createState() => _ScanConfirmPageWidgetState();
+  State<SearchConfirmPageWidget> createState() =>
+      _SearchConfirmPageWidgetState();
 }
 
-class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
-  late ScanConfirmPageModel _model;
+class _SearchConfirmPageWidgetState extends State<SearchConfirmPageWidget> {
+  late SearchConfirmPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ScanConfirmPageModel());
+    _model = createModel(context, () => SearchConfirmPageModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -72,7 +69,7 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Scan',
+                'Selected Item',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'Outfit',
                       color: Color(0xFF15161E),
@@ -82,7 +79,7 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                     ),
               ),
               Text(
-                'This is the information of your scanned item:',
+                'This is the information of your selected item:',
                 style: FlutterFlowTheme.of(context).labelMedium.override(
                       fontFamily: 'Outfit',
                       color: Color(0xFF606A85),
@@ -103,12 +100,12 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                 buttonSize: 40.0,
                 fillColor: Colors.white,
                 icon: Icon(
-                  Icons.arrow_back_rounded,
+                  Icons.close_rounded,
                   color: Color(0xFF15161E),
                   size: 24.0,
                 ),
                 onPressed: () async {
-                  context.pushNamed(MainPageWidget.routeName);
+                  context.pushNamed(SearchPageWidget.routeName);
                 },
               ),
             ),
@@ -158,19 +155,9 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            widget.itemImageSend!,
-                                            width: 479.9,
-                                            height: 200.0,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
                                         Container(
                                           width: 426.9,
-                                          height: 54.59,
+                                          height: 106.9,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
@@ -187,75 +174,54 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                                             borderRadius:
                                                 BorderRadius.circular(5.0),
                                           ),
-                                          child: Align(
-                                            alignment: AlignmentDirectional(
-                                                -1.0, -1.0),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      20.0, 15.0, 0.0, 0.0),
-                                              child: Text(
-                                                widget.itemNameSend,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, -1.0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          20.0, 15.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    widget.itemNameSend,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .titleLarge
                                                         .override(
                                                           fontFamily:
                                                               'Inter Tight',
                                                           letterSpacing: 0.0,
                                                         ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 426.9,
-                                          height: 54.49,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                blurRadius: 4.0,
-                                                color: Color(0x33000000),
-                                                offset: Offset(
-                                                  0.0,
-                                                  2.0,
+                                                  ),
                                                 ),
-                                              )
-                                            ],
-                                            borderRadius:
-                                                BorderRadius.circular(5.0),
-                                          ),
-                                          child: Align(
-                                            alignment: AlignmentDirectional(
-                                                -1.0, -1.0),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      20.0, 15.0, 0.0, 0.0),
-                                              child: Text(
-                                                widget.itemCategorySend,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleLarge
+                                              ),
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, 1.0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(20.0, 25.0, 0.0,
+                                                          15.0),
+                                                  child: Text(
+                                                    widget.itemCategorySend,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelLarge
                                                         .override(
-                                                          fontFamily:
-                                                              'Inter Tight',
+                                                          fontFamily: 'Inter',
+                                                          fontSize: 20.0,
                                                           letterSpacing: 0.0,
                                                         ),
+                                                  ),
+                                                ),
                                               ),
-                                            ),
+                                            ],
                                           ),
                                         ),
                                       ].divide(SizedBox(height: 12.0)),
                                     ),
-                                  ),
-                                  Container(
-                                    constraints: BoxConstraints(
-                                      maxWidth: 570.0,
-                                    ),
-                                    decoration: BoxDecoration(),
                                   ),
                                 ],
                               ),
@@ -286,7 +252,7 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                           await currentUserReference!.update({
                             ...mapToFirestore(
                               {
-                                'points': FieldValue.increment(50),
+                                'points': FieldValue.increment(25),
                               },
                             ),
                           });
@@ -306,7 +272,7 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                               24.0, 0.0, 24.0, 0.0),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).secondary,
+                          color: Color(0xFF6F61EF),
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Figtree',

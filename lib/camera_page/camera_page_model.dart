@@ -15,10 +15,11 @@ class CameraPageModel extends FlutterFlowModel<CameraPageWidget> {
   FocusNode? productNameFocusNode;
   TextEditingController? productNameTextController;
   String? Function(BuildContext, String?)? productNameTextControllerValidator;
-  // State field(s) for description widget.
-  FocusNode? descriptionFocusNode;
-  TextEditingController? descriptionTextController;
-  String? Function(BuildContext, String?)? descriptionTextControllerValidator;
+  // State field(s) for productcategoryName widget.
+  FocusNode? productcategoryNameFocusNode;
+  TextEditingController? productcategoryNameTextController;
+  String? Function(BuildContext, String?)?
+      productcategoryNameTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -28,7 +29,7 @@ class CameraPageModel extends FlutterFlowModel<CameraPageWidget> {
     productNameFocusNode?.dispose();
     productNameTextController?.dispose();
 
-    descriptionFocusNode?.dispose();
-    descriptionTextController?.dispose();
+    productcategoryNameFocusNode?.dispose();
+    productcategoryNameTextController?.dispose();
   }
 }

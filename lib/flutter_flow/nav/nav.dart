@@ -146,6 +146,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: SearchConfirmPageWidget.routeName,
+          path: SearchConfirmPageWidget.routePath,
+          builder: (context, params) => SearchConfirmPageWidget(
+            itemNameSend: params.getParam(
+              'itemNameSend',
+              ParamType.String,
+            ),
+            itemCategorySend: params.getParam(
+              'itemCategorySend',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

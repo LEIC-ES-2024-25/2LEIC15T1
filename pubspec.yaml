@@ -97,6 +97,10 @@ dependencies:
   path_provider_windows: 2.3.0
   percent_indicator: 4.2.2
   plugin_platform_interface: 2.1.8
+  pointer_interceptor: 0.10.1+2
+  pointer_interceptor_ios: 0.10.1
+  pointer_interceptor_platform_interface: 0.10.0+1
+  pointer_interceptor_web: 0.10.2+1
   provider: 6.1.2
   rxdart: 0.27.7
   shared_preferences: 2.3.2
