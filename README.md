@@ -270,6 +270,7 @@ You can find below information and references related with the project managemen
 <img src="imgs/sprint1-start.png">
 
 #### End of the Sprint
+<img src="imgs/sprint1-end.png">
 
 #### Sprint Retrospective
 
