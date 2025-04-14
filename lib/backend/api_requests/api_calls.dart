@@ -34,9 +34,13 @@ class GetBarcodeCall {
         response,
         r'''$.products[0].title''',
       );
-  static dynamic itemDescription(dynamic response) => getJsonField(
+  static dynamic itemCategory(dynamic response) => getJsonField(
         response,
-        r'''$.products[0].description''',
+        r'''$.products[0].category''',
+      );
+  static dynamic itemImage(dynamic response) => getJsonField(
+        response,
+        r'''$.products[0].images[0]''',
       );
 }
 

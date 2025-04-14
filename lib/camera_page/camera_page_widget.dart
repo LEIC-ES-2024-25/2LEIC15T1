@@ -259,7 +259,7 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                             Uint8List.fromList(
                                                                 []),
                                                         width: 380.9,
-                                                        height: 330.38,
+                                                        height: 330.4,
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
@@ -498,6 +498,8 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                           16.0, 12.0, 16.0, 12.0),
                       child: FFButtonWidget(
                         onPressed: () async {
+                          context.pushNamed(MainPageWidget.routeName);
+
                           await currentUserReference!.update({
                             ...mapToFirestore(
                               {
@@ -505,6 +507,15 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                               },
                             ),
                           });
+
+                          await InfoRecord.collection
+                              .doc()
+                              .set(createInfoRecordData(
+                                name: valueOrDefault<String>(
+                                  _model.productNameTextController.text,
+                                  'no_name',
+                                ),
+                              ));
                         },
                         text: 'Confirm',
                         options: FFButtonOptions(

@@ -1,12 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import '/flutter_flow/random_data_util.dart' as random_data;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -185,9 +185,18 @@ class _SigninPageWidgetState extends State<SigninPageWidget>
                                     ),
                               ),
                             ),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.network(
+                                _model.imageupload!,
+                                width: 300.0,
+                                height: 150.0,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 10.0, 0.0, 0.0),
+                                  0.0, 10.0, 0.0, 10.0),
                               child: FlutterFlowIconButton(
                                 borderRadius: 10.0,
                                 buttonSize: 60.0,
@@ -212,6 +221,7 @@ class _SigninPageWidgetState extends State<SigninPageWidget>
                                     var selectedUploadedFiles =
                                         <FFUploadedFile>[];
 
+                                    var downloadUrls = <String>[];
                                     try {
                                       selectedUploadedFiles = selectedMedia
                                           .map((m) => FFUploadedFile(
@@ -224,14 +234,28 @@ class _SigninPageWidgetState extends State<SigninPageWidget>
                                                 blurHash: m.blurHash,
                                               ))
                                           .toList();
+
+                                      downloadUrls = (await Future.wait(
+                                        selectedMedia.map(
+                                          (m) async => await uploadData(
+                                              m.storagePath, m.bytes),
+                                        ),
+                                      ))
+                                          .where((u) => u != null)
+                                          .map((u) => u!)
+                                          .toList();
                                     } finally {
                                       _model.isDataUploading = false;
                                     }
                                     if (selectedUploadedFiles.length ==
-                                        selectedMedia.length) {
+                                            selectedMedia.length &&
+                                        downloadUrls.length ==
+                                            selectedMedia.length) {
                                       safeSetState(() {
                                         _model.uploadedLocalFile =
                                             selectedUploadedFiles.first;
+                                        _model.uploadedFileUrl =
+                                            downloadUrls.first;
                                       });
                                     } else {
                                       safeSetState(() {});
@@ -239,21 +263,10 @@ class _SigninPageWidgetState extends State<SigninPageWidget>
                                     }
                                   }
 
-                                  _model.imageupload = '';
+                                  _model.imageupload =
+                                      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxfHxwZXJzb258ZW58MHx8fHwxNzQ0NTYyMTg4fDA&ixlib=rb-4.0.3&q=80&w=1080';
                                   safeSetState(() {});
                                 },
-                              ),
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.network(
-                                random_data.randomImageUrl(
-                                  0,
-                                  0,
-                                ),
-                                width: 300.0,
-                                height: 150.0,
-                                fit: BoxFit.cover,
                               ),
                             ),
                             Padding(

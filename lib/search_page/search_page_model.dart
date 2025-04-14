@@ -7,8 +7,10 @@ class SearchPageModel extends FlutterFlowModel<SearchPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField widget.
+  final textFieldKey = GlobalKey();
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
+  String? textFieldSelectedOption;
   String? Function(BuildContext, String?)? textControllerValidator;
   List<ItemsSearchRecord> simpleSearchResults = [];
 
@@ -18,6 +20,5 @@ class SearchPageModel extends FlutterFlowModel<SearchPageWidget> {
   @override
   void dispose() {
     textFieldFocusNode?.dispose();
-    textController?.dispose();
   }
 }

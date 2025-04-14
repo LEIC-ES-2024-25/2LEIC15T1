@@ -128,6 +128,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: SigninPageWidget.routeName,
           path: SigninPageWidget.routePath,
           builder: (context, params) => SigninPageWidget(),
+        ),
+        FFRoute(
+          name: ScanConfirmPageWidget.routeName,
+          path: ScanConfirmPageWidget.routePath,
+          builder: (context, params) => ScanConfirmPageWidget(
+            itemNameSend: params.getParam(
+              'itemNameSend',
+              ParamType.String,
+            ),
+            itemCategorySend: params.getParam(
+              'itemCategorySend',
+              ParamType.String,
+            ),
+            itemImageSend: params.getParam(
+              'itemImageSend',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

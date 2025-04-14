@@ -7,3 +7,5 @@ export '/search_page/search_page_widget.dart' show SearchPageWidget;
 export '/camera/camera_widget.dart' show CameraWidget;
 export '/camera_page/camera_page_widget.dart' show CameraPageWidget;
 export '/signin_page/signin_page_widget.dart' show SigninPageWidget;
+export '/scan_confirm_page/scan_confirm_page_widget.dart'
+    show ScanConfirmPageWidget;

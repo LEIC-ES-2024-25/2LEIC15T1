@@ -32,9 +32,9 @@ class FFAppState extends ChangeNotifier {
     _capturedImagePath = value;
   }
 
-  String _searchText = '\"\"';
-  String get searchText => _searchText;
-  set searchText(String value) {
-    _searchText = value;
+  bool _SearchActive = false;
+  bool get SearchActive => _SearchActive;
+  set SearchActive(bool value) {
+    _SearchActive = value;
   }
 }

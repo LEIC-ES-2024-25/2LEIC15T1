@@ -176,7 +176,31 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                             );
 
                             _shouldSetState = true;
-                            if (!(_model.apiResult88i?.succeeded ?? true)) {
+                            if ((_model.apiResult88i?.succeeded ?? true)) {
+                              context.pushNamed(
+                                ScanConfirmPageWidget.routeName,
+                                queryParameters: {
+                                  'itemNameSend': serializeParam(
+                                    GetBarcodeCall.itemName(
+                                      (_model.apiResult88i?.jsonBody ?? ''),
+                                    ).toString(),
+                                    ParamType.String,
+                                  ),
+                                  'itemCategorySend': serializeParam(
+                                    GetBarcodeCall.itemCategory(
+                                      (_model.apiResult88i?.jsonBody ?? ''),
+                                    ).toString(),
+                                    ParamType.String,
+                                  ),
+                                  'itemImageSend': serializeParam(
+                                    GetBarcodeCall.itemImage(
+                                      (_model.apiResult88i?.jsonBody ?? ''),
+                                    ).toString(),
+                                    ParamType.String,
+                                  ),
+                                }.withoutNulls,
+                              );
+                            } else {
                               var confirmDialogResponse =
                                   await showDialog<bool>(
                                         context: context,
@@ -200,6 +224,7 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                                       ) ??
                                       false;
                             }
+
                             if (_shouldSetState) safeSetState(() {});
                           },
                           child: Container(
@@ -219,42 +244,30 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                       ],
                     ),
                   ),
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      context.pushNamed(SearchPageWidget.routeName);
-                    },
-                    child: Container(
-                      width: 100.0,
-                      height: 100.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondary,
-                        borderRadius: BorderRadius.circular(16.0),
-                      ),
-                      child: Icon(
-                        Icons.search_sharp,
-                        color: Colors.white,
-                        size: 38.0,
-                      ),
-                    ),
-                  ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
-                    child: Text(
-                      valueOrDefault<String>(
-                        GetBarcodeCall.itemName(
-                          (_model.apiResult88i?.jsonBody ?? ''),
-                        ).toString(),
-                        'title',
+                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed(SearchPageWidget.routeName);
+                      },
+                      child: Container(
+                        width: 100.0,
+                        height: 100.0,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).secondary,
+                          borderRadius: BorderRadius.circular(16.0),
+                        ),
+                        child: Icon(
+                          Icons.search_sharp,
+                          color: Colors.white,
+                          size: 38.0,
+                        ),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Inter',
-                            letterSpacing: 0.0,
-                          ),
                     ),
                   ),
                 ],

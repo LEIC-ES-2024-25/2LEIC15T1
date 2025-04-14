@@ -6,13 +6,15 @@ import 'package:flutter/material.dart';
 class SigninPageModel extends FlutterFlowModel<SigninPageWidget> {
   ///  Local state fields for this page.
 
-  String? imageupload = '';
+  String? imageupload =
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxfHxwZXJzb258ZW58MHx8fHwxNzQ0NTYyMTg4fDA&ixlib=rb-4.0.3&q=80&w=1080';
 
   ///  State fields for stateful widgets in this page.
 
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
 
   // State field(s) for userName widget.
   FocusNode? userNameFocusNode;
