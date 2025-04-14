@@ -238,6 +238,8 @@ In this subsection please describe which feature, or part of it, you have implem
 
 At this phase, instead of a complete user story, you can simply implement a small part of a feature that demonstrates thay you can use the technology, for example, show a screen with the app credits (name and authors).
 -->
+### Definition of Done
+A task is considered "Done" when it functions exactly as intended, with no visible bugs. All features described in the user story must be manually tested to ensure they align with the expected usage.
 
 ## Project management
 <!--
