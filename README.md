@@ -262,10 +262,30 @@ You can find below information and references related with the project managemen
 -->
 
 ### Sprint 0
-
+ #### End of the sprint:
 <img src="imgs/sprint0.png">
 
 ### Sprint 1
+#### Start of the Sprint
+<img src="imgs/sprint1-start.png">
+
+#### End of the Sprint
+
+#### Sprint Retrospective
+
+Completed Work
+  - Developed all the logic of the recycling action (the 3 different ways of recycling were implemented).
+  
+Positive Outcomes
+  - Successfully completed all planned tasks.
+  
+Areas for Improvement
+  - Improve the communication between mettings.
+  - Improve the division of work among team members.
+  
+Challenges Encountered
+  - Gaining proficiency with FlutterFlow and Firebase.
+  
 
 ### Sprint 2
 
