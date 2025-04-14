@@ -288,6 +288,7 @@ Areas for Improvement
   
 Challenges Encountered
   - Gaining proficiency with FlutterFlow and Firebase.
+  - Make the Github pushes through FlutterFlow with the correct team member assigned to it.
   
 
 ### Sprint 2
