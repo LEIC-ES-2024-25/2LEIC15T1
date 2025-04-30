@@ -267,13 +267,13 @@ You can find below information and references related with the project managemen
   #### Hapiness Meter:
   |                             | Mariana Cabral Almeida | Mykyta Melnykovych | Tiago Moreira Arteiro | Tiago Catelas Ribeiro Correia | Luís Martim Barbosa Cabral Ferreira | Ladielson Cabral Renner |
 |-----------------------------|-------------------------|--------------------|-----------------------|-------------------------------|-------------------------------------|-------------------------|
-| Mariana Cabral Almeida      |                         |                    |                       |                               |               😀                      |                         |
-| Mykyta Melnykovych           |                         |                    |                       |                               |                😀                    |                         |
-| Tiago Moreira Arteiro        |                         |                    |                       |                               |             😀                        |                         |
-| Tiago Catelas Ribeiro Correia|                         |                    |                       |                               |                              😀       |                         |
-| Luís Martim Barbosa Cabral Ferreira |                  |                    |                       |                               |                   😀                  |                         |
-| Ladielson Cabral Renner      |                         |                    |                       |                               |                  😀                   |                         |
-
+| Mariana Cabral Almeida      |                         |                    |😀                     |                               |               😀                    |                         |
+| Mykyta Melnykovych           |                        |                    |😀                     |                               |                😀                   |                         |
+| Tiago Moreira Arteiro        |                        |                    |😀                     |                               |             😀                      |                         |
+| Tiago Catelas Ribeiro Correia|                        |                    |😀                     |                               |                              😀     |                         |
+| Luís Martim Barbosa Cabral Ferreira |                 |                    |😀                     |                               |                   😀                |                         |
+| Ladielson Cabral Renner      |                        |                    |😀                     |                               |                  😀                 |                         |
+ 
  #### End of the sprint
  <img src="imgs/sprint0.png">
 
@@ -281,12 +281,12 @@ You can find below information and references related with the project managemen
  #### Hapiness Meter:
  |                             | Mariana Cabral Almeida | Mykyta Melnykovych | Tiago Moreira Arteiro | Tiago Catelas Ribeiro Correia | Luís Martim Barbosa Cabral Ferreira | Ladielson Cabral Renner |
 |-----------------------------|-------------------------|--------------------|-----------------------|-------------------------------|-------------------------------------|-------------------------|
-| Mariana Cabral Almeida      |                         |                    |                       |                               |                   😐                  |                         |
-| Mykyta Melnykovych           |                         |                    |                       |                               |         😀                            |                         |
-| Tiago Moreira Arteiro        |                         |                    |                       |                               |               😀                      |                         |
-| Tiago Catelas Ribeiro Correia|                         |                    |                       |                               |                   😀                  |                         |
-| Luís Martim Barbosa Cabral Ferreira |                  |                    |                       |                               |                     😀                |                         |
-| Ladielson Cabral Renner      |                         |                    |                       |                               |               😀                      |                         |
+| Mariana Cabral Almeida      |                         |                    |😀                     |                               |                   😐                |                         |
+| Mykyta Melnykovych           |                        |                    |😀                     |                               |         😀                          |                         |
+| Tiago Moreira Arteiro        |                        |                    |😀                     |                               |               😀                    |                         |
+| Tiago Catelas Ribeiro Correia|                        |                    |😀                     |                               |                   😀                |                         |
+| Luís Martim Barbosa Cabral Ferreira |                 |                    |😀                     |                               |                     😀              |                         |
+| Ladielson Cabral Renner      |                        |                    |😀                     |                               |               😀                    |                         |
 
  #### Start of the Sprint
  <img src="imgs/sprint1-start.png">
