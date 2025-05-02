@@ -264,29 +264,11 @@ You can find below information and references related with the project managemen
 -->
 
 ### Sprint 0
-  #### Hapiness Meter:
-  |                             | Mariana Cabral Almeida | Mykyta Melnykovych | Tiago Moreira Arteiro | Tiago Catelas Ribeiro Correia | Luís Martim Barbosa Cabral Ferreira | Ladielson Cabral Renner |
-|-----------------------------|-------------------------|--------------------|-----------------------|-------------------------------|-------------------------------------|-------------------------|
-| Mariana Cabral Almeida      |                         |                    |😀                     |                               |               😀                    |                         |
-| Mykyta Melnykovych           |                        |                    |😀                     |                               |                😀                   |                         |
-| Tiago Moreira Arteiro        |                        |                    |😀                     |                               |             😀                      |                         |
-| Tiago Catelas Ribeiro Correia|                        |                    |😀                     |                               |                              😀     |                         |
-| Luís Martim Barbosa Cabral Ferreira |                 |                    |😀                     |                               |                   😀                |                         |
-| Ladielson Cabral Renner      |                        |                    |😀                     |                               |                  😀                 |                         |
- 
+
  #### End of the sprint
  <img src="imgs/sprint0.png">
 
 ### Sprint 1
- #### Hapiness Meter:
- |                             | Mariana Cabral Almeida | Mykyta Melnykovych | Tiago Moreira Arteiro | Tiago Catelas Ribeiro Correia | Luís Martim Barbosa Cabral Ferreira | Ladielson Cabral Renner |
-|-----------------------------|-------------------------|--------------------|-----------------------|-------------------------------|-------------------------------------|-------------------------|
-| Mariana Cabral Almeida      |                         |                    |😀                     |                               |                   😐                |                         |
-| Mykyta Melnykovych           |                        |                    |😀                     |                               |         😀                          |                         |
-| Tiago Moreira Arteiro        |                        |                    |😀                     |                               |               😀                    |                         |
-| Tiago Catelas Ribeiro Correia|                        |                    |😀                     |                               |                   😀                |                         |
-| Luís Martim Barbosa Cabral Ferreira |                 |                    |😀                     |                               |                     😀              |                         |
-| Ladielson Cabral Renner      |                        |                    |😀                     |                               |               😀                    |                         |
 
  #### Start of the Sprint
  <img src="imgs/sprint1-start.png">
@@ -312,26 +294,10 @@ Challenges Encountered
   
 
 ### Sprint 2
- #### Hapiness Meter:
- |                             | Mariana Cabral Almeida | Mykyta Melnykovych | Tiago Moreira Arteiro | Tiago Catelas Ribeiro Correia | Luís Martim Barbosa Cabral Ferreira | Ladielson Cabral Renner |
-|-----------------------------|-------------------------|--------------------|-----------------------|-------------------------------|-------------------------------------|-------------------------|
-| Mariana Cabral Almeida      |                         |                    |                       |                               |                                     |                         |
-| Mykyta Melnykovych           |                         |                    |                       |                               |                                     |                         |
-| Tiago Moreira Arteiro        |                         |                    |                       |                               |                                     |                         |
-| Tiago Catelas Ribeiro Correia|                         |                    |                       |                               |                                     |                         |
-| Luís Martim Barbosa Cabral Ferreira |                  |                    |                       |                               |                                     |                         |
-| Ladielson Cabral Renner      |                         |                    |                       |                               |                                     |                         |
+
 
 ### Sprint 3
- #### Hapiness Meter:
- |                             | Mariana Cabral Almeida | Mykyta Melnykovych | Tiago Moreira Arteiro | Tiago Catelas Ribeiro Correia | Luís Martim Barbosa Cabral Ferreira | Ladielson Cabral Renner |
-|-----------------------------|-------------------------|--------------------|-----------------------|-------------------------------|-------------------------------------|-------------------------|
-| Mariana Cabral Almeida      |                         |                    |                       |                               |                                     |                         |
-| Mykyta Melnykovych           |                         |                    |                       |                               |                                     |                         |
-| Tiago Moreira Arteiro        |                         |                    |                       |                               |                                     |                         |
-| Tiago Catelas Ribeiro Correia|                         |                    |                       |                               |                                     |                         |
-| Luís Martim Barbosa Cabral Ferreira |                  |                    |                       |                               |                                     |                         |
-| Ladielson Cabral Renner      |                         |                    |                       |                               |                                     |                         |
+
 
 ### Sprint 4
 
