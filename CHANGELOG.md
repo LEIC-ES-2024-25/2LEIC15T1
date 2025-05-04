@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Sprint 1
+# Sprint 1
 ---
 ### Main Goal Implemented
 - ### **Recycling Action [EPIC]**
@@ -34,8 +34,30 @@
 ---
 ### Sprint notes:
   - The points system is ready and established, but it will only be possible to verify the increase in points after implementing the user logic.
+___
+ <br /><br /><br />
+# Sprint 2
+---
+## Main Goal Implemented
+- ### **Connect my account to the app [EPIC]**
+The user is now able to create an account/login and see the points gained.
+
+### User Stories Implemented for Main Goal ([EPIC]) Completeness
+
+- ### Sign Up Forms
+- ### Connect Sign Up Forms with Firebase
+
+### Other increments:
+- Sustainability tips section to learn better practices
+- University map with recycling bins
+- Recycling leaderboard
+- Admin accounts
+  - When a user has the "is_admin" argument, they gain access to a dashboard with some users information
+
+### Sprint notes: 
+  - Although administrator accounts already exist, some goals of this sprint such as "Monitor recycled waste to improve locations", "Calculate Statistics" and "Recycling data filter" were not implemented and will be one of the goals of the next sprint
 
 
-## Sprint 2
+
 
 ## Sprint 3
