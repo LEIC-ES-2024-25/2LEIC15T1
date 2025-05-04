@@ -295,6 +295,12 @@ Challenges Encountered
 
 ### Sprint 2
 
+ #### Start of the Sprint
+ <img src="imgs/sprint2-start.png">
+
+ #### End of the Sprint
+ <img src="imgs/sprint2-end.png">
+
 
 ### Sprint 3
 
