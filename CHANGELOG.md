@@ -40,7 +40,7 @@ ___
 ---
 ## Main Goal Implemented
 - ### **Connect my account to the app [EPIC]**
-The user is now able to create an account/login and see the points gained.
+the user can log in and see the profile and their gained points
 
 ### User Stories Implemented for Main Goal ([EPIC]) Completeness
 
