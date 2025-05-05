@@ -300,7 +300,19 @@ Challenges Encountered
 
  #### End of the Sprint
  <img src="imgs/sprint2-end.png">
+ 
+ #### Sprint Retrospective
+What we did well:
+- We were able to implement more complex concepts in our app.
 
+What went wrong:
+- We planned too many user stories.
+- We didn’t set up the basic infrastructure for the sprint, which led to unforeseen issues (e.g., the database wasn’t properly configured for image storage).
+- Poor time management.
+
+What we can do for improvement:
+- Conduct almost daily check-ins to monitor everyone’s progress, rather than waiting until the deadline.
+- Before the next sprint, identify all the basic requirements for each part of the work to ensure the sprint runs more smoothly.
 
 ### Sprint 3
 
