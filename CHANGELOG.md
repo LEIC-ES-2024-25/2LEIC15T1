@@ -56,7 +56,7 @@ the user can log in and see the profile and their gained points
 
 ### Sprint notes: 
   - Although administrator accounts already exist, some goals of this sprint such as "Monitor recycled waste to improve locations", "Calculate Statistics" and "Recycling data filter" were not implemented and will be one of the goals of the next sprint
-
+  - The upload of photos isn't currently working due to a problem with the firestore. Will also be an urgent objective for the next sprint
 
 
 
