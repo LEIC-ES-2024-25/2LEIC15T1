@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/components/recycling_popup_widget.dart';
 import '/components/tip_pop_up_widget.dart';
 import '/flutter_flow/flutter_flow_google_map.dart';
@@ -175,29 +176,60 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                   children: [
                     Align(
                       alignment: AlignmentDirectional(0.0, 0.0),
-                      child: FlutterFlowGoogleMap(
-                        controller: _model.googleMapsController,
-                        onCameraIdle: (latLng) =>
-                            _model.googleMapsCenter = latLng,
-                        initialLocation: _model.googleMapsCenter ??=
-                            LatLng(41.1776832, -8.5957992),
-                        markerColor: GoogleMarkerColor.violet,
-                        markerImage: MarkerImage(
-                          imagePath: 'assets/images/2vqf7_',
-                          isAssetImage: true,
-                          size: 20.0 ?? 20,
-                        ),
-                        mapType: MapType.normal,
-                        style: GoogleMapStyle.standard,
-                        initialZoom: 17.16,
-                        allowInteraction: true,
-                        allowZoom: true,
-                        showZoomControls: true,
-                        showLocation: true,
-                        showCompass: false,
-                        showMapToolbar: false,
-                        showTraffic: false,
-                        centerMapOnMarkerTap: true,
+                      child: StreamBuilder<List<BinsRecord>>(
+                        stream: queryBinsRecord(),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          List<BinsRecord> googleMapBinsRecordList =
+                              snapshot.data!;
+
+                          return FlutterFlowGoogleMap(
+                            controller: _model.googleMapsController,
+                            onCameraIdle: (latLng) =>
+                                _model.googleMapsCenter = latLng,
+                            initialLocation: _model.googleMapsCenter ??=
+                                LatLng(41.1776832, -8.5957992),
+                            markers: googleMapBinsRecordList
+                                .map(
+                                  (marker) => FlutterFlowMarker(
+                                    marker.reference.path,
+                                    marker.location!,
+                                  ),
+                                )
+                                .toList(),
+                            markerColor: GoogleMarkerColor.violet,
+                            markerImage: MarkerImage(
+                              imagePath:
+                                  'assets/images/pngtree-silver-trash-bin-clipart-png-image_2858577.png',
+                              isAssetImage: true,
+                              size: 20.0 ?? 20,
+                            ),
+                            mapType: MapType.normal,
+                            style: GoogleMapStyle.standard,
+                            initialZoom: 17.16,
+                            allowInteraction: true,
+                            allowZoom: true,
+                            showZoomControls: true,
+                            showLocation: true,
+                            showCompass: false,
+                            showMapToolbar: false,
+                            showTraffic: false,
+                            centerMapOnMarkerTap: true,
+                          );
+                        },
                       ),
                     ),
                     Align(
