@@ -19,7 +19,7 @@ class GetBarcodeCall {
       headers: {},
       params: {
         'barcode': barcode,
-        'key': "2imu4xrzwtp7oys28o1fprln1jpbbs",
+        'key': "7f9ilo1tui481vq3we3i2vb6bic1io",
       },
       returnBody: true,
       encodeBodyUtf8: false,

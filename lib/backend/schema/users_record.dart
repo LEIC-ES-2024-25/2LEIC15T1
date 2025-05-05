@@ -30,34 +30,40 @@ class UsersRecord extends FirestoreRecord {
   String get photoUrl => _photoUrl ?? '';
   bool hasPhotoUrl() => _photoUrl != null;
 
-  // "uid" field.
-  String? _uid;
-  String get uid => _uid ?? '';
-  bool hasUid() => _uid != null;
-
   // "created_time" field.
   DateTime? _createdTime;
   DateTime? get createdTime => _createdTime;
   bool hasCreatedTime() => _createdTime != null;
-
-  // "phone_number" field.
-  String? _phoneNumber;
-  String get phoneNumber => _phoneNumber ?? '';
-  bool hasPhoneNumber() => _phoneNumber != null;
 
   // "points" field.
   int? _points;
   int get points => _points ?? 0;
   bool hasPoints() => _points != null;
 
+  // "is_admin" field.
+  bool? _isAdmin;
+  bool get isAdmin => _isAdmin ?? false;
+  bool hasIsAdmin() => _isAdmin != null;
+
+  // "uid" field.
+  String? _uid;
+  String get uid => _uid ?? '';
+  bool hasUid() => _uid != null;
+
+  // "phone_number" field.
+  String? _phoneNumber;
+  String get phoneNumber => _phoneNumber ?? '';
+  bool hasPhoneNumber() => _phoneNumber != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
     _photoUrl = snapshotData['photo_url'] as String?;
-    _uid = snapshotData['uid'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
-    _phoneNumber = snapshotData['phone_number'] as String?;
     _points = castToType<int>(snapshotData['points']);
+    _isAdmin = snapshotData['is_admin'] as bool?;
+    _uid = snapshotData['uid'] as String?;
+    _phoneNumber = snapshotData['phone_number'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -97,20 +103,22 @@ Map<String, dynamic> createUsersRecordData({
   String? email,
   String? displayName,
   String? photoUrl,
-  String? uid,
   DateTime? createdTime,
-  String? phoneNumber,
   int? points,
+  bool? isAdmin,
+  String? uid,
+  String? phoneNumber,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'email': email,
       'display_name': displayName,
       'photo_url': photoUrl,
-      'uid': uid,
       'created_time': createdTime,
-      'phone_number': phoneNumber,
       'points': points,
+      'is_admin': isAdmin,
+      'uid': uid,
+      'phone_number': phoneNumber,
     }.withoutNulls,
   );
 
@@ -125,10 +133,11 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
     return e1?.email == e2?.email &&
         e1?.displayName == e2?.displayName &&
         e1?.photoUrl == e2?.photoUrl &&
-        e1?.uid == e2?.uid &&
         e1?.createdTime == e2?.createdTime &&
-        e1?.phoneNumber == e2?.phoneNumber &&
-        e1?.points == e2?.points;
+        e1?.points == e2?.points &&
+        e1?.isAdmin == e2?.isAdmin &&
+        e1?.uid == e2?.uid &&
+        e1?.phoneNumber == e2?.phoneNumber;
   }
 
   @override
@@ -136,10 +145,11 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.email,
         e?.displayName,
         e?.photoUrl,
-        e?.uid,
         e?.createdTime,
-        e?.phoneNumber,
-        e?.points
+        e?.points,
+        e?.isAdmin,
+        e?.uid,
+        e?.phoneNumber
       ]);
 
   @override

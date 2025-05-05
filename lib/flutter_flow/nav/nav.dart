@@ -125,9 +125,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => CameraPageWidget(),
         ),
         FFRoute(
-          name: SigninPageWidget.routeName,
-          path: SigninPageWidget.routePath,
-          builder: (context, params) => SigninPageWidget(),
+          name: SignupPageWidget.routeName,
+          path: SignupPageWidget.routePath,
+          builder: (context, params) => SignupPageWidget(),
         ),
         FFRoute(
           name: ScanConfirmPageWidget.routeName,
@@ -160,6 +160,31 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: LeaderboardWidget.routeName,
+          path: LeaderboardWidget.routePath,
+          builder: (context, params) => LeaderboardWidget(),
+        ),
+        FFRoute(
+          name: HistoryWidget.routeName,
+          path: HistoryWidget.routePath,
+          builder: (context, params) => HistoryWidget(),
+        ),
+        FFRoute(
+          name: CompleteLeaderboardWidget.routeName,
+          path: CompleteLeaderboardWidget.routePath,
+          builder: (context, params) => CompleteLeaderboardWidget(),
+        ),
+        FFRoute(
+          name: AdminDashboardWidget.routeName,
+          path: AdminDashboardWidget.routePath,
+          builder: (context, params) => AdminDashboardWidget(),
+        ),
+        FFRoute(
+          name: AdminUsersListWidget.routeName,
+          path: AdminUsersListWidget.routePath,
+          builder: (context, params) => AdminUsersListWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

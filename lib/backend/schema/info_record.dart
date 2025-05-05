@@ -20,14 +20,8 @@ class InfoRecord extends FirestoreRecord {
   String get name => _name ?? '';
   bool hasName() => _name != null;
 
-  // "category" field.
-  String? _category;
-  String get category => _category ?? '';
-  bool hasCategory() => _category != null;
-
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
-    _category = snapshotData['category'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -65,12 +59,10 @@ class InfoRecord extends FirestoreRecord {
 
 Map<String, dynamic> createInfoRecordData({
   String? name,
-  String? category,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'name': name,
-      'category': category,
     }.withoutNulls,
   );
 
@@ -82,11 +74,11 @@ class InfoRecordDocumentEquality implements Equality<InfoRecord> {
 
   @override
   bool equals(InfoRecord? e1, InfoRecord? e2) {
-    return e1?.name == e2?.name && e1?.category == e2?.category;
+    return e1?.name == e2?.name;
   }
 
   @override
-  int hash(InfoRecord? e) => const ListEquality().hash([e?.name, e?.category]);
+  int hash(InfoRecord? e) => const ListEquality().hash([e?.name]);
 
   @override
   bool isValidKey(Object? o) => o is InfoRecord;

@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -7,6 +8,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'camera_page_model.dart';
 export 'camera_page_model.dart';
 
@@ -66,21 +69,34 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
               Text(
                 'Picture',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
+                      font: GoogleFonts.outfit(
+                        fontWeight: FontWeight.w500,
+                        fontStyle: FlutterFlowTheme.of(context)
+                            .headlineMedium
+                            .fontStyle,
+                      ),
                       color: Color(0xFF15161E),
                       fontSize: 24.0,
                       letterSpacing: 0.0,
                       fontWeight: FontWeight.w500,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).headlineMedium.fontStyle,
                     ),
               ),
               Text(
                 'Take a picture of the trash ',
                 style: FlutterFlowTheme.of(context).labelMedium.override(
-                      fontFamily: 'Outfit',
+                      font: GoogleFonts.outfit(
+                        fontWeight: FontWeight.w500,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                      ),
                       color: Color(0xFF606A85),
                       fontSize: 14.0,
                       letterSpacing: 0.0,
                       fontWeight: FontWeight.w500,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).labelMedium.fontStyle,
                     ),
               ),
             ].divide(SizedBox(height: 4.0)),
@@ -173,7 +189,13 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                               var selectedUploadedFiles =
                                                   <FFUploadedFile>[];
 
+                                              var downloadUrls = <String>[];
                                               try {
+                                                showUploadMessage(
+                                                  context,
+                                                  'Uploading file...',
+                                                  showLoading: true,
+                                                );
                                                 selectedUploadedFiles =
                                                     selectedMedia
                                                         .map((m) =>
@@ -193,19 +215,42 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                                   m.blurHash,
                                                             ))
                                                         .toList();
+
+                                                downloadUrls =
+                                                    (await Future.wait(
+                                                  selectedMedia.map(
+                                                    (m) async =>
+                                                        await uploadData(
+                                                            m.storagePath,
+                                                            m.bytes),
+                                                  ),
+                                                ))
+                                                        .where((u) => u != null)
+                                                        .map((u) => u!)
+                                                        .toList();
                                               } finally {
+                                                ScaffoldMessenger.of(context)
+                                                    .hideCurrentSnackBar();
                                                 _model.isDataUploading = false;
                                               }
                                               if (selectedUploadedFiles
-                                                      .length ==
-                                                  selectedMedia.length) {
+                                                          .length ==
+                                                      selectedMedia.length &&
+                                                  downloadUrls.length ==
+                                                      selectedMedia.length) {
                                                 safeSetState(() {
                                                   _model.uploadedLocalFile =
                                                       selectedUploadedFiles
                                                           .first;
+                                                  _model.uploadedFileUrl =
+                                                      downloadUrls.first;
                                                 });
+                                                showUploadMessage(
+                                                    context, 'Success!');
                                               } else {
                                                 safeSetState(() {});
+                                                showUploadMessage(context,
+                                                    'Failed to upload data');
                                                 return;
                                               }
                                             }
@@ -215,6 +260,12 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                             height: 330.0,
                                             decoration: BoxDecoration(
                                               color: Color(0xFFF1F4F8),
+                                              image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: Image.network(
+                                                  _model.uploadedFileUrl,
+                                                ).image,
+                                              ),
                                               borderRadius:
                                                   BorderRadius.circular(12.0),
                                               border: Border.all(
@@ -240,30 +291,22 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                                if ((_model
-                                                            .uploadedLocalFile
-                                                            .bytes
-                                                            ?.isNotEmpty ??
-                                                        false))
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                      child: Image.memory(
-                                                        _model.uploadedLocalFile
-                                                                .bytes ??
-                                                            Uint8List.fromList(
-                                                                []),
-                                                        width: 380.9,
-                                                        height: 330.4,
-                                                        fit: BoxFit.cover,
-                                                      ),
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.network(
+                                                      _model.uploadedFileUrl,
+                                                      width: 380.9,
+                                                      height: 330.4,
+                                                      fit: BoxFit.cover,
                                                     ),
                                                   ),
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -279,39 +322,72 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelText: 'Name...',
-                                            labelStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineMedium
-                                                    .override(
-                                                      fontFamily: 'Outfit',
-                                                      color: Color(0xFF606A85),
-                                                      fontSize: 24.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                            hintStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .override(
-                                                      fontFamily: 'Outfit',
-                                                      color: Color(0xFF606A85),
-                                                      fontSize: 14.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                            errorStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Figtree',
-                                                      color: Color(0xFFFF5963),
-                                                      fontSize: 12.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
+                                            labelStyle: FlutterFlowTheme.of(
+                                                    context)
+                                                .headlineMedium
+                                                .override(
+                                                  font: GoogleFonts.outfit(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .headlineMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Color(0xFF606A85),
+                                                  fontSize: 24.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineMedium
+                                                          .fontStyle,
+                                                ),
+                                            hintStyle: FlutterFlowTheme.of(
+                                                    context)
+                                                .labelMedium
+                                                .override(
+                                                  font: GoogleFonts.outfit(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .labelMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Color(0xFF606A85),
+                                                  fontSize: 14.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMedium
+                                                          .fontStyle,
+                                                ),
+                                            errorStyle: FlutterFlowTheme.of(
+                                                    context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.figtree(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Color(0xFFFF5963),
+                                                  fontSize: 12.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0xFFE5E7EB),
@@ -354,16 +430,40 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .headlineMedium
                                               .override(
-                                                fontFamily: 'Outfit',
+                                                font: GoogleFonts.outfit(
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineMedium
+                                                          .fontStyle,
+                                                ),
                                                 color: Color(0xFF15161E),
                                                 fontSize: 24.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineMedium
+                                                        .fontStyle,
                                               ),
                                           cursorColor: Color(0xFF6F61EF),
                                           validator: _model
                                               .productNameTextControllerValidator
                                               .asValidator(context),
+                                          inputFormatters: [
+                                            if (!isAndroid && !isiOS)
+                                              TextInputFormatter.withFunction(
+                                                  (oldValue, newValue) {
+                                                return TextEditingValue(
+                                                  selection: newValue.selection,
+                                                  text: newValue.text
+                                                      .toCapitalization(
+                                                          TextCapitalization
+                                                              .words),
+                                                );
+                                              }),
+                                          ],
                                         ),
                                         TextFormField(
                                           controller: _model
@@ -376,39 +476,72 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelText: 'Category...',
-                                            labelStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineMedium
-                                                    .override(
-                                                      fontFamily: 'Outfit',
-                                                      color: Color(0xFF606A85),
-                                                      fontSize: 24.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                            hintStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .override(
-                                                      fontFamily: 'Outfit',
-                                                      color: Color(0xFF606A85),
-                                                      fontSize: 14.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                            errorStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Figtree',
-                                                      color: Color(0xFFFF5963),
-                                                      fontSize: 12.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
+                                            labelStyle: FlutterFlowTheme.of(
+                                                    context)
+                                                .headlineMedium
+                                                .override(
+                                                  font: GoogleFonts.outfit(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .headlineMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Color(0xFF606A85),
+                                                  fontSize: 24.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineMedium
+                                                          .fontStyle,
+                                                ),
+                                            hintStyle: FlutterFlowTheme.of(
+                                                    context)
+                                                .labelMedium
+                                                .override(
+                                                  font: GoogleFonts.outfit(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .labelMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Color(0xFF606A85),
+                                                  fontSize: 14.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMedium
+                                                          .fontStyle,
+                                                ),
+                                            errorStyle: FlutterFlowTheme.of(
+                                                    context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.figtree(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Color(0xFFFF5963),
+                                                  fontSize: 12.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0xFFE5E7EB),
@@ -451,16 +584,40 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .headlineMedium
                                               .override(
-                                                fontFamily: 'Outfit',
+                                                font: GoogleFonts.outfit(
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineMedium
+                                                          .fontStyle,
+                                                ),
                                                 color: Color(0xFF15161E),
                                                 fontSize: 24.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineMedium
+                                                        .fontStyle,
                                               ),
                                           cursorColor: Color(0xFF6F61EF),
                                           validator: _model
                                               .productcategoryNameTextControllerValidator
                                               .asValidator(context),
+                                          inputFormatters: [
+                                            if (!isAndroid && !isiOS)
+                                              TextInputFormatter.withFunction(
+                                                  (oldValue, newValue) {
+                                                return TextEditingValue(
+                                                  selection: newValue.selection,
+                                                  text: newValue.text
+                                                      .toCapitalization(
+                                                          TextCapitalization
+                                                              .words),
+                                                );
+                                              }),
+                                          ],
                                         ),
                                       ].divide(SizedBox(height: 12.0)),
                                     ),
@@ -495,23 +652,27 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                           16.0, 12.0, 16.0, 12.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          context.pushNamed(MainPageWidget.routeName);
-
                           await currentUserReference!.update({
                             ...mapToFirestore(
                               {
-                                'points': FieldValue.increment(10),
+                                'points': FieldValue.increment(15),
                               },
                             ),
                           });
 
-                          await InfoRecord.collection
+                          await RecyclingActionRecord.collection
                               .doc()
-                              .set(createInfoRecordData(
+                              .set(createRecyclingActionRecordData(
                                 name: _model.productNameTextController.text,
                                 category: _model
                                     .productcategoryNameTextController.text,
+                                image: _model.uploadedFileUrl,
+                                date: getCurrentTimestamp,
+                                points: 15,
+                                email: currentUserEmail,
                               ));
+
+                          context.pushNamed(MainPageWidget.routeName);
                         },
                         text: 'Confirm',
                         options: FFButtonOptions(
@@ -521,14 +682,22 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                               24.0, 0.0, 24.0, 0.0),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: Color(0xFF6F61EF),
+                          color: FlutterFlowTheme.of(context).secondary,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Figtree',
+                                    font: GoogleFonts.figtree(
+                                      fontWeight: FontWeight.w500,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
                                     color: Colors.white,
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
                                   ),
                           elevation: 3.0,
                           borderSide: BorderSide(

@@ -37,4 +37,16 @@ class FFAppState extends ChangeNotifier {
   set SearchActive(bool value) {
     _SearchActive = value;
   }
+
+  int _itemPosition = 1;
+  int get itemPosition => _itemPosition;
+  set itemPosition(int value) {
+    _itemPosition = value;
+  }
+
+  String _RandomTip = '';
+  String get RandomTip => _RandomTip;
+  set RandomTip(String value) {
+    _RandomTip = value;
+  }
 }

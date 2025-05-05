@@ -1,12 +1,16 @@
-import '/backend/backend.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/components/recycling_popup_widget.dart';
+import '/components/tip_pop_up_widget.dart';
 import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
+import 'package:provider/provider.dart';
 import 'main_page_model.dart';
 export 'main_page_model.dart';
 
@@ -30,6 +34,30 @@ class _MainPageWidgetState extends State<MainPageWidget> {
     super.initState();
     _model = createModel(context, () => MainPageModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      FFAppState().RandomTip = functions.getRecylingTip()!;
+      safeSetState(() {});
+      await showModalBottomSheet(
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        enableDrag: false,
+        context: context,
+        builder: (context) {
+          return GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
+            child: Padding(
+              padding: MediaQuery.viewInsetsOf(context),
+              child: TipPopUpWidget(),
+            ),
+          );
+        },
+      ).then((value) => safeSetState(() {}));
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -42,6 +70,8 @@ class _MainPageWidgetState extends State<MainPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -60,47 +90,60 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
-                    child: StreamBuilder<List<InfoRecord>>(
-                      stream: queryInfoRecord(
-                        singleRecord: true,
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
-                                ),
-                              ),
+                  if (valueOrDefault<bool>(currentUserDocument?.isAdmin, false))
+                    Align(
+                      alignment: AlignmentDirectional(-1.0, 0.0),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 5.0),
+                        child: AuthUserStreamWidget(
+                          builder: (context) => FlutterFlowIconButton(
+                            borderRadius: 8.0,
+                            buttonSize: 40.0,
+                            fillColor: FlutterFlowTheme.of(context).secondary,
+                            icon: Icon(
+                              Icons.admin_panel_settings_rounded,
+                              color: FlutterFlowTheme.of(context).info,
+                              size: 24.0,
                             ),
-                          );
-                        }
-                        List<InfoRecord> textInfoRecordList = snapshot.data!;
-                        // Return an empty Container when the item does not exist.
-                        if (snapshot.data!.isEmpty) {
-                          return Container();
-                        }
-                        final textInfoRecord = textInfoRecordList.isNotEmpty
-                            ? textInfoRecordList.first
-                            : null;
-
-                        return Text(
-                          valueOrDefault<String>(
-                            textInfoRecord?.name,
-                            'name',
+                            onPressed: () async {
+                              context.pushNamed(AdminDashboardWidget.routeName);
+                            },
                           ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Inter',
-                                    letterSpacing: 0.0,
-                                  ),
-                        );
+                        ),
+                      ),
+                    ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 5.0),
+                    child: FlutterFlowIconButton(
+                      borderRadius: 8.0,
+                      buttonSize: 40.0,
+                      fillColor: Color(0xFF2B6299),
+                      icon: Icon(
+                        Icons.lightbulb_outline_rounded,
+                        color: FlutterFlowTheme.of(context).info,
+                        size: 24.0,
+                      ),
+                      onPressed: () async {
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          enableDrag: false,
+                          useSafeArea: true,
+                          context: context,
+                          builder: (context) {
+                            return GestureDetector(
+                              onTap: () {
+                                FocusScope.of(context).unfocus();
+                                FocusManager.instance.primaryFocus?.unfocus();
+                              },
+                              child: Padding(
+                                padding: MediaQuery.viewInsetsOf(context),
+                                child: TipPopUpWidget(),
+                              ),
+                            );
+                          },
+                        ).then((value) => safeSetState(() {}));
                       },
                     ),
                   ),
@@ -130,29 +173,32 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                 ),
                 child: Stack(
                   children: [
-                    FlutterFlowGoogleMap(
-                      controller: _model.googleMapsController,
-                      onCameraIdle: (latLng) =>
-                          _model.googleMapsCenter = latLng,
-                      initialLocation: _model.googleMapsCenter ??=
-                          LatLng(41.1776832, -8.5957992),
-                      markerColor: GoogleMarkerColor.violet,
-                      markerImage: MarkerImage(
-                        imagePath: 'assets/images/2vqf7_',
-                        isAssetImage: true,
-                        size: 20.0 ?? 20,
+                    Align(
+                      alignment: AlignmentDirectional(0.0, 0.0),
+                      child: FlutterFlowGoogleMap(
+                        controller: _model.googleMapsController,
+                        onCameraIdle: (latLng) =>
+                            _model.googleMapsCenter = latLng,
+                        initialLocation: _model.googleMapsCenter ??=
+                            LatLng(41.1776832, -8.5957992),
+                        markerColor: GoogleMarkerColor.violet,
+                        markerImage: MarkerImage(
+                          imagePath: 'assets/images/2vqf7_',
+                          isAssetImage: true,
+                          size: 20.0 ?? 20,
+                        ),
+                        mapType: MapType.normal,
+                        style: GoogleMapStyle.standard,
+                        initialZoom: 17.16,
+                        allowInteraction: true,
+                        allowZoom: true,
+                        showZoomControls: true,
+                        showLocation: true,
+                        showCompass: false,
+                        showMapToolbar: false,
+                        showTraffic: false,
+                        centerMapOnMarkerTap: true,
                       ),
-                      mapType: MapType.normal,
-                      style: GoogleMapStyle.standard,
-                      initialZoom: 17.16,
-                      allowInteraction: true,
-                      allowZoom: true,
-                      showZoomControls: true,
-                      showLocation: true,
-                      showCompass: false,
-                      showMapToolbar: false,
-                      showTraffic: false,
-                      centerMapOnMarkerTap: true,
                     ),
                     Align(
                       alignment: AlignmentDirectional(0.0, 1.0),

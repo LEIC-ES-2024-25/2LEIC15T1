@@ -8,6 +8,7 @@ import 'schema/util/firestore_util.dart';
 import 'schema/info_record.dart';
 import 'schema/users_record.dart';
 import 'schema/items_search_record.dart';
+import 'schema/recycling_action_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -19,6 +20,7 @@ export 'schema/util/schema_util.dart';
 export 'schema/info_record.dart';
 export 'schema/users_record.dart';
 export 'schema/items_search_record.dart';
+export 'schema/recycling_action_record.dart';
 
 /// Functions to query InfoRecords (as a Stream and as a Future).
 Future<int> queryInfoRecordCount({
@@ -126,6 +128,43 @@ Future<List<ItemsSearchRecord>> queryItemsSearchRecordOnce({
     queryCollectionOnce(
       ItemsSearchRecord.collection,
       ItemsSearchRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query RecyclingActionRecords (as a Stream and as a Future).
+Future<int> queryRecyclingActionRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      RecyclingActionRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<RecyclingActionRecord>> queryRecyclingActionRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      RecyclingActionRecord.collection,
+      RecyclingActionRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<RecyclingActionRecord>> queryRecyclingActionRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      RecyclingActionRecord.collection,
+      RecyclingActionRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
