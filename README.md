@@ -322,6 +322,12 @@ What we can do for improvement:
 
 ### Sprint 3
 
+ #### Start of the Sprint
+ <img src="imgs/sprint3-start.png">
+ 
+ #### End of the Sprint
+
+ #### Sprint Retrospective
 
 ### Sprint 4
 
