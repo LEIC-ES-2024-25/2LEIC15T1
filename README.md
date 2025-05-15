@@ -241,6 +241,12 @@ At this phase, instead of a complete user story, you can simply implement a smal
 ### Definition of Done
 A task is considered "Done" when it functions exactly as intended, with no visible bugs. All features described in the user story must be manually tested to ensure they align with the expected usage.
 
+### Happiness meters 
+This is the spreadsheet with the happiness meters of all sprints (the table was filled horizontally):
+
+https://docs.google.com/spreadsheets/d/1rpr3WY1SpCuPMmw__6JmT9yC9WvLqMsVE1zQ8lZhQwo/edit?usp=sharing
+
+
 ## Project management
 <!--
 Software project management is the art and science of planning and leading software projects, in which software projects are planned, implemented, monitored and controlled.
