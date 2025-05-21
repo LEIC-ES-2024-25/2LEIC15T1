@@ -211,7 +211,8 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                               child: FlutterFlowIconButton(
                                 borderRadius: 8.0,
                                 buttonSize: 60.0,
-                                fillColor: Color(0xFF2B6299),
+                                fillColor:
+                                    FlutterFlowTheme.of(context).secondary,
                                 icon: Icon(
                                   Icons.lightbulb_outline_rounded,
                                   color: FlutterFlowTheme.of(context).info,

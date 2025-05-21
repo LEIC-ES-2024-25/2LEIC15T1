@@ -175,6 +175,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: AdminUsersListWidget.routeName,
           path: AdminUsersListWidget.routePath,
           builder: (context, params) => AdminUsersListWidget(),
+        ),
+        FFRoute(
+          name: AdminStatisticsWidget.routeName,
+          path: AdminStatisticsWidget.routePath,
+          builder: (context, params) => AdminStatisticsWidget(),
+        ),
+        FFRoute(
+          name: TestWidget.routeName,
+          path: TestWidget.routePath,
+          builder: (context, params) => TestWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

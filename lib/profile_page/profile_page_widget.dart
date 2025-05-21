@@ -237,7 +237,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                   .headlineSmall
                                                   .fontStyle,
                                         ),
-                                        color: Color(0xFF101213),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
                                         fontSize: 22.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.bold,
@@ -262,7 +263,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                   .labelSmall
                                                   .fontStyle,
                                         ),
-                                        color: Color(0xFF39D2C0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
                                         fontSize: 14.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
@@ -471,52 +473,48 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.center,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.end,
                                         children: [
                                           Expanded(
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Expanded(
-                                                  child: AuthUserStreamWidget(
-                                                    builder: (context) =>
-                                                        LinearPercentIndicator(
-                                                      percent: (valueOrDefault(
-                                                                  currentUserDocument
-                                                                      ?.points,
-                                                                  0) -
-                                                              (valueOrDefault(
-                                                                          currentUserDocument
-                                                                              ?.level,
-                                                                          0) *
-                                                                      100 -
-                                                                  100)) /
-                                                          100,
-                                                      width: MediaQuery.sizeOf(
-                                                                  context)
+                                            child: Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: AuthUserStreamWidget(
+                                                builder: (context) =>
+                                                    LinearPercentIndicator(
+                                                  percent: (valueOrDefault(
+                                                              currentUserDocument
+                                                                  ?.points,
+                                                              0) -
+                                                          (valueOrDefault(
+                                                                      currentUserDocument
+                                                                          ?.level,
+                                                                      0) *
+                                                                  100 -
+                                                              100)) /
+                                                      100,
+                                                  width:
+                                                      MediaQuery.sizeOf(context)
                                                               .width *
-                                                          0.87,
-                                                      lineHeight: 12.0,
-                                                      animation: true,
-                                                      animateFromLastPercent:
-                                                          true,
-                                                      progressColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .tertiary,
-                                                      backgroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
-                                                      barRadius:
-                                                          Radius.circular(8.0),
-                                                      padding: EdgeInsets.zero,
-                                                    ),
-                                                  ),
+                                                          0.85,
+                                                  lineHeight: 12.0,
+                                                  animation: true,
+                                                  animateFromLastPercent: true,
+                                                  progressColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .tertiary,
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .alternate,
+                                                  barRadius:
+                                                      Radius.circular(8.0),
+                                                  padding: EdgeInsets.zero,
                                                 ),
-                                              ],
+                                              ),
                                             ),
                                           ),
                                         ],
@@ -527,28 +525,34 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                       thickness: 1.0,
                                       color: Color(0xFFE0E3E7),
                                     ),
-                                    Text(
-                                      'Ongoing Challenges',
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodySmall
-                                          .override(
-                                            font: GoogleFonts.plusJakartaSans(
-                                              fontWeight: FontWeight.w500,
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 10.0),
+                                      child: Text(
+                                        'Ongoing Challenges',
+                                        textAlign: TextAlign.start,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodySmall
+                                            .override(
+                                              font: GoogleFonts.plusJakartaSans(
+                                                fontWeight: FontWeight.w600,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodySmall
+                                                        .fontStyle,
+                                              ),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              fontSize: 20.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w600,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .bodySmall
                                                       .fontStyle,
                                             ),
-                                            color: Color(0xFF101213),
-                                            fontSize: 12.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodySmall
-                                                    .fontStyle,
-                                          ),
+                                      ),
                                     ),
                                     StreamBuilder<List<UserChallengesRecord>>(
                                       stream: queryUserChallengesRecord(
@@ -627,22 +631,22 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
                                                   children: [
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      10.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10.0,
+                                                                  10.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
                                                             listViewUserChallengesRecord
                                                                 .description,
                                                             textAlign:
@@ -677,34 +681,43 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                       .fontStyle,
                                                                 ),
                                                           ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      10.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            (int progress,
-                                                                    int goal) {
-                                                              return progress
-                                                                      .toString() +
-                                                                  "/" +
-                                                                  goal.toString();
-                                                            }(
-                                                                listViewUserChallengesRecord
-                                                                    .progress,
-                                                                listViewUserChallengesRecord
-                                                                    .goal),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font:
-                                                                      GoogleFonts
-                                                                          .inter(
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              (int progress,
+                                                                      int goal) {
+                                                                return progress
+                                                                        .toString() +
+                                                                    "/" +
+                                                                    goal.toString();
+                                                              }(
+                                                                  listViewUserChallengesRecord
+                                                                      .progress,
+                                                                  listViewUserChallengesRecord
+                                                                      .goal),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .inter(
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    letterSpacing:
+                                                                        0.0,
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
@@ -714,20 +727,10 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                         .bodyMedium
                                                                         .fontStyle,
                                                                   ),
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
                                                     Padding(
                                                       padding:
@@ -782,19 +785,23 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                 " points";
                                                           }(listViewUserChallengesRecord
                                                               .points),
+                                                          textAlign:
+                                                              TextAlign.end,
                                                           style: GoogleFonts
                                                               .dmMono(
-                                                            color: Color(
-                                                                0xFFEA7319),
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .accent3,
                                                             fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 18.0,
+                                                                FontWeight.w600,
+                                                            fontSize: 15.0,
                                                             fontStyle: FontStyle
                                                                 .italic,
                                                             shadows: [
                                                               Shadow(
-                                                                color: Color(
-                                                                    0xFFFFC59B),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent4,
                                                                 offset: Offset(
                                                                     0.5, 0.5),
                                                                 blurRadius: 0.5,
@@ -812,28 +819,34 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                         );
                                       },
                                     ),
-                                    Text(
-                                      'Completed Challenges',
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodySmall
-                                          .override(
-                                            font: GoogleFonts.plusJakartaSans(
-                                              fontWeight: FontWeight.w500,
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 10.0, 0.0, 10.0),
+                                      child: Text(
+                                        'Completed Challenges',
+                                        textAlign: TextAlign.start,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodySmall
+                                            .override(
+                                              font: GoogleFonts.plusJakartaSans(
+                                                fontWeight: FontWeight.w600,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodySmall
+                                                        .fontStyle,
+                                              ),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              fontSize: 20.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w600,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .bodySmall
                                                       .fontStyle,
                                             ),
-                                            color: Color(0xFF101213),
-                                            fontSize: 12.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodySmall
-                                                    .fontStyle,
-                                          ),
+                                      ),
                                     ),
                                     StreamBuilder<List<UserChallengesRecord>>(
                                       stream: queryUserChallengesRecord(
@@ -910,22 +923,22 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
                                                   children: [
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      10.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10.0,
+                                                                  10.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
                                                             listViewUserChallengesRecord
                                                                 .description,
                                                             style: FlutterFlowTheme
@@ -958,34 +971,43 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                       .fontStyle,
                                                                 ),
                                                           ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      10.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            (int progress,
-                                                                    int goal) {
-                                                              return progress
-                                                                      .toString() +
-                                                                  "/" +
-                                                                  goal.toString();
-                                                            }(
-                                                                listViewUserChallengesRecord
-                                                                    .progress,
-                                                                listViewUserChallengesRecord
-                                                                    .goal),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font:
-                                                                      GoogleFonts
-                                                                          .inter(
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              (int progress,
+                                                                      int goal) {
+                                                                return progress
+                                                                        .toString() +
+                                                                    "/" +
+                                                                    goal.toString();
+                                                              }(
+                                                                  listViewUserChallengesRecord
+                                                                      .progress,
+                                                                  listViewUserChallengesRecord
+                                                                      .goal),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .inter(
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    letterSpacing:
+                                                                        0.0,
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
@@ -995,20 +1017,10 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                         .bodyMedium
                                                                         .fontStyle,
                                                                   ),
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
                                                     Padding(
                                                       padding:
@@ -1062,8 +1074,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                             color: Color(
                                                                 0xFF366038),
                                                             fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 18.0,
+                                                                FontWeight.w600,
+                                                            fontSize: 15.0,
                                                             fontStyle: FontStyle
                                                                 .italic,
                                                             shadows: [

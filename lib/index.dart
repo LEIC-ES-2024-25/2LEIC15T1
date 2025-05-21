@@ -17,3 +17,6 @@ export '/complete_leaderboard/complete_leaderboard_widget.dart'
 export '/admin_dashboard/admin_dashboard_widget.dart' show AdminDashboardWidget;
 export '/admin_users_list/admin_users_list_widget.dart'
     show AdminUsersListWidget;
+export '/admin_statistics/admin_statistics_widget.dart'
+    show AdminStatisticsWidget;
+export '/test/test_widget.dart' show TestWidget;

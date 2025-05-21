@@ -25,11 +25,6 @@ class BinsRecord extends FirestoreRecord {
   LatLng? get location => _location;
   bool hasLocation() => _location != null;
 
-  // "Floor" field.
-  int? _floor;
-  int get floor => _floor ?? 0;
-  bool hasFloor() => _floor != null;
-
   // "Building" field.
   String? _building;
   String get building => _building ?? '';
@@ -40,12 +35,17 @@ class BinsRecord extends FirestoreRecord {
   int get recyclingCounter => _recyclingCounter ?? 0;
   bool hasRecyclingCounter() => _recyclingCounter != null;
 
+  // "Floor" field.
+  String? _floor;
+  String get floor => _floor ?? '';
+  bool hasFloor() => _floor != null;
+
   void _initializeFields() {
     _name = snapshotData['Name'] as String?;
     _location = snapshotData['Location'] as LatLng?;
-    _floor = castToType<int>(snapshotData['Floor']);
     _building = snapshotData['Building'] as String?;
     _recyclingCounter = castToType<int>(snapshotData['Recycling_counter']);
+    _floor = snapshotData['Floor'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -84,17 +84,17 @@ class BinsRecord extends FirestoreRecord {
 Map<String, dynamic> createBinsRecordData({
   String? name,
   LatLng? location,
-  int? floor,
   String? building,
   int? recyclingCounter,
+  String? floor,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'Name': name,
       'Location': location,
-      'Floor': floor,
       'Building': building,
       'Recycling_counter': recyclingCounter,
+      'Floor': floor,
     }.withoutNulls,
   );
 
@@ -108,14 +108,14 @@ class BinsRecordDocumentEquality implements Equality<BinsRecord> {
   bool equals(BinsRecord? e1, BinsRecord? e2) {
     return e1?.name == e2?.name &&
         e1?.location == e2?.location &&
-        e1?.floor == e2?.floor &&
         e1?.building == e2?.building &&
-        e1?.recyclingCounter == e2?.recyclingCounter;
+        e1?.recyclingCounter == e2?.recyclingCounter &&
+        e1?.floor == e2?.floor;
   }
 
   @override
   int hash(BinsRecord? e) => const ListEquality()
-      .hash([e?.name, e?.location, e?.floor, e?.building, e?.recyclingCounter]);
+      .hash([e?.name, e?.location, e?.building, e?.recyclingCounter, e?.floor]);
 
   @override
   bool isValidKey(Object? o) => o is BinsRecord;

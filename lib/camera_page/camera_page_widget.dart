@@ -61,7 +61,7 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
           leading: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 0.0, 8.0),
@@ -400,7 +400,10 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                                 .bodyMedium
                                                                 .fontStyle,
                                                       ),
-                                                      color: Color(0xFFFF5963),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
                                                       fontSize: 12.0,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
@@ -414,7 +417,9 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                 enabledBorder:
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xFFE5E7EB),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondary,
                                                     width: 2.0,
                                                   ),
                                                   borderRadius:
@@ -424,7 +429,9 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                 focusedBorder:
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xFF6F61EF),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .tertiary,
                                                     width: 2.0,
                                                   ),
                                                   borderRadius:
@@ -433,7 +440,9 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                 ),
                                                 errorBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xFFFF5963),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .error,
                                                     width: 2.0,
                                                   ),
                                                   borderRadius:
@@ -443,7 +452,9 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                 focusedErrorBorder:
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xFFFF5963),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .error,
                                                     width: 2.0,
                                                   ),
                                                   borderRadius:
@@ -453,7 +464,7 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                 filled: true,
                                                 fillColor:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                        .primary,
                                                 contentPadding:
                                                     EdgeInsetsDirectional
                                                         .fromSTEB(16.0, 20.0,
@@ -484,7 +495,9 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                             .headlineMedium
                                                             .fontStyle,
                                                   ),
-                                              cursorColor: Color(0xFF6F61EF),
+                                              cursorColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .tertiary,
                                               validator: _model
                                                   .productNameTextControllerValidator
                                                   .asValidator(context),
@@ -555,7 +568,10 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                                 .labelMedium
                                                                 .fontStyle,
                                                       ),
-                                                      color: Color(0xFF606A85),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
                                                       fontSize: 20.0,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
@@ -593,7 +609,9 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                 enabledBorder:
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xFFE5E7EB),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondary,
                                                     width: 2.0,
                                                   ),
                                                   borderRadius:
@@ -603,7 +621,9 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                 focusedBorder:
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xFF6F61EF),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .tertiary,
                                                     width: 2.0,
                                                   ),
                                                   borderRadius:
@@ -612,7 +632,9 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                 ),
                                                 errorBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xFFFF5963),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .error,
                                                     width: 2.0,
                                                   ),
                                                   borderRadius:
@@ -622,7 +644,9 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                 focusedErrorBorder:
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xFFFF5963),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .error,
                                                     width: 2.0,
                                                   ),
                                                   borderRadius:
@@ -630,7 +654,9 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                           12.0),
                                                 ),
                                                 filled: true,
-                                                fillColor: Colors.white,
+                                                fillColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
                                                 contentPadding:
                                                     EdgeInsetsDirectional
                                                         .fromSTEB(16.0, 20.0,
@@ -661,7 +687,9 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                             .headlineMedium
                                                             .fontStyle,
                                                   ),
-                                              cursorColor: Color(0xFF6F61EF),
+                                              cursorColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .tertiary,
                                               validator: _model
                                                   .productcategoryNameTextControllerValidator
                                                   .asValidator(context),

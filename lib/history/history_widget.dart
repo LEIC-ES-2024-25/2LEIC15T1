@@ -131,7 +131,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(5.0, 20.0, 5.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(30.0, 20.0, 20.0, 0.0),
                     child: Text(
                       'Here you can check your recycling history:',
                       style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -155,8 +155,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                     child: Align(
                       alignment: AlignmentDirectional(0.0, -1.0),
                       child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        padding: EdgeInsets.all(20.0),
                         child: Builder(
                           builder: (context) {
                             final recyclingActions =
@@ -222,46 +221,61 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  8.0),
-                                                          child: Container(
-                                                            width: 120.0,
-                                                            height:
-                                                                double.infinity,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10.0),
-                                                            ),
-                                                            alignment:
-                                                                AlignmentDirectional(
-                                                                    0.0, 0.0),
-                                                            child: ClipRRect(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10.0),
-                                                              child:
-                                                                  Image.network(
-                                                                key: ValueKey(
-                                                                    'https://www.iconsdb.com/icons/preview/gray/recycle-xxl.png'),
-                                                                recyclingActionsItem
-                                                                    .image,
-                                                                width: double
-                                                                    .infinity,
-                                                                height: double
-                                                                    .infinity,
-                                                                fit: BoxFit
-                                                                    .fitHeight,
-                                                                cacheHeight:
-                                                                    100,
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    8.0),
+                                                            child: Container(
+                                                              width: 110.0,
+                                                              height: 110.0,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            10.0),
+                                                              ),
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      0.0, 0.0),
+                                                              child: Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        0.0,
+                                                                        0.0),
+                                                                child:
+                                                                    ClipRRect(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10.0),
+                                                                  child: Image
+                                                                      .network(
+                                                                    key: ValueKey(
+                                                                        'https://www.iconsdb.com/icons/preview/gray/recycle-xxl.png'),
+                                                                    recyclingActionsItem
+                                                                        .image,
+                                                                    width: double
+                                                                        .infinity,
+                                                                    height: double
+                                                                        .infinity,
+                                                                    fit: BoxFit
+                                                                        .fill,
+                                                                    alignment:
+                                                                        Alignment(
+                                                                            0.0,
+                                                                            0.0),
+                                                                    cacheHeight:
+                                                                        100,
+                                                                  ),
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
@@ -275,14 +289,15 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                             child: Padding(
                                                               padding:
                                                                   EdgeInsets
-                                                                      .all(8.0),
+                                                                      .all(
+                                                                          16.0),
                                                               child: Column(
                                                                 mainAxisSize:
                                                                     MainAxisSize
                                                                         .max,
                                                                 mainAxisAlignment:
                                                                     MainAxisAlignment
-                                                                        .end,
+                                                                        .start,
                                                                 crossAxisAlignment:
                                                                     CrossAxisAlignment
                                                                         .start,
@@ -295,48 +310,30 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                                         MainAxisAlignment
                                                                             .spaceBetween,
                                                                     children: [
-                                                                      Material(
-                                                                        color: Colors
-                                                                            .transparent,
-                                                                        elevation:
-                                                                            2.0,
-                                                                        shape:
-                                                                            RoundedRectangleBorder(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(10.0),
-                                                                        ),
+                                                                      Align(
+                                                                        alignment: AlignmentDirectional(
+                                                                            -1.0,
+                                                                            0.0),
                                                                         child:
-                                                                            ClipRRect(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(10.0),
+                                                                            Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              5.0,
+                                                                              0.0,
+                                                                              10.0),
                                                                           child:
-                                                                              Container(
-                                                                            width:
-                                                                                100.0,
-                                                                            height:
-                                                                                30.0,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: FlutterFlowTheme.of(context).alternate,
-                                                                              borderRadius: BorderRadius.circular(10.0),
-                                                                            ),
-                                                                            child:
-                                                                                Align(
-                                                                              alignment: AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                recyclingActionsItem.category,
-                                                                                style: FlutterFlowTheme.of(context).titleLarge.override(
-                                                                                      font: GoogleFonts.outfit(
-                                                                                        fontWeight: FontWeight.normal,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
-                                                                                      ),
-                                                                                      color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FontWeight.normal,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
+                                                                              AutoSizeText(
+                                                                            recyclingActionsItem.name,
+                                                                            style: FlutterFlowTheme.of(context).titleLarge.override(
+                                                                                  font: GoogleFonts.outfit(
+                                                                                    fontWeight: FontWeight.w500,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
+                                                                                  ),
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                  letterSpacing: 0.0,
+                                                                                  fontWeight: FontWeight.w500,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
+                                                                                ),
                                                                           ),
                                                                         ),
                                                                       ),
@@ -352,47 +349,35 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                                               1.0,
                                                                               0.0),
                                                                           child:
-                                                                              Material(
-                                                                            color:
-                                                                                Colors.transparent,
-                                                                            elevation:
-                                                                                2.0,
-                                                                            shape:
-                                                                                RoundedRectangleBorder(
-                                                                              borderRadius: BorderRadius.circular(10.0),
-                                                                            ),
+                                                                              ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(0.0),
                                                                             child:
-                                                                                ClipRRect(
-                                                                              borderRadius: BorderRadius.circular(10.0),
-                                                                              child: Container(
-                                                                                width: 90.0,
-                                                                                height: 30.0,
-                                                                                decoration: BoxDecoration(
-                                                                                  color: FlutterFlowTheme.of(context).alternate,
-                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                ),
-                                                                                child: Align(
-                                                                                  alignment: AlignmentDirectional(1.0, 0.0),
-                                                                                  child: Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
-                                                                                    child: AutoSizeText(
-                                                                                      (String var1) {
-                                                                                        return "+" + var1;
-                                                                                      }(recyclingActionsItem.points.toString()),
-                                                                                      style: GoogleFonts.dmMono(
-                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                        fontWeight: FontWeight.bold,
-                                                                                        fontSize: 18.0,
-                                                                                        fontStyle: FontStyle.italic,
-                                                                                        shadows: [
-                                                                                          Shadow(
-                                                                                            color: Color(0xFF80FF66),
-                                                                                            offset: Offset(0.5, 0.5),
-                                                                                            blurRadius: 1.0,
-                                                                                          )
-                                                                                        ],
-                                                                                      ),
-                                                                                    ),
+                                                                                Container(
+                                                                              width: 50.0,
+                                                                              height: 30.0,
+                                                                              decoration: BoxDecoration(
+                                                                                borderRadius: BorderRadius.circular(0.0),
+                                                                              ),
+                                                                              child: Align(
+                                                                                alignment: AlignmentDirectional(1.0, 0.0),
+                                                                                child: Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 5.0),
+                                                                                  child: AutoSizeText(
+                                                                                    (String var1) {
+                                                                                      return "+" + var1;
+                                                                                    }(recyclingActionsItem.points.toString()),
+                                                                                    style: FlutterFlowTheme.of(context).titleLarge.override(
+                                                                                          font: GoogleFonts.interTight(
+                                                                                            fontWeight: FontWeight.w600,
+                                                                                            fontStyle: FontStyle.italic,
+                                                                                          ),
+                                                                                          color: FlutterFlowTheme.of(context).secondary,
+                                                                                          fontSize: 25.0,
+                                                                                          letterSpacing: 0.0,
+                                                                                          fontWeight: FontWeight.w600,
+                                                                                          fontStyle: FontStyle.italic,
+                                                                                        ),
                                                                                   ),
                                                                                 ),
                                                                               ),
@@ -402,34 +387,55 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                                       ),
                                                                     ],
                                                                   ),
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            -1.0,
-                                                                            0.0),
+                                                                  Material(
+                                                                    color: Colors
+                                                                        .transparent,
+                                                                    elevation:
+                                                                        2.0,
+                                                                    shape:
+                                                                        RoundedRectangleBorder(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              10.0),
+                                                                    ),
                                                                     child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0,
-                                                                          0.0),
+                                                                        ClipRRect(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              10.0),
                                                                       child:
-                                                                          AutoSizeText(
-                                                                        recyclingActionsItem
-                                                                            .name,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .titleLarge
-                                                                            .override(
-                                                                              font: GoogleFonts.outfit(
-                                                                                fontWeight: FlutterFlowTheme.of(context).titleLarge.fontWeight,
-                                                                                fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
-                                                                              ),
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FlutterFlowTheme.of(context).titleLarge.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
-                                                                            ),
+                                                                          Container(
+                                                                        width:
+                                                                            70.0,
+                                                                        height:
+                                                                            30.0,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).alternate,
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(10.0),
+                                                                        ),
+                                                                        child:
+                                                                            Align(
+                                                                          alignment: AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            recyclingActionsItem.category,
+                                                                            style: FlutterFlowTheme.of(context).titleLarge.override(
+                                                                                  font: GoogleFonts.outfit(
+                                                                                    fontWeight: FontWeight.normal,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
+                                                                                  ),
+                                                                                  color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                  letterSpacing: 0.0,
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
+                                                                                ),
+                                                                          ),
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ),
