@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -7,23 +6,20 @@ import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'recycling_popup_model.dart';
-export 'recycling_popup_model.dart';
+import 'general_recycling_popup_model.dart';
+export 'general_recycling_popup_model.dart';
 
-class RecyclingPopupWidget extends StatefulWidget {
-  const RecyclingPopupWidget({
-    super.key,
-    required this.name,
-  });
-
-  final BinsRecord? name;
+class GeneralRecyclingPopupWidget extends StatefulWidget {
+  const GeneralRecyclingPopupWidget({super.key});
 
   @override
-  State<RecyclingPopupWidget> createState() => _RecyclingPopupWidgetState();
+  State<GeneralRecyclingPopupWidget> createState() =>
+      _GeneralRecyclingPopupWidgetState();
 }
 
-class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
-  late RecyclingPopupModel _model;
+class _GeneralRecyclingPopupWidgetState
+    extends State<GeneralRecyclingPopupWidget> {
+  late GeneralRecyclingPopupModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -34,7 +30,7 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => RecyclingPopupModel());
+    _model = createModel(context, () => GeneralRecyclingPopupModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -53,31 +49,23 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
       children: [
         Container(
           width: 300.0,
-          height: 350.0,
+          height: 300.0,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).primaryBackground,
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Stack(
             children: [
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Material(
-                    color: Colors.transparent,
-                    elevation: 2.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(0.0),
-                        bottomRight: Radius.circular(0.0),
-                        topLeft: Radius.circular(20.0),
-                        topRight: Radius.circular(20.0),
-                      ),
-                    ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
+              Align(
+                alignment: AlignmentDirectional(0.0, 0.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Material(
+                      color: Colors.transparent,
+                      elevation: 2.0,
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(0.0),
                           bottomRight: Radius.circular(0.0),
@@ -85,20 +73,43 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                           topRight: Radius.circular(20.0),
                         ),
                       ),
-                      child: Stack(
-                        children: [
-                          Align(
-                            alignment: AlignmentDirectional(-0.02, -2.98),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 13.0, 0.0, 0.0),
-                              child: Text(
-                                'Recycling',
-                                textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context)
-                                    .headlineMedium
-                                    .override(
-                                      font: GoogleFonts.interTight(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(0.0),
+                            bottomRight: Radius.circular(0.0),
+                            topLeft: Radius.circular(20.0),
+                            topRight: Radius.circular(20.0),
+                          ),
+                        ),
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: AlignmentDirectional(-0.02, -2.98),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 13.0, 0.0, 0.0),
+                                child: Text(
+                                  'Recycling',
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context)
+                                      .headlineMedium
+                                      .override(
+                                        font: GoogleFonts.interTight(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .headlineMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .headlineMedium
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        fontSize: 22.0,
+                                        letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .headlineMedium
                                             .fontWeight,
@@ -106,195 +117,44 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                                             .headlineMedium
                                             .fontStyle,
                                       ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      fontSize: 22.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .headlineMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .headlineMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(4.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                Navigator.pop(context);
-                              },
-                              child: Container(
-                                width: 40.0,
-                                height: 40.0,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12.0),
-                                  shape: BoxShape.rectangle,
-                                ),
-                                child: Icon(
-                                  Icons.chevron_left,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 24.0,
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            0.0, 15.0, 0.0, 20.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Location of selected bin:      ',
-                              textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    font: GoogleFonts.inter(
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
+                            Padding(
+                              padding: EdgeInsets.all(4.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  Navigator.pop(context);
+                                },
+                                child: Container(
+                                  width: 40.0,
+                                  height: 40.0,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    shape: BoxShape.rectangle,
+                                  ),
+                                  child: Icon(
+                                    Icons.chevron_left,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
-                                    fontSize: 15.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
+                                    size: 24.0,
                                   ),
-                            ),
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Text(
-                                  'Building: ',
-                                  textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.inter(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        fontSize: 15.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
                                 ),
-                                Text(
-                                  widget.name!.building,
-                                  textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.inter(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        fontSize: 15.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Floor:',
-                                  textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.inter(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        fontSize: 15.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                ),
-                                Text(
-                                  widget.name!.floor.toString(),
-                                  textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.inter(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        fontSize: 15.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                ),
-                              ],
+                              ),
                             ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.0, -0.1),
+                alignment: AlignmentDirectional(0.0, -0.4),
                 child: FFButtonWidget(
                   onPressed: () async {
                     context.pushNamed(CameraPageWidget.routeName);
@@ -331,7 +191,7 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.0, 0.35),
+                alignment: AlignmentDirectional(0.0, 0.15),
                 child: FFButtonWidget(
                   onPressed: () async {
                     var _shouldSetState = false;
@@ -457,7 +317,7 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.0, 0.8),
+                alignment: AlignmentDirectional(0.0, 0.7),
                 child: FFButtonWidget(
                   onPressed: () async {
                     context.pushNamed(SearchPageWidget.routeName);

@@ -25,9 +25,27 @@ class BinsRecord extends FirestoreRecord {
   LatLng? get location => _location;
   bool hasLocation() => _location != null;
 
+  // "Floor" field.
+  int? _floor;
+  int get floor => _floor ?? 0;
+  bool hasFloor() => _floor != null;
+
+  // "Building" field.
+  String? _building;
+  String get building => _building ?? '';
+  bool hasBuilding() => _building != null;
+
+  // "Recycling_counter" field.
+  int? _recyclingCounter;
+  int get recyclingCounter => _recyclingCounter ?? 0;
+  bool hasRecyclingCounter() => _recyclingCounter != null;
+
   void _initializeFields() {
     _name = snapshotData['Name'] as String?;
     _location = snapshotData['Location'] as LatLng?;
+    _floor = castToType<int>(snapshotData['Floor']);
+    _building = snapshotData['Building'] as String?;
+    _recyclingCounter = castToType<int>(snapshotData['Recycling_counter']);
   }
 
   static CollectionReference get collection =>
@@ -66,11 +84,17 @@ class BinsRecord extends FirestoreRecord {
 Map<String, dynamic> createBinsRecordData({
   String? name,
   LatLng? location,
+  int? floor,
+  String? building,
+  int? recyclingCounter,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'Name': name,
       'Location': location,
+      'Floor': floor,
+      'Building': building,
+      'Recycling_counter': recyclingCounter,
     }.withoutNulls,
   );
 
@@ -82,11 +106,16 @@ class BinsRecordDocumentEquality implements Equality<BinsRecord> {
 
   @override
   bool equals(BinsRecord? e1, BinsRecord? e2) {
-    return e1?.name == e2?.name && e1?.location == e2?.location;
+    return e1?.name == e2?.name &&
+        e1?.location == e2?.location &&
+        e1?.floor == e2?.floor &&
+        e1?.building == e2?.building &&
+        e1?.recyclingCounter == e2?.recyclingCounter;
   }
 
   @override
-  int hash(BinsRecord? e) => const ListEquality().hash([e?.name, e?.location]);
+  int hash(BinsRecord? e) => const ListEquality()
+      .hash([e?.name, e?.location, e?.floor, e?.building, e?.recyclingCounter]);
 
   @override
   bool isValidKey(Object? o) => o is BinsRecord;

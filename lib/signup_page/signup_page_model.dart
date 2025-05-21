@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'signup_page_widget.dart' show SignupPageWidget;
@@ -11,9 +12,10 @@ class SignupPageModel extends FlutterFlowModel<SignupPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  bool isDataUploading1 = false;
-  FFUploadedFile uploadedLocalFile1 =
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
 
   // State field(s) for userName widget.
   FocusNode? userNameFocusNode;
@@ -34,10 +36,8 @@ class SignupPageModel extends FlutterFlowModel<SignupPageWidget> {
   late bool confirmPasswordVisibility;
   String? Function(BuildContext, String?)?
       confirmPasswordTextControllerValidator;
-  bool isDataUploading2 = false;
-  FFUploadedFile uploadedLocalFile2 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl2 = '';
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  List<ChallengesRecord>? newChallenges;
 
   @override
   void initState(BuildContext context) {

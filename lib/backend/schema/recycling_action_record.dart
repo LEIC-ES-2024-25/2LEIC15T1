@@ -45,6 +45,11 @@ class RecyclingActionRecord extends FirestoreRecord {
   String get email => _email ?? '';
   bool hasEmail() => _email != null;
 
+  // "bin" field.
+  DocumentReference? _bin;
+  DocumentReference? get bin => _bin;
+  bool hasBin() => _bin != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _category = snapshotData['category'] as String?;
@@ -52,6 +57,7 @@ class RecyclingActionRecord extends FirestoreRecord {
     _date = snapshotData['date'] as DateTime?;
     _points = castToType<int>(snapshotData['points']);
     _email = snapshotData['email'] as String?;
+    _bin = snapshotData['bin'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -95,6 +101,7 @@ Map<String, dynamic> createRecyclingActionRecordData({
   DateTime? date,
   int? points,
   String? email,
+  DocumentReference? bin,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -104,6 +111,7 @@ Map<String, dynamic> createRecyclingActionRecordData({
       'date': date,
       'points': points,
       'email': email,
+      'bin': bin,
     }.withoutNulls,
   );
 
@@ -121,12 +129,13 @@ class RecyclingActionRecordDocumentEquality
         e1?.image == e2?.image &&
         e1?.date == e2?.date &&
         e1?.points == e2?.points &&
-        e1?.email == e2?.email;
+        e1?.email == e2?.email &&
+        e1?.bin == e2?.bin;
   }
 
   @override
-  int hash(RecyclingActionRecord? e) => const ListEquality()
-      .hash([e?.name, e?.category, e?.image, e?.date, e?.points, e?.email]);
+  int hash(RecyclingActionRecord? e) => const ListEquality().hash(
+      [e?.name, e?.category, e?.image, e?.date, e?.points, e?.email, e?.bin]);
 
   @override
   bool isValidKey(Object? o) => o is RecyclingActionRecord;

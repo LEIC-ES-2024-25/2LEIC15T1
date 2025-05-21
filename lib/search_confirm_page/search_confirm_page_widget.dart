@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -54,289 +55,437 @@ class _SearchConfirmPageWidgetState extends State<SearchConfirmPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-        FocusManager.instance.primaryFocus?.unfocus();
-      },
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          automaticallyImplyLeading: false,
-          title: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
+    return StreamBuilder<List<UserChallengesRecord>>(
+      stream: queryUserChallengesRecord(
+        queryBuilder: (userChallengesRecord) => userChallengesRecord.where(
+          'userEmail',
+          isEqualTo: currentUserEmail,
+        ),
+      ),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Scaffold(
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            body: Center(
+              child: SizedBox(
+                width: 50.0,
+                height: 50.0,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    FlutterFlowTheme.of(context).primary,
+                  ),
+                ),
+              ),
+            ),
+          );
+        }
+        List<UserChallengesRecord> searchConfirmPageUserChallengesRecordList =
+            snapshot.data!;
+
+        return GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          child: Scaffold(
+            key: scaffoldKey,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              automaticallyImplyLeading: false,
+              leading: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 0.0, 8.0),
+                child: FlutterFlowIconButton(
+                  borderRadius: 12.0,
+                  borderWidth: 1.0,
+                  buttonSize: 40.0,
+                  icon: Icon(
+                    Icons.arrow_back_rounded,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 24.0,
+                  ),
+                  onPressed: () async {
+                    context.pushNamed(MainPageWidget.routeName);
+                  },
+                ),
+              ),
+              title: Text(
                 'Selected Item',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      font: GoogleFonts.outfit(
-                        fontWeight: FontWeight.w500,
+                      font: GoogleFonts.interTight(
+                        fontWeight: FlutterFlowTheme.of(context)
+                            .headlineMedium
+                            .fontWeight,
                         fontStyle: FlutterFlowTheme.of(context)
                             .headlineMedium
                             .fontStyle,
                       ),
-                      color: Color(0xFF15161E),
-                      fontSize: 24.0,
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      fontSize: 22.0,
                       letterSpacing: 0.0,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FlutterFlowTheme.of(context)
+                          .headlineMedium
+                          .fontWeight,
                       fontStyle:
                           FlutterFlowTheme.of(context).headlineMedium.fontStyle,
                     ),
               ),
-              Text(
-                'This is the information of your selected item:',
-                style: FlutterFlowTheme.of(context).labelMedium.override(
-                      font: GoogleFonts.outfit(
-                        fontWeight: FontWeight.w500,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).labelMedium.fontStyle,
-                      ),
-                      color: Color(0xFF606A85),
-                      fontSize: 14.0,
-                      letterSpacing: 0.0,
-                      fontWeight: FontWeight.w500,
-                      fontStyle:
-                          FlutterFlowTheme.of(context).labelMedium.fontStyle,
-                    ),
-              ),
-            ].divide(SizedBox(height: 4.0)),
-          ),
-          actions: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 12.0, 8.0),
-              child: FlutterFlowIconButton(
-                borderColor: Color(0xFFE5E7EB),
-                borderRadius: 12.0,
-                borderWidth: 1.0,
-                buttonSize: 40.0,
-                fillColor: Colors.white,
-                icon: Icon(
-                  Icons.close_rounded,
-                  color: Color(0xFF15161E),
-                  size: 24.0,
-                ),
-                onPressed: () async {
-                  context.pushNamed(SearchPageWidget.routeName);
-                },
-              ),
+              actions: [],
+              centerTitle: true,
+              elevation: 2.0,
             ),
-          ],
-          centerTitle: false,
-          elevation: 0.0,
-        ),
-        body: SafeArea(
-          top: true,
-          child: Form(
-            key: _model.formKey,
-            autovalidateMode: AutovalidateMode.disabled,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Align(
-                          alignment: AlignmentDirectional(0.0, -1.0),
-                          child: Container(
-                            constraints: BoxConstraints(
-                              maxWidth: 1270.0,
-                            ),
-                            decoration: BoxDecoration(),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 12.0, 16.0, 0.0),
-                              child: Wrap(
-                                spacing: 16.0,
-                                runSpacing: 16.0,
-                                alignment: WrapAlignment.start,
-                                crossAxisAlignment: WrapCrossAlignment.start,
-                                direction: Axis.horizontal,
-                                runAlignment: WrapAlignment.center,
-                                verticalDirection: VerticalDirection.down,
-                                clipBehavior: Clip.none,
-                                children: [
-                                  Container(
-                                    constraints: BoxConstraints(
-                                      maxWidth: 570.0,
-                                    ),
-                                    decoration: BoxDecoration(),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Container(
-                                          width: 426.9,
-                                          height: 106.9,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                blurRadius: 4.0,
-                                                color: Color(0x33000000),
-                                                offset: Offset(
-                                                  0.0,
-                                                  2.0,
-                                                ),
-                                              )
-                                            ],
-                                            borderRadius:
-                                                BorderRadius.circular(5.0),
+            body: SafeArea(
+              top: true,
+              child: Form(
+                key: _model.formKey,
+                autovalidateMode: AutovalidateMode.disabled,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 20.0, 16.0, 10.0),
+                                  child: Text(
+                                    'This is the information of your selected item:',
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          font: GoogleFonts.outfit(
+                                            fontWeight: FontWeight.w500,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontStyle,
                                           ),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    -1.0, -1.0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          20.0, 15.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    widget.itemNameSend,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .titleLarge
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .interTight(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleLarge
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleLarge
-                                                                    .fontStyle,
-                                                          ),
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleLarge
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleLarge
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    -1.0, 1.0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(20.0, 25.0, 0.0,
-                                                          15.0),
-                                                  child: Text(
-                                                    widget.itemCategorySend,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelLarge
-                                                        .override(
-                                                          font:
-                                                              GoogleFonts.inter(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelLarge
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelLarge
-                                                                    .fontStyle,
-                                                          ),
-                                                          fontSize: 20.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelLarge
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelLarge
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          fontSize: 20.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontStyle,
                                         ),
-                                      ].divide(SizedBox(height: 12.0)),
-                                    ),
                                   ),
-                                ],
+                                ),
+                              ].divide(SizedBox(height: 4.0)),
+                            ),
+                            Align(
+                              alignment: AlignmentDirectional(0.0, -1.0),
+                              child: Container(
+                                constraints: BoxConstraints(
+                                  maxWidth: 1270.0,
+                                ),
+                                decoration: BoxDecoration(),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 12.0, 16.0, 0.0),
+                                  child: Wrap(
+                                    spacing: 16.0,
+                                    runSpacing: 16.0,
+                                    alignment: WrapAlignment.start,
+                                    crossAxisAlignment:
+                                        WrapCrossAlignment.start,
+                                    direction: Axis.horizontal,
+                                    runAlignment: WrapAlignment.center,
+                                    verticalDirection: VerticalDirection.down,
+                                    clipBehavior: Clip.none,
+                                    children: [
+                                      Container(
+                                        constraints: BoxConstraints(
+                                          maxWidth: 570.0,
+                                        ),
+                                        decoration: BoxDecoration(),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Container(
+                                              width: 426.9,
+                                              height: 106.9,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    blurRadius: 4.0,
+                                                    color: Color(0x33000000),
+                                                    offset: Offset(
+                                                      0.0,
+                                                      2.0,
+                                                    ),
+                                                  )
+                                                ],
+                                                borderRadius:
+                                                    BorderRadius.circular(5.0),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1.0, -1.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  20.0,
+                                                                  15.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        widget.itemNameSend,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleLarge
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .interTight(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleLarge
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleLarge
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleLarge
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleLarge
+                                                                      .fontStyle,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1.0, 1.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  20.0,
+                                                                  25.0,
+                                                                  0.0,
+                                                                  15.0),
+                                                      child: Text(
+                                                        widget
+                                                            .itemCategorySend,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .labelLarge
+                                                            .override(
+                                                              font: GoogleFonts
+                                                                  .inter(
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelLarge
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelLarge
+                                                                    .fontStyle,
+                                                              ),
+                                                              fontSize: 20.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelLarge
+                                                                      .fontWeight,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelLarge
+                                                                      .fontStyle,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ].divide(SizedBox(height: 12.0)),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                if (responsiveVisibility(
-                  context: context,
-                  tabletLandscape: false,
-                  desktop: false,
-                ))
-                  Container(
-                    constraints: BoxConstraints(
-                      maxWidth: 770.0,
-                    ),
-                    decoration: BoxDecoration(),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          16.0, 12.0, 16.0, 12.0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          context.pushNamed(MainPageWidget.routeName);
-
-                          await currentUserReference!.update({
-                            ...mapToFirestore(
-                              {
-                                'points': FieldValue.increment(25),
-                              },
-                            ),
-                          });
-
-                          await RecyclingActionRecord.collection
-                              .doc()
-                              .set(createRecyclingActionRecordData(
-                                name: widget.itemNameSend,
-                                category: widget.itemCategorySend,
-                                image:
-                                    'https://www.iconsdb.com/icons/preview/gray/recycle-xxl.png',
-                                date: getCurrentTimestamp,
-                                points: 25,
-                                email: currentUserEmail,
-                              ));
-                        },
-                        text: 'Confirm',
-                        options: FFButtonOptions(
-                          width: double.infinity,
-                          height: 48.0,
+                    if (responsiveVisibility(
+                      context: context,
+                      tabletLandscape: false,
+                      desktop: false,
+                    ))
+                      Container(
+                        constraints: BoxConstraints(
+                          maxWidth: 770.0,
+                        ),
+                        decoration: BoxDecoration(),
+                        child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).secondary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
+                              16.0, 12.0, 16.0, 12.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              await currentUserReference!.update({
+                                ...mapToFirestore(
+                                  {
+                                    'points': FieldValue.increment(15),
+                                  },
+                                ),
+                              });
+                              if (functions.levelUpCheck(
+                                  15,
+                                  valueOrDefault(
+                                      currentUserDocument?.points, 0))) {
+                                await currentUserReference!.update({
+                                  ...mapToFirestore(
+                                    {
+                                      'level': FieldValue.increment(1),
+                                    },
+                                  ),
+                                });
+                                _model.newChallenges =
+                                    await queryChallengesRecordOnce(
+                                  queryBuilder: (challengesRecord) =>
+                                      challengesRecord.where(
+                                    'level',
+                                    isEqualTo: valueOrDefault(
+                                        currentUserDocument?.level, 0),
+                                  ),
+                                );
+                                for (int loop0Index = 0;
+                                    loop0Index < _model.newChallenges!.length;
+                                    loop0Index++) {
+                                  final currentLoop0Item =
+                                      _model.newChallenges![loop0Index];
+
+                                  await UserChallengesRecord.collection
+                                      .doc()
+                                      .set(createUserChallengesRecordData(
+                                        challengeRef:
+                                            currentLoop0Item.reference,
+                                        progress: 0,
+                                        completed: false,
+                                        userEmail: currentUserEmail,
+                                        type: currentLoop0Item.type,
+                                        description:
+                                            currentLoop0Item.description,
+                                        points: currentLoop0Item.points,
+                                        goal: currentLoop0Item.goal,
+                                      ));
+                                }
+                              }
+
+                              await RecyclingActionRecord.collection
+                                  .doc()
+                                  .set(createRecyclingActionRecordData(
+                                    name: widget.itemNameSend,
+                                    category: widget.itemCategorySend,
+                                    image:
+                                        'https://www.recycling.com/wp-content/uploads/2016/06/recycling-symbol-icon-twotone-dark-blue.png',
+                                    date: getCurrentTimestamp,
+                                    points: 15,
+                                    email: currentUserEmail,
+                                  ));
+                              _model.myChallenges =
+                                  await queryUserChallengesRecordOnce(
+                                queryBuilder: (userChallengesRecord) =>
+                                    userChallengesRecord
+                                        .where(
+                                          'userEmail',
+                                          isEqualTo: currentUserEmail,
+                                        )
+                                        .where(
+                                          'completed',
+                                          isEqualTo: false,
+                                        ),
+                              );
+                              for (int loop2Index = 0;
+                                  loop2Index < _model.myChallenges!.length;
+                                  loop2Index++) {
+                                final currentLoop2Item =
+                                    _model.myChallenges![loop2Index];
+
+                                await currentLoop2Item.reference.update({
+                                  ...mapToFirestore(
+                                    {
+                                      'progress': FieldValue.increment(1),
+                                    },
+                                  ),
+                                });
+                              }
+                              _model.myUpdatedChallenges =
+                                  await queryUserChallengesRecordOnce(
+                                queryBuilder: (userChallengesRecord) =>
+                                    userChallengesRecord
+                                        .where(
+                                          'userEmail',
+                                          isEqualTo: currentUserEmail,
+                                        )
+                                        .where(
+                                          'completed',
+                                          isEqualTo: false,
+                                        ),
+                              );
+                              for (int loop3Index = 0;
+                                  loop3Index <
+                                      _model.myUpdatedChallenges!.length;
+                                  loop3Index++) {
+                                final currentLoop3Item =
+                                    _model.myUpdatedChallenges![loop3Index];
+
+                                await currentLoop3Item.reference
+                                    .update(createUserChallengesRecordData(
+                                  completed: currentLoop3Item.progress ==
+                                      currentLoop3Item.goal,
+                                ));
+                              }
+
+                              context.pushNamed(MainPageWidget.routeName);
+
+                              safeSetState(() {});
+                            },
+                            text: 'Confirm',
+                            options: FFButtonOptions(
+                              width: double.infinity,
+                              height: 48.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).secondary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
                                     font: GoogleFonts.figtree(
                                       fontWeight: FontWeight.w500,
                                       fontStyle: FlutterFlowTheme.of(context)
@@ -351,21 +500,23 @@ class _SearchConfirmPageWidgetState extends State<SearchConfirmPageWidget> {
                                         .titleSmall
                                         .fontStyle,
                                   ),
-                          elevation: 3.0,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
+                              elevation: 3.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           ),
-                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
-                    ),
-                  ),
-              ],
+                  ],
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

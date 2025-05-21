@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'camera_page_widget.dart' show CameraPageWidget;
@@ -21,6 +22,12 @@ class CameraPageModel extends FlutterFlowModel<CameraPageWidget> {
   TextEditingController? productcategoryNameTextController;
   String? Function(BuildContext, String?)?
       productcategoryNameTextControllerValidator;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  List<ChallengesRecord>? newChallenges;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  List<UserChallengesRecord>? myChallenges;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  List<UserChallengesRecord>? myUpdatedChallenges;
 
   @override
   void initState(BuildContext context) {}

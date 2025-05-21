@@ -49,24 +49,45 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderRadius: 8.0,
-            buttonSize: 40.0,
-            fillColor: FlutterFlowTheme.of(context).primaryBackground,
-            icon: Icon(
-              Icons.arrow_back,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 24.0,
+          leading: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 0.0, 8.0),
+            child: FlutterFlowIconButton(
+              borderRadius: 12.0,
+              borderWidth: 1.0,
+              buttonSize: 40.0,
+              icon: Icon(
+                Icons.arrow_back_rounded,
+                color: FlutterFlowTheme.of(context).secondaryText,
+                size: 24.0,
+              ),
+              onPressed: () async {
+                context.pushNamed(MainPageWidget.routeName);
+              },
             ),
-            onPressed: () async {
-              context.safePop();
-            },
+          ),
+          title: Text(
+            'Admin dashboard',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  font: GoogleFonts.interTight(
+                    fontWeight:
+                        FlutterFlowTheme.of(context).headlineMedium.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).headlineMedium.fontStyle,
+                  ),
+                  color: FlutterFlowTheme.of(context).secondaryText,
+                  fontSize: 22.0,
+                  letterSpacing: 0.0,
+                  fontWeight:
+                      FlutterFlowTheme.of(context).headlineMedium.fontWeight,
+                  fontStyle:
+                      FlutterFlowTheme.of(context).headlineMedium.fontStyle,
+                ),
           ),
           actions: [],
-          centerTitle: false,
-          elevation: 0.0,
+          centerTitle: true,
+          elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
@@ -74,7 +95,7 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(15.0, 5.0, 15.0, 5.0),
+                padding: EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 5.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     context.pushNamed(AdminUsersListWidget.routeName);

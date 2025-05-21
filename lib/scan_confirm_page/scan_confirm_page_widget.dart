@@ -64,71 +64,47 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Colors.white,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
-          title: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Scan',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      font: GoogleFonts.outfit(
-                        fontWeight: FontWeight.w500,
-                        fontStyle: FlutterFlowTheme.of(context)
-                            .headlineMedium
-                            .fontStyle,
-                      ),
-                      color: Color(0xFF15161E),
-                      fontSize: 24.0,
-                      letterSpacing: 0.0,
-                      fontWeight: FontWeight.w500,
-                      fontStyle:
-                          FlutterFlowTheme.of(context).headlineMedium.fontStyle,
-                    ),
+          leading: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 0.0, 8.0),
+            child: FlutterFlowIconButton(
+              borderRadius: 12.0,
+              borderWidth: 1.0,
+              buttonSize: 40.0,
+              icon: Icon(
+                Icons.arrow_back_rounded,
+                color: FlutterFlowTheme.of(context).secondaryText,
+                size: 24.0,
               ),
-              Text(
-                'This is the information of your scanned item:',
-                style: FlutterFlowTheme.of(context).labelMedium.override(
-                      font: GoogleFonts.outfit(
-                        fontWeight: FontWeight.w500,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).labelMedium.fontStyle,
-                      ),
-                      color: Color(0xFF606A85),
-                      fontSize: 14.0,
-                      letterSpacing: 0.0,
-                      fontWeight: FontWeight.w500,
-                      fontStyle:
-                          FlutterFlowTheme.of(context).labelMedium.fontStyle,
-                    ),
-              ),
-            ].divide(SizedBox(height: 4.0)),
-          ),
-          actions: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 12.0, 8.0),
-              child: FlutterFlowIconButton(
-                borderColor: Color(0xFFE5E7EB),
-                borderRadius: 12.0,
-                borderWidth: 1.0,
-                buttonSize: 40.0,
-                fillColor: Colors.white,
-                icon: Icon(
-                  Icons.arrow_back_rounded,
-                  color: Color(0xFF15161E),
-                  size: 24.0,
-                ),
-                onPressed: () async {
-                  context.pushNamed(MainPageWidget.routeName);
-                },
-              ),
+              onPressed: () async {
+                context.safePop();
+              },
             ),
-          ],
-          centerTitle: false,
-          elevation: 0.0,
+          ),
+          title: Text(
+            'Scan',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  font: GoogleFonts.interTight(
+                    fontWeight:
+                        FlutterFlowTheme.of(context).headlineMedium.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).headlineMedium.fontStyle,
+                  ),
+                  color: FlutterFlowTheme.of(context).secondaryText,
+                  fontSize: 22.0,
+                  letterSpacing: 0.0,
+                  fontWeight:
+                      FlutterFlowTheme.of(context).headlineMedium.fontWeight,
+                  fontStyle:
+                      FlutterFlowTheme.of(context).headlineMedium.fontStyle,
+                ),
+          ),
+          actions: [],
+          centerTitle: true,
+          elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
@@ -153,7 +129,7 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                             decoration: BoxDecoration(),
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 12.0, 16.0, 0.0),
+                                  16.0, 20.0, 16.0, 0.0),
                               child: Wrap(
                                 spacing: 16.0,
                                 runSpacing: 16.0,
@@ -171,7 +147,35 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                                     decoration: BoxDecoration(),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
+                                        Text(
+                                          'This is the information of your scanned item:',
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelMedium
+                                              .override(
+                                                font: GoogleFonts.outfit(
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMedium
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                fontSize: 20.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .fontStyle,
+                                              ),
+                                        ),
                                         ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(8.0),
@@ -184,7 +188,7 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                                         ),
                                         Container(
                                           width: 426.9,
-                                          height: 54.59,
+                                          height: 54.6,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
@@ -245,7 +249,7 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                                         ),
                                         Container(
                                           width: 426.9,
-                                          height: 54.49,
+                                          height: 54.5,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
@@ -337,8 +341,6 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                           16.0, 12.0, 16.0, 12.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          context.pushNamed(MainPageWidget.routeName);
-
                           await currentUserReference!.update({
                             ...mapToFirestore(
                               {
@@ -357,6 +359,126 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                                 points: 100,
                                 email: currentUserEmail,
                               ));
+                          _model.myChallenges =
+                              await queryUserChallengesRecordOnce(
+                            queryBuilder: (userChallengesRecord) =>
+                                userChallengesRecord
+                                    .where(
+                                      'userEmail',
+                                      isEqualTo: currentUserEmail,
+                                    )
+                                    .where(
+                                      'completed',
+                                      isEqualTo: false,
+                                    ),
+                          );
+                          for (int loop1Index = 0;
+                              loop1Index < _model.myChallenges!.length;
+                              loop1Index++) {
+                            final currentLoop1Item =
+                                _model.myChallenges![loop1Index];
+
+                            await currentLoop1Item.reference.update({
+                              ...mapToFirestore(
+                                {
+                                  'progress': FieldValue.increment(1),
+                                },
+                              ),
+                            });
+                          }
+                          _model.myUpdatedChallenges =
+                              await queryUserChallengesRecordOnce(
+                            queryBuilder: (userChallengesRecord) =>
+                                userChallengesRecord
+                                    .where(
+                                      'userEmail',
+                                      isEqualTo: currentUserEmail,
+                                    )
+                                    .where(
+                                      'completed',
+                                      isEqualTo: false,
+                                    ),
+                          );
+                          for (int loop2Index = 0;
+                              loop2Index < _model.myUpdatedChallenges!.length;
+                              loop2Index++) {
+                            final currentLoop2Item =
+                                _model.myUpdatedChallenges![loop2Index];
+
+                            await currentLoop2Item.reference
+                                .update(createUserChallengesRecordData(
+                              completed: true,
+                            ));
+                          }
+                          _model.myCompletedChallenges =
+                              await queryUserChallengesRecordOnce(
+                            queryBuilder: (userChallengesRecord) =>
+                                userChallengesRecord
+                                    .where(
+                                      'userEmail',
+                                      isEqualTo: currentUserEmail,
+                                    )
+                                    .where(
+                                      'completed',
+                                      isEqualTo: true,
+                                    ),
+                          );
+                          for (int loop3Index = 0;
+                              loop3Index < _model.myCompletedChallenges!.length;
+                              loop3Index++) {
+                            final currentLoop3Item =
+                                _model.myCompletedChallenges![loop3Index];
+
+                            await currentUserReference!.update({
+                              ...mapToFirestore(
+                                {
+                                  'points': FieldValue.increment(
+                                      currentLoop3Item.points),
+                                },
+                              ),
+                            });
+                          }
+
+                          await currentUserReference!
+                              .update(createUsersRecordData(
+                            level: (valueOrDefault(
+                                            currentUserDocument?.points, 0) /
+                                        100)
+                                    .floor() +
+                                1,
+                          ));
+                          _model.newChallenges =
+                              await queryChallengesRecordOnce(
+                            queryBuilder: (challengesRecord) =>
+                                challengesRecord.where(
+                              'level',
+                              isEqualTo:
+                                  valueOrDefault(currentUserDocument?.level, 0),
+                            ),
+                          );
+                          for (int loop4Index = 0;
+                              loop4Index < _model.newChallenges!.length;
+                              loop4Index++) {
+                            final currentLoop4Item =
+                                _model.newChallenges![loop4Index];
+
+                            await UserChallengesRecord.collection
+                                .doc()
+                                .set(createUserChallengesRecordData(
+                                  challengeRef: currentLoop4Item.reference,
+                                  progress: 0,
+                                  completed: false,
+                                  userEmail: currentUserEmail,
+                                  type: currentLoop4Item.type,
+                                  description: currentLoop4Item.description,
+                                  points: currentLoop4Item.points,
+                                  goal: currentLoop4Item.goal,
+                                ));
+                          }
+
+                          context.pushNamed(MainPageWidget.routeName);
+
+                          safeSetState(() {});
                         },
                         text: 'Confirm',
                         options: FFButtonOptions(

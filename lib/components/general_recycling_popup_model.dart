@@ -1,10 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'recycling_popup_widget.dart' show RecyclingPopupWidget;
+import 'general_recycling_popup_widget.dart' show GeneralRecyclingPopupWidget;
 import 'package:flutter/material.dart';
 
-class RecyclingPopupModel extends FlutterFlowModel<RecyclingPopupWidget> {
+class GeneralRecyclingPopupModel
+    extends FlutterFlowModel<GeneralRecyclingPopupWidget> {
   ///  Local state fields for this component.
 
   ItemsSearchRecord? items;

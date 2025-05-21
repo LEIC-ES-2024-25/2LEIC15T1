@@ -1,8 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'tips_widget.dart' show TipsWidget;
+import 'log_out_confirmation_widget.dart' show LogOutConfirmationWidget;
 import 'package:flutter/material.dart';
 
-class TipsModel extends FlutterFlowModel<TipsWidget> {
+class LogOutConfirmationModel
+    extends FlutterFlowModel<LogOutConfirmationWidget> {
   @override
   void initState(BuildContext context) {}
 

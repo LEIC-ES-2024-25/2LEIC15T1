@@ -1,5 +1,4 @@
 import '/backend/backend.dart';
-import '/components/recycling_popup_widget.dart';
 import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -92,92 +91,46 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
             appBar: AppBar(
               backgroundColor: Colors.white,
               automaticallyImplyLeading: false,
-              title: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'List of items',
-                    style: FlutterFlowTheme.of(context).headlineMedium.override(
-                          font: GoogleFonts.outfit(
-                            fontWeight: FontWeight.w500,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .headlineMedium
-                                .fontStyle,
-                          ),
-                          color: Color(0xFF15161E),
-                          fontSize: 24.0,
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.w500,
-                          fontStyle: FlutterFlowTheme.of(context)
-                              .headlineMedium
-                              .fontStyle,
-                        ),
+              leading: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 0.0, 8.0),
+                child: FlutterFlowIconButton(
+                  borderRadius: 12.0,
+                  borderWidth: 1.0,
+                  buttonSize: 40.0,
+                  icon: Icon(
+                    Icons.arrow_back_rounded,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 24.0,
                   ),
-                  Text(
-                    'Choose an item',
-                    style: FlutterFlowTheme.of(context).labelMedium.override(
-                          font: GoogleFonts.outfit(
-                            fontWeight: FontWeight.w500,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .fontStyle,
-                          ),
-                          color: Color(0xFF606A85),
-                          fontSize: 14.0,
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.w500,
-                          fontStyle: FlutterFlowTheme.of(context)
-                              .labelMedium
-                              .fontStyle,
-                        ),
-                  ),
-                ].divide(SizedBox(height: 4.0)),
-              ),
-              actions: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 12.0, 8.0),
-                  child: FlutterFlowIconButton(
-                    borderColor: Color(0xFFE5E7EB),
-                    borderRadius: 12.0,
-                    borderWidth: 1.0,
-                    buttonSize: 40.0,
-                    fillColor: Colors.white,
-                    icon: Icon(
-                      Icons.arrow_back_rounded,
-                      color: Color(0xFF15161E),
-                      size: 24.0,
-                    ),
-                    onPressed: () async {
-                      context.goNamed(MainPageWidget.routeName);
-
-                      await showModalBottomSheet(
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        enableDrag: false,
-                        context: context,
-                        builder: (context) {
-                          return GestureDetector(
-                            onTap: () {
-                              FocusScope.of(context).unfocus();
-                              FocusManager.instance.primaryFocus?.unfocus();
-                            },
-                            child: Padding(
-                              padding: MediaQuery.viewInsetsOf(context),
-                              child: Container(
-                                height: 600.0,
-                                child: RecyclingPopupWidget(),
-                              ),
-                            ),
-                          );
-                        },
-                      ).then((value) => safeSetState(() {}));
-                    },
-                  ),
+                  onPressed: () async {
+                    context.pushNamed(MainPageWidget.routeName);
+                  },
                 ),
-              ],
-              centerTitle: false,
-              elevation: 0.0,
+              ),
+              title: Text(
+                'Search',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      font: GoogleFonts.interTight(
+                        fontWeight: FlutterFlowTheme.of(context)
+                            .headlineMedium
+                            .fontWeight,
+                        fontStyle: FlutterFlowTheme.of(context)
+                            .headlineMedium
+                            .fontStyle,
+                      ),
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      fontSize: 22.0,
+                      letterSpacing: 0.0,
+                      fontWeight: FlutterFlowTheme.of(context)
+                          .headlineMedium
+                          .fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).headlineMedium.fontStyle,
+                    ),
+              ),
+              actions: [],
+              centerTitle: true,
+              elevation: 2.0,
             ),
             body: SafeArea(
               top: true,
@@ -186,11 +139,51 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                 children: [
                   Row(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Align(
+                            alignment: AlignmentDirectional(0.0, 0.0),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 20.0, 0.0, 0.0),
+                              child: Text(
+                                'Choose an item',
+                                style: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      font: GoogleFonts.outfit(
+                                        fontWeight: FontWeight.w500,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .fontStyle,
+                                      ),
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      fontSize: 20.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontStyle,
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ].divide(SizedBox(height: 4.0)),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              8.0, 20.0, 8.0, 20.0),
+                              10.0, 20.0, 0.0, 20.0),
                           child: Container(
                             width: double.infinity,
                             child: Autocomplete<String>(
@@ -390,14 +383,13 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                         child: FlutterFlowIconButton(
                           borderRadius: 8.0,
                           buttonSize: 40.0,
-                          fillColor: FlutterFlowTheme.of(context).primary,
                           icon: Icon(
                             Icons.clear_rounded,
-                            color: FlutterFlowTheme.of(context).info,
+                            color: FlutterFlowTheme.of(context).secondaryText,
                             size: 24.0,
                           ),
                           onPressed: () async {
@@ -413,228 +405,236 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                   ),
                   if (!FFAppState().SearchActive)
                     Expanded(
-                      child: Builder(
-                        builder: (context) {
-                          final itemsSearch =
-                              searchPageItemsSearchRecordList.toList();
+                      child: Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Builder(
+                          builder: (context) {
+                            final itemsSearch =
+                                searchPageItemsSearchRecordList.toList();
 
-                          return ListView.builder(
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: itemsSearch.length,
-                            itemBuilder: (context, itemsSearchIndex) {
-                              final itemsSearchItem =
-                                  itemsSearch[itemsSearchIndex];
-                              return InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed(
-                                    SearchConfirmPageWidget.routeName,
-                                    queryParameters: {
-                                      'itemNameSend': serializeParam(
+                            return ListView.builder(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemCount: itemsSearch.length,
+                              itemBuilder: (context, itemsSearchIndex) {
+                                final itemsSearchItem =
+                                    itemsSearch[itemsSearchIndex];
+                                return InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      SearchConfirmPageWidget.routeName,
+                                      queryParameters: {
+                                        'itemNameSend': serializeParam(
+                                          itemsSearchItem.name,
+                                          ParamType.String,
+                                        ),
+                                        'itemCategorySend': serializeParam(
+                                          itemsSearchItem.category,
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                  },
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: ListTile(
+                                      title: Text(
                                         itemsSearchItem.name,
-                                        ParamType.String,
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .override(
+                                              font: GoogleFonts.interTight(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLarge
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLarge
+                                                        .fontStyle,
+                                              ),
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .fontStyle,
+                                            ),
                                       ),
-                                      'itemCategorySend': serializeParam(
+                                      subtitle: Text(
                                         itemsSearchItem.category,
-                                        ParamType.String,
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              font: GoogleFonts.inter(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .fontStyle,
+                                              ),
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontStyle,
+                                            ),
                                       ),
-                                    }.withoutNulls,
-                                  );
-                                },
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: ListTile(
-                                    title: Text(
-                                      itemsSearchItem.name,
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleLarge
-                                          .override(
-                                            font: GoogleFonts.interTight(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleLarge
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleLarge
-                                                      .fontStyle,
-                                            ),
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleLarge
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleLarge
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                    subtitle: Text(
-                                      itemsSearchItem.category,
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            font: GoogleFonts.inter(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
-                                                      .fontStyle,
-                                            ),
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                    trailing: Icon(
-                                      Icons.arrow_forward_ios_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 24.0,
-                                    ),
-                                    tileColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    dense: false,
-                                    contentPadding:
-                                        EdgeInsetsDirectional.fromSTEB(
-                                            12.0, 0.0, 12.0, 0.0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      trailing: Icon(
+                                        Icons.arrow_forward_ios_rounded,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 20.0,
+                                      ),
+                                      tileColor: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      dense: false,
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              12.0, 0.0, 12.0, 0.0),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              );
-                            },
-                          );
-                        },
+                                );
+                              },
+                            );
+                          },
+                        ),
                       ),
                     ),
                   if (FFAppState().SearchActive)
                     Expanded(
-                      child: Builder(
-                        builder: (context) {
-                          final itemsSearch =
-                              _model.simpleSearchResults.toList();
+                      child: Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Builder(
+                          builder: (context) {
+                            final itemsSearch =
+                                _model.simpleSearchResults.toList();
 
-                          return ListView.builder(
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: itemsSearch.length,
-                            itemBuilder: (context, itemsSearchIndex) {
-                              final itemsSearchItem =
-                                  itemsSearch[itemsSearchIndex];
-                              return InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed(
-                                    SearchConfirmPageWidget.routeName,
-                                    queryParameters: {
-                                      'itemNameSend': serializeParam(
+                            return ListView.builder(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemCount: itemsSearch.length,
+                              itemBuilder: (context, itemsSearchIndex) {
+                                final itemsSearchItem =
+                                    itemsSearch[itemsSearchIndex];
+                                return InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      SearchConfirmPageWidget.routeName,
+                                      queryParameters: {
+                                        'itemNameSend': serializeParam(
+                                          itemsSearchItem.name,
+                                          ParamType.String,
+                                        ),
+                                        'itemCategorySend': serializeParam(
+                                          itemsSearchItem.category,
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                  },
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: ListTile(
+                                      title: Text(
                                         itemsSearchItem.name,
-                                        ParamType.String,
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .override(
+                                              font: GoogleFonts.interTight(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLarge
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLarge
+                                                        .fontStyle,
+                                              ),
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .fontStyle,
+                                            ),
                                       ),
-                                      'itemCategorySend': serializeParam(
+                                      subtitle: Text(
                                         itemsSearchItem.category,
-                                        ParamType.String,
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              font: GoogleFonts.inter(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .fontStyle,
+                                              ),
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontStyle,
+                                            ),
                                       ),
-                                    }.withoutNulls,
-                                  );
-                                },
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: ListTile(
-                                    title: Text(
-                                      itemsSearchItem.name,
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleLarge
-                                          .override(
-                                            font: GoogleFonts.interTight(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleLarge
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleLarge
-                                                      .fontStyle,
-                                            ),
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleLarge
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleLarge
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                    subtitle: Text(
-                                      itemsSearchItem.category,
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            font: GoogleFonts.inter(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
-                                                      .fontStyle,
-                                            ),
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                    trailing: Icon(
-                                      Icons.arrow_forward_ios_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 24.0,
-                                    ),
-                                    tileColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    dense: false,
-                                    contentPadding:
-                                        EdgeInsetsDirectional.fromSTEB(
-                                            12.0, 0.0, 12.0, 0.0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      trailing: Icon(
+                                        Icons.arrow_forward_ios_rounded,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
+                                      ),
+                                      tileColor: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      dense: false,
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              12.0, 0.0, 12.0, 0.0),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              );
-                            },
-                          );
-                        },
+                                );
+                              },
+                            );
+                          },
+                        ),
                       ),
                     ),
                 ],

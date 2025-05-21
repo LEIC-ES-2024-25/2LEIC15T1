@@ -1,6 +1,24 @@
 {
   "indexes": [
     {
+      "collectionGroup": "user_challenges",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "completed",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "userEmail",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "progress",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "recycling_action",
       "queryScope": "COLLECTION",
       "fields": [

@@ -12,14 +12,6 @@ import '/backend/backend.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '/auth/firebase_auth/auth_util.dart';
 
-String? newCustomFunction() {
-  String getRandomTip(List<String> tips) {
-    final random = math.Random();
-    if (tips.isEmpty) return '';
-    return tips[random.nextInt(tips.length)];
-  }
-}
-
 String? getRandomtip(List<String> tips) {
   final random = math.Random();
   if (tips.isEmpty) return '';
@@ -49,4 +41,19 @@ String getRankColor(int index) {
   if (index == 1) return '0xFFC0C0C0'; // Silver
   if (index == 2) return '0xFFCD7F32'; // Bronze
   return '0xFFFFFFFF'; // Default White
+}
+
+int calculateLevel(int points) {
+  return (points / 100).floor();
+}
+
+bool levelUpCheck(
+  int points,
+  int currentPoints,
+) {
+  if (((points + currentPoints) / 100).floor() >
+      (currentPoints / 100).floor()) {
+    return true;
+  }
+  return false;
 }

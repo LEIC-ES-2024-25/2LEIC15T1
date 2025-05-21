@@ -47,27 +47,29 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Colors.white,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: Color(0xFF606A85),
-              size: 30.0,
+          leading: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 0.0, 8.0),
+            child: FlutterFlowIconButton(
+              borderRadius: 12.0,
+              borderWidth: 1.0,
+              buttonSize: 60.0,
+              icon: Icon(
+                Icons.arrow_back_rounded,
+                color: FlutterFlowTheme.of(context).secondaryText,
+                size: 24.0,
+              ),
+              onPressed: () async {
+                context.pushNamed(ProfilePageWidget.routeName);
+              },
             ),
-            onPressed: () async {
-              context.pushNamed(ProfilePageWidget.routeName);
-            },
           ),
           actions: [],
           centerTitle: true,
-          elevation: 0.0,
+          elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
@@ -77,7 +79,7 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 10.0, 0.0, 0.0),
                   child: Text(
                     'Challenges',
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -87,8 +89,8 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
                                 .headlineMedium
                                 .fontStyle,
                           ),
-                          color: Color(0xFF15161E),
-                          fontSize: 24.0,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          fontSize: 30.0,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.w500,
                           fontStyle: FlutterFlowTheme.of(context)
@@ -109,8 +111,8 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
                                 .labelMedium
                                 .fontStyle,
                           ),
-                          color: Color(0xFF606A85),
-                          fontSize: 14.0,
+                          color: Color(0xFF4E607C),
+                          fontSize: 20.0,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.w500,
                           fontStyle: FlutterFlowTheme.of(context)
@@ -420,8 +422,8 @@ class _TasksPageWidgetState extends State<TasksPageWidget> {
                                 .labelMedium
                                 .fontStyle,
                           ),
-                          color: Color(0xFF606A85),
-                          fontSize: 14.0,
+                          color: Color(0xFF4E607C),
+                          fontSize: 20.0,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.w500,
                           fontStyle: FlutterFlowTheme.of(context)
