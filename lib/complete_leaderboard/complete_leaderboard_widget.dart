@@ -104,7 +104,7 @@ class _CompleteLeaderboardWidgetState extends State<CompleteLeaderboardWidget> {
                             .headlineMedium
                             .fontStyle,
                       ),
-                      color: Color(0xFF4E607C),
+                      color: FlutterFlowTheme.of(context).secondaryText,
                       fontSize: 22.0,
                       letterSpacing: 0.0,
                       fontWeight: FlutterFlowTheme.of(context)

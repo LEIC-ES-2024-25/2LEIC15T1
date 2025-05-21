@@ -1028,14 +1028,14 @@ class _SignupPageWidgetState extends State<SignupPageWidget>
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.12, -1.04),
+                            alignment: AlignmentDirectional(-1.07, -1.01),
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   12.0, 8.0, 0.0, 8.0),
                               child: FlutterFlowIconButton(
                                 borderRadius: 12.0,
                                 borderWidth: 1.0,
-                                buttonSize: 60.0,
+                                buttonSize: 50.0,
                                 icon: Icon(
                                   Icons.arrow_back,
                                   color: FlutterFlowTheme.of(context)
