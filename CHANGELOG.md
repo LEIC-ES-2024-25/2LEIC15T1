@@ -58,6 +58,29 @@ the user can log in and see the profile and their gained points
   - Although administrator accounts already exist, some goals of this sprint such as "Monitor recycled waste to improve locations", "Calculate Statistics" and "Recycling data filter" were not implemented and will be one of the goals of the next sprint
   - The upload of photos isn't currently working due to a problem with the firestore. Will also be an urgent objective for the next sprint
 
+___
+ <br /><br /><br />
+# Sprint 3
+
+---
+## Main Goal Implemented
+- ### **Wrap up**
+  Final adjustments and map working properly, changing the global design of the app and bug fixes.
+
+- ### **Administrator accounts and functionality [EPIC] finished**
+  Finish the bins menu in the admin dashboard.
+  
+### User Stories Implemented for Main Goal Completeness
+
+- ### Monitor recycled waste to improve locations
+- ### Temporary recycling challenges 
+- ### Design wrap up
+- ### University map with recycling bins
+- ### Calculate Statistics
+- ### Duplicated 'Sign in' button Bug
+- ### Fix image upload
 
 
-## Sprint 3
+### Sprint notes: 
+  - A simpler version of the challenges was implemented (just the counting recycling actions), because the other types of challenges would be too much complicated
+to this sprint, could be a goal for a further sprint.
