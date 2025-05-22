@@ -17,6 +17,8 @@ This Software Development Report, tailored for LEIC-ES-2024-25, provides compreh
   * [Logical architecture](#Logical-Architecture)
   * [Physical architecture](#Physical-Architecture)
   * [Vertical prototype](#Vertical-Prototype)
+* [Definition of done](#Definition-of-done)
+* [Happiness meters](#Happiness-meters)
 * [Project management](#Project-Management)
   * [Sprint 0](#Sprint-0)
   * [Sprint 1](#Sprint-1)
