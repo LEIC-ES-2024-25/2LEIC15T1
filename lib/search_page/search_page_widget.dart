@@ -14,7 +14,12 @@ import 'search_page_model.dart';
 export 'search_page_model.dart';
 
 class SearchPageWidget extends StatefulWidget {
-  const SearchPageWidget({super.key});
+  const SearchPageWidget({
+    super.key,
+    required this.bin,
+  });
+
+  final DocumentReference? bin;
 
   static String routeName = 'search_page';
   static String routePath = '/search_page';
@@ -89,7 +94,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             appBar: AppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               automaticallyImplyLeading: false,
               leading: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 0.0, 8.0),
@@ -437,6 +442,10 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                           itemsSearchItem.category,
                                           ParamType.String,
                                         ),
+                                        'bin': serializeParam(
+                                          widget.bin,
+                                          ParamType.DocumentReference,
+                                        ),
                                       }.withoutNulls,
                                     );
                                   },
@@ -553,6 +562,10 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                         'itemCategorySend': serializeParam(
                                           itemsSearchItem.category,
                                           ParamType.String,
+                                        ),
+                                        'bin': serializeParam(
+                                          widget.bin,
+                                          ParamType.DocumentReference,
                                         ),
                                       }.withoutNulls,
                                     );

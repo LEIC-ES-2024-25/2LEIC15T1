@@ -5,6 +5,16 @@ import 'camera_page_widget.dart' show CameraPageWidget;
 import 'package:flutter/material.dart';
 
 class CameraPageModel extends FlutterFlowModel<CameraPageWidget> {
+  ///  Local state fields for this page.
+
+  int? allPoints;
+
+  int? tempprogress;
+
+  int? tempgoal;
+
+  bool? tempcompleted;
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
@@ -23,11 +33,9 @@ class CameraPageModel extends FlutterFlowModel<CameraPageWidget> {
   String? Function(BuildContext, String?)?
       productcategoryNameTextControllerValidator;
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
-  List<ChallengesRecord>? newChallenges;
-  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
   List<UserChallengesRecord>? myChallenges;
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
-  List<UserChallengesRecord>? myUpdatedChallenges;
+  List<ChallengesRecord>? newChallenges;
 
   @override
   void initState(BuildContext context) {}

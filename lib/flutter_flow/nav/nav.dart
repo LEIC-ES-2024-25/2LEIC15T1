@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
+import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
@@ -76,13 +77,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? MainPageWidget() : LoginPageWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? MainPageWidget() : LoginPageWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
         ),
         FFRoute(
           name: LoginPageWidget.routeName,
@@ -92,7 +93,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: ProfilePageWidget.routeName,
           path: ProfilePageWidget.routePath,
-          builder: (context, params) => ProfilePageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'profile_page')
+              : ProfilePageWidget(),
         ),
         FFRoute(
           name: TasksPageWidget.routeName,
@@ -102,17 +105,33 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: MainPageWidget.routeName,
           path: MainPageWidget.routePath,
-          builder: (context, params) => MainPageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'main_page')
+              : MainPageWidget(),
         ),
         FFRoute(
           name: SearchPageWidget.routeName,
           path: SearchPageWidget.routePath,
-          builder: (context, params) => SearchPageWidget(),
+          builder: (context, params) => SearchPageWidget(
+            bin: params.getParam(
+              'bin',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['bins'],
+            ),
+          ),
         ),
         FFRoute(
           name: CameraPageWidget.routeName,
           path: CameraPageWidget.routePath,
-          builder: (context, params) => CameraPageWidget(),
+          builder: (context, params) => CameraPageWidget(
+            bin: params.getParam(
+              'bin',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['bins'],
+            ),
+          ),
         ),
         FFRoute(
           name: SignupPageWidget.routeName,
@@ -135,6 +154,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'itemImageSend',
               ParamType.String,
             ),
+            bin: params.getParam(
+              'bin',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['bins'],
+            ),
           ),
         ),
         FFRoute(
@@ -149,12 +174,23 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'itemCategorySend',
               ParamType.String,
             ),
+            bin: params.getParam(
+              'bin',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['bins'],
+            ),
           ),
         ),
         FFRoute(
           name: LeaderboardWidget.routeName,
           path: LeaderboardWidget.routePath,
-          builder: (context, params) => LeaderboardWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'leaderboard')
+              : NavBarPage(
+                  initialPage: 'leaderboard',
+                  page: LeaderboardWidget(),
+                ),
         ),
         FFRoute(
           name: HistoryWidget.routeName,
@@ -164,7 +200,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: CompleteLeaderboardWidget.routeName,
           path: CompleteLeaderboardWidget.routePath,
-          builder: (context, params) => CompleteLeaderboardWidget(),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: CompleteLeaderboardWidget(),
+          ),
         ),
         FFRoute(
           name: AdminDashboardWidget.routeName,

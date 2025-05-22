@@ -77,7 +77,7 @@ class _LeaderboardWidgetState extends State<LeaderboardWidget> {
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             appBar: AppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               automaticallyImplyLeading: false,
               leading: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 0.0, 8.0),
@@ -91,7 +91,7 @@ class _LeaderboardWidgetState extends State<LeaderboardWidget> {
                     size: 24.0,
                   ),
                   onPressed: () async {
-                    context.pushNamed(ProfilePageWidget.routeName);
+                    context.goNamed(MainPageWidget.routeName);
                   },
                 ),
               ),

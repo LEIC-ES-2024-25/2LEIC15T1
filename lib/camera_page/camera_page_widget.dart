@@ -15,7 +15,12 @@ import 'camera_page_model.dart';
 export 'camera_page_model.dart';
 
 class CameraPageWidget extends StatefulWidget {
-  const CameraPageWidget({super.key});
+  const CameraPageWidget({
+    super.key,
+    required this.bin,
+  });
+
+  final DocumentReference? bin;
 
   static String routeName = 'camera_page';
   static String routePath = '/cameraPage';
@@ -349,7 +354,7 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .secondaryText,
+                                                              .primaryText,
                                                       fontSize: 20.0,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
@@ -544,7 +549,7 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .secondaryText,
+                                                              .primaryText,
                                                       fontSize: 20.0,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
@@ -744,51 +749,8 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                           16.0, 12.0, 16.0, 12.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          await currentUserReference!.update({
-                            ...mapToFirestore(
-                              {
-                                'points': FieldValue.increment(15),
-                              },
-                            ),
-                          });
-                          if (functions.levelUpCheck(15,
-                              valueOrDefault(currentUserDocument?.points, 0))) {
-                            await currentUserReference!.update({
-                              ...mapToFirestore(
-                                {
-                                  'level': FieldValue.increment(1),
-                                },
-                              ),
-                            });
-                            _model.newChallenges =
-                                await queryChallengesRecordOnce(
-                              queryBuilder: (challengesRecord) =>
-                                  challengesRecord.where(
-                                'level',
-                                isEqualTo: valueOrDefault(
-                                    currentUserDocument?.level, 0),
-                              ),
-                            );
-                            for (int loop1Index = 0;
-                                loop1Index < _model.newChallenges!.length;
-                                loop1Index++) {
-                              final currentLoop1Item =
-                                  _model.newChallenges![loop1Index];
-
-                              await UserChallengesRecord.collection
-                                  .doc()
-                                  .set(createUserChallengesRecordData(
-                                    challengeRef: currentLoop1Item.reference,
-                                    progress: 0,
-                                    completed: false,
-                                    userEmail: currentUserEmail,
-                                    type: currentLoop1Item.type,
-                                    description: currentLoop1Item.description,
-                                    points: currentLoop1Item.points,
-                                    goal: currentLoop1Item.goal,
-                                  ));
-                            }
-                          }
+                          _model.allPoints = 15;
+                          safeSetState(() {});
 
                           await RecyclingActionRecord.collection
                               .doc()
@@ -800,7 +762,16 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                 date: getCurrentTimestamp,
                                 points: 15,
                                 email: currentUserEmail,
+                                bin: widget.bin,
                               ));
+
+                          await widget.bin!.update({
+                            ...mapToFirestore(
+                              {
+                                'Recycling_counter': FieldValue.increment(1),
+                              },
+                            ),
+                          });
                           _model.myChallenges =
                               await queryUserChallengesRecordOnce(
                             queryBuilder: (userChallengesRecord) =>
@@ -814,45 +785,94 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                                       isEqualTo: false,
                                     ),
                           );
-                          for (int loop2Index = 0;
-                              loop2Index < _model.myChallenges!.length;
-                              loop2Index++) {
-                            final currentLoop2Item =
-                                _model.myChallenges![loop2Index];
+                          for (int loop1Index = 0;
+                              loop1Index < _model.myChallenges!.length;
+                              loop1Index++) {
+                            final currentLoop1Item =
+                                _model.myChallenges![loop1Index];
 
-                            await currentLoop2Item.reference.update({
+                            await currentLoop1Item.reference.update({
                               ...mapToFirestore(
                                 {
                                   'progress': FieldValue.increment(1),
                                 },
                               ),
                             });
-                          }
-                          _model.myUpdatedChallenges =
-                              await queryUserChallengesRecordOnce(
-                            queryBuilder: (userChallengesRecord) =>
-                                userChallengesRecord
-                                    .where(
-                                      'userEmail',
-                                      isEqualTo: currentUserEmail,
-                                    )
-                                    .where(
-                                      'completed',
-                                      isEqualTo: false,
-                                    ),
-                          );
-                          for (int loop3Index = 0;
-                              loop3Index < _model.myUpdatedChallenges!.length;
-                              loop3Index++) {
-                            final currentLoop3Item =
-                                _model.myUpdatedChallenges![loop3Index];
+                            _model.tempprogress = currentLoop1Item.progress + 1;
+                            _model.tempgoal = currentLoop1Item.goal;
+                            _model.tempcompleted = currentLoop1Item.completed;
+                            safeSetState(() {});
+                            if ((_model.tempprogress == _model.tempgoal) &&
+                                !_model.tempcompleted!) {
+                              _model.allPoints =
+                                  _model.allPoints! + currentLoop1Item.points;
+                              safeSetState(() {});
+                            }
 
-                            await currentLoop3Item.reference
+                            await currentLoop1Item.reference
                                 .update(createUserChallengesRecordData(
-                              completed: currentLoop3Item.progress ==
-                                  currentLoop3Item.goal,
+                              completed: _model.tempprogress == _model.tempgoal,
                             ));
                           }
+                          if (functions.levelUpCheck(_model.allPoints!,
+                              valueOrDefault(currentUserDocument?.points, 0))) {
+                            await currentUserReference!.update({
+                              ...mapToFirestore(
+                                {
+                                  'level': FieldValue.increment((((valueOrDefault(
+                                                          currentUserDocument
+                                                              ?.points,
+                                                          0) +
+                                                      (_model.allPoints!)) -
+                                                  valueOrDefault(
+                                                          currentUserDocument
+                                                              ?.level,
+                                                          0) *
+                                                      100) /
+                                              100)
+                                          .floor() +
+                                      1),
+                                },
+                              ),
+                            });
+                            _model.newChallenges =
+                                await queryChallengesRecordOnce(
+                              queryBuilder: (challengesRecord) =>
+                                  challengesRecord.where(
+                                'level',
+                                isEqualTo: valueOrDefault(
+                                    currentUserDocument?.level, 0),
+                              ),
+                            );
+                            for (int loop2Index = 0;
+                                loop2Index < _model.newChallenges!.length;
+                                loop2Index++) {
+                              final currentLoop2Item =
+                                  _model.newChallenges![loop2Index];
+
+                              await UserChallengesRecord.collection
+                                  .doc()
+                                  .set(createUserChallengesRecordData(
+                                    challengeRef: currentLoop2Item.reference,
+                                    progress: 0,
+                                    completed: false,
+                                    userEmail: currentUserEmail,
+                                    type: currentLoop2Item.type,
+                                    description: currentLoop2Item.description,
+                                    points: currentLoop2Item.points,
+                                    goal: currentLoop2Item.goal,
+                                  ));
+                            }
+                          }
+
+                          await currentUserReference!.update({
+                            ...mapToFirestore(
+                              {
+                                'points':
+                                    FieldValue.increment(_model.allPoints!),
+                              },
+                            ),
+                          });
 
                           context.pushNamed(MainPageWidget.routeName);
 

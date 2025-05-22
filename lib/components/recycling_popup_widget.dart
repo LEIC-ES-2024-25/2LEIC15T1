@@ -307,7 +307,15 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                   alignment: AlignmentDirectional(0.0, -0.1),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      context.pushNamed(CameraPageWidget.routeName);
+                      context.pushNamed(
+                        CameraPageWidget.routeName,
+                        queryParameters: {
+                          'bin': serializeParam(
+                            widget.name?.reference,
+                            ParamType.DocumentReference,
+                          ),
+                        }.withoutNulls,
+                      );
                     },
                     text: 'Take a photo',
                     options: FFButtonOptions(
@@ -357,28 +365,6 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
 
                       _shouldSetState = true;
                       if (_model.barcodeResult == '-1') {
-                        var confirmDialogResponse = await showDialog<bool>(
-                              context: context,
-                              builder: (alertDialogContext) {
-                                return AlertDialog(
-                                  title: Text('SCANNING ERROR'),
-                                  content: Text(_model.barcodeResult),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(
-                                          alertDialogContext, false),
-                                      child: Text('Cancel'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(
-                                          alertDialogContext, true),
-                                      child: Text('Confirm'),
-                                    ),
-                                  ],
-                                );
-                              },
-                            ) ??
-                            false;
                         if (_shouldSetState) safeSetState(() {});
                         return;
                       }
@@ -408,6 +394,10 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                                 (_model.apiResult88i?.jsonBody ?? ''),
                               ).toString(),
                               ParamType.String,
+                            ),
+                            'bin': serializeParam(
+                              widget.name?.reference,
+                              ParamType.DocumentReference,
                             ),
                           }.withoutNulls,
                         );
@@ -474,7 +464,15 @@ class _RecyclingPopupWidgetState extends State<RecyclingPopupWidget> {
                   alignment: AlignmentDirectional(0.0, 0.8),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      context.pushNamed(SearchPageWidget.routeName);
+                      context.pushNamed(
+                        SearchPageWidget.routeName,
+                        queryParameters: {
+                          'bin': serializeParam(
+                            widget.name?.reference,
+                            ParamType.DocumentReference,
+                          ),
+                        }.withoutNulls,
+                      );
                     },
                     text: 'Search Item',
                     options: FFButtonOptions(

@@ -52,6 +52,7 @@ dependencies:
   firebase_storage: 12.3.2
   firebase_storage_platform_interface: 5.1.33
   firebase_storage_web: 3.10.5
+  floating_bottom_navigation_bar: 1.5.2
   flutter_animate: 4.5.0
   flutter_barcode_scanner: 
     git:

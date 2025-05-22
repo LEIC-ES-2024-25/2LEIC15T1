@@ -10,6 +10,8 @@ class GeneralRecyclingPopupModel
 
   ItemsSearchRecord? items;
 
+  DocumentReference? bin;
+
   ///  State fields for stateful widgets in this component.
 
   var barcodeResult = '';

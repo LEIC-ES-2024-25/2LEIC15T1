@@ -16,6 +16,7 @@ class SearchConfirmPageWidget extends StatefulWidget {
     super.key,
     String? itemNameSend,
     String? itemCategorySend,
+    required this.bin,
   })  : this.itemNameSend = itemNameSend ?? 'Item not found',
         this.itemCategorySend = itemCategorySend ?? 'Item not found';
 
@@ -24,6 +25,8 @@ class SearchConfirmPageWidget extends StatefulWidget {
 
   /// The item description sent to this page
   final String itemCategorySend;
+
+  final DocumentReference? bin;
 
   static String routeName = 'search_confirm_page';
   static String routePath = '/searchConfirmPage';
@@ -92,7 +95,7 @@ class _SearchConfirmPageWidgetState extends State<SearchConfirmPageWidget> {
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             appBar: AppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               automaticallyImplyLeading: false,
               leading: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 0.0, 8.0),
@@ -368,7 +371,17 @@ class _SearchConfirmPageWidgetState extends State<SearchConfirmPageWidget> {
                                     date: getCurrentTimestamp,
                                     points: 15,
                                     email: currentUserEmail,
+                                    bin: widget.bin,
                                   ));
+
+                              await widget.bin!.update({
+                                ...mapToFirestore(
+                                  {
+                                    'Recycling_counter':
+                                        FieldValue.increment(1),
+                                  },
+                                ),
+                              });
                               _model.myChallenges =
                                   await queryUserChallengesRecordOnce(
                                 queryBuilder: (userChallengesRecord) =>
@@ -395,13 +408,14 @@ class _SearchConfirmPageWidgetState extends State<SearchConfirmPageWidget> {
                                     },
                                   ),
                                 });
-                                _model.tempProgress = currentLoop1Item.progress;
+                                _model.tempProgress =
+                                    currentLoop1Item.progress + 1;
                                 _model.tempGoal = currentLoop1Item.goal;
                                 _model.tempCompleted =
                                     currentLoop1Item.completed;
                                 safeSetState(() {});
                                 if ((_model.tempProgress == _model.tempGoal) &&
-                                    _model.tempCompleted!) {
+                                    !_model.tempCompleted!) {
                                   _model.allPoints = _model.allPoints! +
                                       currentLoop1Item.points;
                                   safeSetState(() {});
@@ -409,8 +423,8 @@ class _SearchConfirmPageWidgetState extends State<SearchConfirmPageWidget> {
 
                                 await currentLoop1Item.reference
                                     .update(createUserChallengesRecordData(
-                                  completed: currentLoop1Item.progress ==
-                                      currentLoop1Item.goal,
+                                  completed:
+                                      _model.tempProgress == _model.tempGoal,
                                 ));
                               }
                               if (functions.levelUpCheck(

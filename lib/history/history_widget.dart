@@ -267,7 +267,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                                     height: double
                                                                         .infinity,
                                                                     fit: BoxFit
-                                                                        .fill,
+                                                                        .cover,
                                                                     alignment:
                                                                         Alignment(
                                                                             0.0,

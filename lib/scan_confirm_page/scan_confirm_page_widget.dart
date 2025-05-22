@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,6 +17,7 @@ class ScanConfirmPageWidget extends StatefulWidget {
     String? itemNameSend,
     String? itemCategorySend,
     required this.itemImageSend,
+    required this.bin,
   })  : this.itemNameSend = itemNameSend ?? 'Item not found',
         this.itemCategorySend = itemCategorySend ?? 'Item not found';
 
@@ -27,6 +29,8 @@ class ScanConfirmPageWidget extends StatefulWidget {
 
   /// The item image link sent to this page
   final String? itemImageSend;
+
+  final DocumentReference? bin;
 
   static String routeName = 'scan_confirm_page';
   static String routePath = '/scanConfirmPage';
@@ -152,7 +156,7 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                                       children: [
                                         Text(
                                           'This is the information of your scanned item:',
-                                          textAlign: TextAlign.start,
+                                          textAlign: TextAlign.center,
                                           style: FlutterFlowTheme.of(context)
                                               .labelMedium
                                               .override(
@@ -167,7 +171,7 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
-                                                fontSize: 20.0,
+                                                fontSize: 18.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                                 fontStyle:
@@ -182,7 +186,7 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                                           child: Image.network(
                                             widget.itemImageSend!,
                                             width: 479.9,
-                                            height: 200.0,
+                                            height: 295.6,
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -341,13 +345,8 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                           16.0, 12.0, 16.0, 12.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          await currentUserReference!.update({
-                            ...mapToFirestore(
-                              {
-                                'points': FieldValue.increment(50),
-                              },
-                            ),
-                          });
+                          _model.allPoints = 15;
+                          safeSetState(() {});
 
                           await RecyclingActionRecord.collection
                               .doc()
@@ -356,9 +355,18 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                                 category: widget.itemCategorySend,
                                 image: widget.itemImageSend,
                                 date: getCurrentTimestamp,
-                                points: 100,
+                                points: 15,
                                 email: currentUserEmail,
+                                bin: widget.bin,
                               ));
+
+                          await widget.bin!.update({
+                            ...mapToFirestore(
+                              {
+                                'Recycling_counter': FieldValue.increment(1),
+                              },
+                            ),
+                          });
                           _model.myChallenges =
                               await queryUserChallengesRecordOnce(
                             queryBuilder: (userChallengesRecord) =>
@@ -385,96 +393,81 @@ class _ScanConfirmPageWidgetState extends State<ScanConfirmPageWidget> {
                                 },
                               ),
                             });
-                          }
-                          _model.myUpdatedChallenges =
-                              await queryUserChallengesRecordOnce(
-                            queryBuilder: (userChallengesRecord) =>
-                                userChallengesRecord
-                                    .where(
-                                      'userEmail',
-                                      isEqualTo: currentUserEmail,
-                                    )
-                                    .where(
-                                      'completed',
-                                      isEqualTo: false,
-                                    ),
-                          );
-                          for (int loop2Index = 0;
-                              loop2Index < _model.myUpdatedChallenges!.length;
-                              loop2Index++) {
-                            final currentLoop2Item =
-                                _model.myUpdatedChallenges![loop2Index];
+                            _model.tempProgress = currentLoop1Item.progress + 1;
+                            _model.tempGoal = _model.tempGoal;
+                            _model.tempCompleted = currentLoop1Item.completed;
+                            safeSetState(() {});
+                            if ((_model.tempProgress == _model.tempGoal) &&
+                                !_model.tempCompleted!) {
+                              _model.allPoints =
+                                  _model.allPoints! + currentLoop1Item.points;
+                              safeSetState(() {});
+                            }
 
-                            await currentLoop2Item.reference
+                            await currentLoop1Item.reference
                                 .update(createUserChallengesRecordData(
-                              completed: true,
+                              completed: _model.tempProgress == _model.tempGoal,
                             ));
                           }
-                          _model.myCompletedChallenges =
-                              await queryUserChallengesRecordOnce(
-                            queryBuilder: (userChallengesRecord) =>
-                                userChallengesRecord
-                                    .where(
-                                      'userEmail',
-                                      isEqualTo: currentUserEmail,
-                                    )
-                                    .where(
-                                      'completed',
-                                      isEqualTo: true,
-                                    ),
-                          );
-                          for (int loop3Index = 0;
-                              loop3Index < _model.myCompletedChallenges!.length;
-                              loop3Index++) {
-                            final currentLoop3Item =
-                                _model.myCompletedChallenges![loop3Index];
-
+                          if (functions.levelUpCheck(_model.allPoints!,
+                              valueOrDefault(currentUserDocument?.points, 0))) {
                             await currentUserReference!.update({
                               ...mapToFirestore(
                                 {
-                                  'points': FieldValue.increment(
-                                      currentLoop3Item.points),
+                                  'level': FieldValue.increment((((valueOrDefault(
+                                                          currentUserDocument
+                                                              ?.points,
+                                                          0) +
+                                                      (_model.allPoints!)) -
+                                                  valueOrDefault(
+                                                          currentUserDocument
+                                                              ?.level,
+                                                          0) *
+                                                      100) /
+                                              100)
+                                          .floor() +
+                                      1),
                                 },
                               ),
                             });
+                            _model.newChallenges =
+                                await queryChallengesRecordOnce(
+                              queryBuilder: (challengesRecord) =>
+                                  challengesRecord.where(
+                                'level',
+                                isEqualTo: valueOrDefault(
+                                    currentUserDocument?.level, 0),
+                              ),
+                            );
+                            for (int loop2Index = 0;
+                                loop2Index < _model.newChallenges!.length;
+                                loop2Index++) {
+                              final currentLoop2Item =
+                                  _model.newChallenges![loop2Index];
+
+                              await UserChallengesRecord.collection
+                                  .doc()
+                                  .set(createUserChallengesRecordData(
+                                    challengeRef: currentLoop2Item.reference,
+                                    progress: 0,
+                                    completed: false,
+                                    userEmail: currentUserEmail,
+                                    type: currentLoop2Item.type,
+                                    description: currentLoop2Item.description,
+                                    points: currentLoop2Item.points,
+                                    goal: currentLoop2Item.goal,
+                                  ));
+                            }
                           }
 
-                          await currentUserReference!
-                              .update(createUsersRecordData(
-                            level: (valueOrDefault(
-                                            currentUserDocument?.points, 0) /
-                                        100)
-                                    .floor() +
-                                1,
-                          ));
-                          _model.newChallenges =
-                              await queryChallengesRecordOnce(
-                            queryBuilder: (challengesRecord) =>
-                                challengesRecord.where(
-                              'level',
-                              isEqualTo:
-                                  valueOrDefault(currentUserDocument?.level, 0),
+                          await currentUserReference!.update({
+                            ...mapToFirestore(
+                              {
+                                'points':
+                                    FieldValue.increment(_model.allPoints!),
+                              },
                             ),
-                          );
-                          for (int loop4Index = 0;
-                              loop4Index < _model.newChallenges!.length;
-                              loop4Index++) {
-                            final currentLoop4Item =
-                                _model.newChallenges![loop4Index];
-
-                            await UserChallengesRecord.collection
-                                .doc()
-                                .set(createUserChallengesRecordData(
-                                  challengeRef: currentLoop4Item.reference,
-                                  progress: 0,
-                                  completed: false,
-                                  userEmail: currentUserEmail,
-                                  type: currentLoop4Item.type,
-                                  description: currentLoop4Item.description,
-                                  points: currentLoop4Item.points,
-                                  goal: currentLoop4Item.goal,
-                                ));
-                          }
+                          });
 
                           context.pushNamed(MainPageWidget.routeName);
 

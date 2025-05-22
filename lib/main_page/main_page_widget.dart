@@ -40,24 +40,29 @@ class _MainPageWidgetState extends State<MainPageWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().RandomTip = functions.getRecylingTip()!;
       safeSetState(() {});
-      await showModalBottomSheet(
-        isScrollControlled: true,
-        backgroundColor: Colors.transparent,
-        enableDrag: false,
-        context: context,
-        builder: (context) {
-          return GestureDetector(
-            onTap: () {
-              FocusScope.of(context).unfocus();
-              FocusManager.instance.primaryFocus?.unfocus();
-            },
-            child: Padding(
-              padding: MediaQuery.viewInsetsOf(context),
-              child: TipPopUpWidget(),
-            ),
-          );
-        },
-      ).then((value) => safeSetState(() {}));
+      if (FFAppState().showTip == false) {
+        await showModalBottomSheet(
+          isScrollControlled: true,
+          backgroundColor: Colors.transparent,
+          enableDrag: false,
+          context: context,
+          builder: (context) {
+            return GestureDetector(
+              onTap: () {
+                FocusScope.of(context).unfocus();
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
+              child: Padding(
+                padding: MediaQuery.viewInsetsOf(context),
+                child: TipPopUpWidget(),
+              ),
+            );
+          },
+        ).then((value) => safeSetState(() {}));
+
+        FFAppState().showTip = true;
+        safeSetState(() {});
+      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -96,42 +101,115 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                 ),
                 child: Stack(
                   children: [
-                    StreamBuilder<List<BinsRecord>>(
-                      stream: queryBinsRecord(),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
+                    Align(
+                      alignment: AlignmentDirectional(0.0, 0.0),
+                      child: StreamBuilder<List<BinsRecord>>(
+                        stream: queryBinsRecord(),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        }
-                        List<BinsRecord> googleMapBinsRecordList =
-                            snapshot.data!;
+                            );
+                          }
+                          List<BinsRecord> googleMapBinsRecordList =
+                              snapshot.data!;
 
-                        return FlutterFlowGoogleMap(
-                          controller: _model.googleMapsController,
-                          onCameraIdle: (latLng) =>
-                              _model.googleMapsCenter = latLng,
-                          initialLocation: _model.googleMapsCenter ??=
-                              LatLng(41.1776832, -8.5957992),
-                          markers: googleMapBinsRecordList
-                              .map(
-                                (marker) => FlutterFlowMarker(
-                                  marker.reference.path,
-                                  marker.location!,
-                                  () async {
+                          return FlutterFlowGoogleMap(
+                            controller: _model.googleMapsController,
+                            onCameraIdle: (latLng) =>
+                                _model.googleMapsCenter = latLng,
+                            initialLocation: _model.googleMapsCenter ??=
+                                LatLng(41.1776832, -8.5957992),
+                            markers: googleMapBinsRecordList
+                                .map(
+                                  (marker) => FlutterFlowMarker(
+                                    marker.reference.path,
+                                    marker.location!,
+                                    () async {
+                                      await showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        backgroundColor: Colors.transparent,
+                                        enableDrag: false,
+                                        context: context,
+                                        builder: (context) {
+                                          return GestureDetector(
+                                            onTap: () {
+                                              FocusScope.of(context).unfocus();
+                                              FocusManager.instance.primaryFocus
+                                                  ?.unfocus();
+                                            },
+                                            child: Padding(
+                                              padding: MediaQuery.viewInsetsOf(
+                                                  context),
+                                              child: Container(
+                                                height: 600.0,
+                                                child: RecyclingPopupWidget(
+                                                  name: marker,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ).then((value) => safeSetState(() {}));
+                                    },
+                                  ),
+                                )
+                                .toList(),
+                            markerColor: GoogleMarkerColor.yellow,
+                            mapType: MapType.normal,
+                            style: GoogleMapStyle.standard,
+                            initialZoom: 17.16,
+                            allowInteraction: true,
+                            allowZoom: true,
+                            showZoomControls: true,
+                            showLocation: true,
+                            showCompass: false,
+                            showMapToolbar: false,
+                            showTraffic: false,
+                            centerMapOnMarkerTap: true,
+                          );
+                        },
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(0.0, 0.0),
+                      child: PointerInterceptor(
+                        intercepting: isWeb,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Align(
+                              alignment: AlignmentDirectional(-1.0, -1.0),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    5.0, 5.0, 10.0, 5.0),
+                                child: FlutterFlowIconButton(
+                                  borderRadius: 8.0,
+                                  buttonSize: 60.0,
+                                  fillColor:
+                                      FlutterFlowTheme.of(context).secondary,
+                                  icon: Icon(
+                                    Icons.lightbulb_outline_rounded,
+                                    color: FlutterFlowTheme.of(context).info,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () async {
                                     await showModalBottomSheet(
                                       isScrollControlled: true,
                                       backgroundColor: Colors.transparent,
                                       enableDrag: false,
+                                      useSafeArea: true,
                                       context: context,
                                       builder: (context) {
                                         return GestureDetector(
@@ -143,125 +221,46 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                                           child: Padding(
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),
-                                            child: Container(
-                                              height: 600.0,
-                                              child: RecyclingPopupWidget(
-                                                name: marker,
-                                              ),
-                                            ),
+                                            child: TipPopUpWidget(),
                                           ),
                                         );
                                       },
                                     ).then((value) => safeSetState(() {}));
+
+                                    FFAppState().RandomTip =
+                                        functions.getRecylingTip()!;
+                                    safeSetState(() {});
                                   },
                                 ),
-                              )
-                              .toList(),
-                          markerColor: GoogleMarkerColor.yellow,
-                          mapType: MapType.normal,
-                          style: GoogleMapStyle.standard,
-                          initialZoom: 17.16,
-                          allowInteraction: true,
-                          allowZoom: true,
-                          showZoomControls: true,
-                          showLocation: true,
-                          showCompass: false,
-                          showMapToolbar: false,
-                          showTraffic: false,
-                          centerMapOnMarkerTap: true,
-                        );
-                      },
-                    ),
-                    PointerInterceptor(
-                      intercepting: isWeb,
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                              ),
+                            ),
                             if (valueOrDefault<bool>(
                                 currentUserDocument?.isAdmin, false))
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    5.0, 5.0, 5.0, 5.0),
-                                child: AuthUserStreamWidget(
-                                  builder: (context) => FlutterFlowIconButton(
-                                    borderRadius: 8.0,
-                                    buttonSize: 60.0,
-                                    fillColor:
-                                        FlutterFlowTheme.of(context).secondary,
-                                    icon: Icon(
-                                      Icons.admin_panel_settings_rounded,
-                                      color: FlutterFlowTheme.of(context).info,
-                                      size: 24.0,
+                              Align(
+                                alignment: AlignmentDirectional(-1.0, -1.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 5.0, 0.0, 5.0),
+                                  child: AuthUserStreamWidget(
+                                    builder: (context) => FlutterFlowIconButton(
+                                      borderRadius: 8.0,
+                                      buttonSize: 60.0,
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .secondary,
+                                      icon: Icon(
+                                        Icons.admin_panel_settings_rounded,
+                                        color:
+                                            FlutterFlowTheme.of(context).info,
+                                        size: 24.0,
+                                      ),
+                                      onPressed: () async {
+                                        context.pushNamed(
+                                            AdminDashboardWidget.routeName);
+                                      },
                                     ),
-                                    onPressed: () async {
-                                      context.pushNamed(
-                                          AdminDashboardWidget.routeName);
-                                    },
                                   ),
                                 ),
                               ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  5.0, 5.0, 5.0, 5.0),
-                              child: FlutterFlowIconButton(
-                                borderRadius: 8.0,
-                                buttonSize: 60.0,
-                                fillColor:
-                                    FlutterFlowTheme.of(context).secondary,
-                                icon: Icon(
-                                  Icons.lightbulb_outline_rounded,
-                                  color: FlutterFlowTheme.of(context).info,
-                                  size: 24.0,
-                                ),
-                                onPressed: () async {
-                                  await showModalBottomSheet(
-                                    isScrollControlled: true,
-                                    backgroundColor: Colors.transparent,
-                                    enableDrag: false,
-                                    useSafeArea: true,
-                                    context: context,
-                                    builder: (context) {
-                                      return GestureDetector(
-                                        onTap: () {
-                                          FocusScope.of(context).unfocus();
-                                          FocusManager.instance.primaryFocus
-                                              ?.unfocus();
-                                        },
-                                        child: Padding(
-                                          padding:
-                                              MediaQuery.viewInsetsOf(context),
-                                          child: TipPopUpWidget(),
-                                        ),
-                                      );
-                                    },
-                                  ).then((value) => safeSetState(() {}));
-                                },
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  5.0, 5.0, 5.0, 5.0),
-                              child: FlutterFlowIconButton(
-                                borderRadius: 8.0,
-                                buttonSize: 60.0,
-                                fillColor:
-                                    FlutterFlowTheme.of(context).secondary,
-                                icon: Icon(
-                                  Icons.person,
-                                  color: FlutterFlowTheme.of(context).info,
-                                  size: 24.0,
-                                ),
-                                onPressed: () async {
-                                  context
-                                      .pushNamed(ProfilePageWidget.routeName);
-                                },
-                              ),
-                            ),
                           ],
                         ),
                       ),
@@ -271,7 +270,8 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                       child: PointerInterceptor(
                         intercepting: isWeb,
                         child: Padding(
-                          padding: EdgeInsets.all(75.0),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 140.0),
                           child: Container(
                             width: 80.0,
                             height: 80.0,
@@ -297,10 +297,10 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                                 borderRadius: 25.0,
                                 buttonSize: 80.0,
                                 fillColor:
-                                    FlutterFlowTheme.of(context).alternate,
+                                    FlutterFlowTheme.of(context).secondary,
                                 icon: Icon(
                                   Icons.recycling_sharp,
-                                  color: FlutterFlowTheme.of(context).secondary,
+                                  color: FlutterFlowTheme.of(context).alternate,
                                   size: 40.0,
                                 ),
                                 onPressed: () async {
@@ -321,8 +321,9 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                                               MediaQuery.viewInsetsOf(context),
                                           child: Container(
                                             height: 600.0,
-                                            child:
-                                                GeneralRecyclingPopupWidget(),
+                                            child: GeneralRecyclingPopupWidget(
+                                              bin: FFAppState().outsideBin!,
+                                            ),
                                           ),
                                         ),
                                       );

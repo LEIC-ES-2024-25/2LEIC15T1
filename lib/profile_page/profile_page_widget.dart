@@ -1,6 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/log_out_confirmation_widget.dart';
+import '/components/logout_history_popup_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -51,7 +51,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
           return Scaffold(
-            backgroundColor: Color(0xFFF1F4F8),
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             body: Center(
               child: SizedBox(
                 width: 50.0,
@@ -74,9 +74,9 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
           },
           child: Scaffold(
             key: scaffoldKey,
-            backgroundColor: Color(0xFFF1F4F8),
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             appBar: AppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               automaticallyImplyLeading: false,
               leading: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 0.0, 8.0),
@@ -120,37 +120,34 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                 ),
               ),
               actions: [
-                Builder(
-                  builder: (context) => FlutterFlowIconButton(
-                    borderRadius: 8.0,
-                    buttonSize: 60.0,
-                    icon: Icon(
-                      Icons.logout_rounded,
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      size: 24.0,
-                    ),
-                    onPressed: () async {
-                      await showDialog(
-                        context: context,
-                        builder: (dialogContext) {
-                          return Dialog(
-                            elevation: 0,
-                            insetPadding: EdgeInsets.zero,
-                            backgroundColor: Colors.transparent,
-                            alignment: AlignmentDirectional(0.0, 0.0)
-                                .resolve(Directionality.of(context)),
-                            child: GestureDetector(
-                              onTap: () {
-                                FocusScope.of(dialogContext).unfocus();
-                                FocusManager.instance.primaryFocus?.unfocus();
-                              },
-                              child: LogOutConfirmationWidget(),
-                            ),
-                          );
-                        },
-                      );
-                    },
+                FlutterFlowIconButton(
+                  borderRadius: 8.0,
+                  buttonSize: 60.0,
+                  icon: Icon(
+                    Icons.more_vert,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 24.0,
                   ),
+                  onPressed: () async {
+                    showModalBottomSheet(
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      enableDrag: false,
+                      context: context,
+                      builder: (context) {
+                        return GestureDetector(
+                          onTap: () {
+                            FocusScope.of(context).unfocus();
+                            FocusManager.instance.primaryFocus?.unfocus();
+                          },
+                          child: Padding(
+                            padding: MediaQuery.viewInsetsOf(context),
+                            child: LogoutHistoryPopupWidget(),
+                          ),
+                        );
+                      },
+                    ).then((value) => safeSetState(() {}));
+                  },
                 ),
               ],
               centerTitle: false,
@@ -195,7 +192,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                   width: 100.0,
                                   height: 100.0,
                                   decoration: BoxDecoration(
-                                    color: Color(0xFFF1F4F8),
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
                                     shape: BoxShape.circle,
                                   ),
                                   child: Padding(
@@ -283,36 +281,6 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                             ],
                           ),
                         ),
-                        FlutterFlowIconButton(
-                          borderRadius: 8.0,
-                          buttonSize: 40.0,
-                          fillColor: FlutterFlowTheme.of(context).secondary,
-                          icon: Icon(
-                            Icons.leaderboard_rounded,
-                            color: FlutterFlowTheme.of(context).info,
-                            size: 24.0,
-                          ),
-                          onPressed: () async {
-                            context.pushNamed(LeaderboardWidget.routeName);
-                          },
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 0.0, 0.0),
-                          child: FlutterFlowIconButton(
-                            borderRadius: 8.0,
-                            buttonSize: 40.0,
-                            fillColor: FlutterFlowTheme.of(context).secondary,
-                            icon: Icon(
-                              Icons.history_rounded,
-                              color: FlutterFlowTheme.of(context).info,
-                              size: 24.0,
-                            ),
-                            onPressed: () async {
-                              context.pushNamed(HistoryWidget.routeName);
-                            },
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -324,7 +292,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                         width: double.infinity,
                         height: 400.0,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: FlutterFlowTheme.of(context).primaryBackground,
                           boxShadow: [
                             BoxShadow(
                               blurRadius: 3.0,
@@ -509,7 +477,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                   backgroundColor:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .alternate,
+                                                          .secondaryBackground,
                                                   barRadius:
                                                       Radius.circular(8.0),
                                                   padding: EdgeInsets.zero,
@@ -523,7 +491,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                     Divider(
                                       height: 32.0,
                                       thickness: 1.0,
-                                      color: Color(0xFFE0E3E7),
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -1042,7 +1011,9 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                                     context)
                                                                 .accent2,
                                                         backgroundColor:
-                                                            Color(0xCCB7B6B6),
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
                                                         barRadius:
                                                             Radius.circular(
                                                                 8.0),

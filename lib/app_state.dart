@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '/backend/backend.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -48,5 +50,18 @@ class FFAppState extends ChangeNotifier {
   String get RandomTip => _RandomTip;
   set RandomTip(String value) {
     _RandomTip = value;
+  }
+
+  bool _showTip = false;
+  bool get showTip => _showTip;
+  set showTip(bool value) {
+    _showTip = value;
+  }
+
+  DocumentReference? _outsideBin =
+      FirebaseFirestore.instance.doc('/bins/PfajcXhn7gk6Yw6zrQkD');
+  DocumentReference? get outsideBin => _outsideBin;
+  set outsideBin(DocumentReference? value) {
+    _outsideBin = value;
   }
 }
