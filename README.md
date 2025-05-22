@@ -44,7 +44,7 @@ Thank you!
 
 ### Github Commits and FlutterFlow Workflow
 During the first two sprints, all development work was committed directly to GitHub using FlutterFlow's "Push to GitHub" feature. In Sprint 3, the commit process followed a mixed approach. FlutterFlow has a built-in version control system (VCS) that operates independently of GitHub. As a result, some commits were made within FlutterFlow's internal VCS, while others were pushed directly to GitHub.
-Regardless, the complete and final Flutter code is available in the "flutterflow" branch. For reference and contribution history, the commit messages that were recorded only within FlutterFlow's VCS — and thus not visible on GitHub — are documented here:
+Regardless, the complete and final Flutter code is available in the "flutterflow" branch. For reference and contribution history, the commit messages that were recorded only within FlutterFlow's VCS — and thus not visible on GitHub — are documented here: [FlutterFlow commits](https://github.com/LEIC-ES-2024-25/2LEIC15T1/blob/main/imgs/flutterflow_commits.png)
 
 ---
 ## Business Modelling
