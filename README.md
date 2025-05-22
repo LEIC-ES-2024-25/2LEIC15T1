@@ -326,8 +326,16 @@ What we can do for improvement:
  <img src="imgs/sprint3-start.png">
  
  #### End of the Sprint
+ <img src="imgs/sprint3-end.png">
 
  #### Sprint Retrospective
+
+ What we did well:
+   - We divided the tasks for all the members of the group, improved the design of the app, and fixed some bugs.
+
+ What went wrong:
+  - We didn't implement one user storie.
+  - Our objective for the challenges user storie was too ambicious, and we didn't implemented it in the way we planned in the beginning.
 
 ### Sprint 4
 
