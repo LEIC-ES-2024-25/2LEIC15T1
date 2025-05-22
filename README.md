@@ -39,6 +39,12 @@ Thank you!
 * Tiago Catelas Ribeiro Correia (up202306129@up.pt)
 * Luís Martim Barbosa Cabral Ferreira (up202208429@up.pt)
 * Ladielson Cabral Renner (up202309824@up.pt)
+---
+## ⚠️ Project Development Notes
+
+### Github Commits and FlutterFlow Workflow
+During the first two sprints, all development work was committed directly to GitHub using FlutterFlow's "Push to GitHub" feature. In Sprint 3, the commit process followed a mixed approach. FlutterFlow has a built-in version control system (VCS) that operates independently of GitHub. As a result, some commits were made within FlutterFlow's internal VCS, while others were pushed directly to GitHub.
+Regardless, the complete and final Flutter code is available in the "flutterflow" branch. For reference and contribution history, the commit messages that were recorded only within FlutterFlow's VCS — and thus not visible on GitHub — are documented here:
 
 ---
 ## Business Modelling
@@ -104,8 +110,7 @@ Take a look at the following links to learn some techniques:
 * [The Best Elevator Pitch Examples, Templates, and Tactics - A Guide to Writing an Unforgettable Elevator Speech, by strategypeak.com](https://strategypeak.com/elevator-pitch-examples/)
 * [Top 7 Killer Elevator Pitch Examples, by toggl.com](https://blog.toggl.com/elevator-pitch-examples/)
 -->
-<!-- 
-"BinGo transforms recycling into a fun and rewarding experience. Scan QR codes, earn points, and compete with your colleagues on the leaderboard while making a real impact on the environment"-->
+BinGo transforms recycling into a fun and rewarding experience. Scan QR codes, earn points, and compete with your colleagues on the leaderboard while making a real impact on the environment
 
 ## Requirements
 
@@ -243,7 +248,7 @@ At this phase, instead of a complete user story, you can simply implement a smal
 ### Definition of Done
 A task is considered "Done" when it functions exactly as intended, with no visible bugs. All features described in the user story must be manually tested to ensure they align with the expected usage.
 
-### Happiness meters 
+## Happiness meters 
 This is the spreadsheet with the happiness meters of all sprints (the table was filled horizontally):
 
 https://docs.google.com/spreadsheets/d/1rpr3WY1SpCuPMmw__6JmT9yC9WvLqMsVE1zQ8lZhQwo/edit?usp=sharing
@@ -338,8 +343,9 @@ What we can do for improvement:
  What went wrong:
   - We didn't implement one user storie.
   - Our objective for the challenges user storie was too ambicious, and we didn't implemented it in the way we planned in the beginning.
-
-### Sprint 4
+ 
+ What we can do for improvement:
+  - Take in consideration the time required to learn and understand how to implement a feature when defining sprint objectives.
 
 ### Final Release
 
